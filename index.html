@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Daimon Media — Cinematic Car Ads from One Photo</title>
+<style>
+  :root{
+    --bg:#0a0b0f; --panel:#12141b; --line:#23262f; --ink:#f4f5f7; --mut:#9aa0ab;
+    --accent:#2fb6ff; --accent2:#ffcf2e; --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px}
+  .eyebrow{color:var(--accent);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:12px}
+  h1{font-size:clamp(34px,6vw,60px);line-height:1.02;letter-spacing:-.02em;margin:14px 0 10px;font-weight:800}
+  h1 .y{color:var(--accent2)}
+  h2{font-size:clamp(24px,4vw,34px);letter-spacing:-.01em;margin:0 0 6px;font-weight:800}
+  p.lead{color:var(--mut);font-size:clamp(17px,2.4vw,20px);max-width:640px}
+  header.hero{padding:64px 0 30px;background:radial-gradient(900px 400px at 70% -10%,rgba(47,182,255,.16),transparent 60%)}
+  .heroGrid{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center}
+  @media(max-width:760px){.heroGrid{grid-template-columns:1fr}}
+  .demoCard{position:relative;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#000;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  .demoCard video{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:cover;background:#000}
+  .badge{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);border:1px solid var(--line);color:#fff;font-size:12px;font-weight:700;padding:6px 10px;border-radius:999px}
+  .cta{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#001018;font-weight:800;padding:14px 22px;border-radius:999px;text-decoration:none;font-size:16px;transition:transform .15s ease,filter .15s ease}
+  .cta:hover{transform:translateY(-1px);filter:brightness(1.06)}
+  .cta.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .ctaRow{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+  section{padding:46px 0;border-top:1px solid var(--line)}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+  @media(max-width:760px){.grid3{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .card.feat{outline:2px solid var(--accent);position:relative}
+  .card .price{font-size:34px;font-weight:800;margin:6px 0}
+  .card .price span{font-size:15px;color:var(--mut);font-weight:600}
+  .pill{display:inline-block;background:rgba(255,207,46,.14);color:var(--accent2);font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;margin-bottom:8px}
+  .steps{counter-reset:s;display:grid;gap:14px;margin-top:18px}
+  .step{display:flex;gap:14px;align-items:flex-start}
+  .step b{flex:0 0 34px;height:34px;border-radius:10px;background:var(--accent);color:#001018;display:grid;place-items:center;font-weight:800}
+  .muted{color:var(--mut)}
+  footer{padding:40px 0 70px;color:var(--mut);font-size:14px;text-align:center}
+  .final{background:linear-gradient(180deg,rgba(47,182,255,.10),transparent);border:1px solid var(--line);border-radius:var(--radius);padding:34px;text-align:center;margin-top:10px}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap heroGrid">
+  <div>
+    <span class="eyebrow">Daimon Media</span>
+    <h1>Cinematic car ads<br>from <span class="y">one photo.</span></h1>
+    <p class="lead">Send one photo of the car. Get a scroll-stopping cinematic video ad for TikTok, Reels &amp; your listings — in 48 hours. No film crew. No shoot.</p>
+    <div class="ctaRow">
+      <a class="cta" href="#contact">Get a FREE sample of your car →</a>
+      <a class="cta ghost" href="#pricing">See pricing</a>
+    </div>
+  </div>
+  <div class="demoCard">
+    <span class="badge">▶ Real sample · 100% AI</span>
+    <video src="samples/sample_sedan.mp4" poster="hero.png" autoplay muted loop playsinline></video>
+  </div>
+</div></header>
+
+<section><div class="wrap">
+  <span class="eyebrow">The problem</span>
+  <h2>Your listings look like everyone else's.</h2>
+  <p class="lead">Flat photos scroll past. A 10-second cinematic clip of the actual car — motion, lights, mood — stops the thumb and makes the listing feel premium. That's what sells faster.</p>
+</div></section>
+
+<section><div class="wrap">
+  <span class="eyebrow">Recent work</span>
+  <h2>Every style. Any car.</h2>
+  <p class="lead">Sports, luxury, SUV — each made from a single photo, no shoot.</p>
+  <div class="grid3" style="margin-top:22px">
+    <div class="demoCard"><span class="badge">Sports</span><video src="samples/sample_sportscar.mp4" muted loop autoplay playsinline></video></div>
+    <div class="demoCard"><span class="badge">Luxury</span><video src="samples/sample_sedan.mp4" muted loop autoplay playsinline></video></div>
+    <div class="demoCard"><span class="badge">SUV</span><video src="samples/sample_suv.mp4" muted loop autoplay playsinline></video></div>
+  </div>
+</div></section>
+
+<section id="pricing"><div class="wrap">
+  <span class="eyebrow">Pricing</span>
+  <h2>Simple. Per car or monthly.</h2>
+  <div class="grid3">
+    <div class="card">
+      <div class="muted">Taste test</div>
+      <div class="price">€79</div>
+      <p class="muted">1 cinematic ad from 1 photo. See it before you commit.</p>
+    </div>
+    <div class="card feat">
+      <span class="pill">Most popular</span>
+      <div class="muted">Pro pack</div>
+      <div class="price">€249</div>
+      <p class="muted">3 ads — different cars or angles. 48h turnaround, your branding.</p>
+    </div>
+    <div class="card">
+      <div class="muted">Dealer monthly</div>
+      <div class="price">€499<span>/mo</span></div>
+      <p class="muted">12 ads every month. Keep every listing cinematic, always-on.</p>
+    </div>
+  </div>
+  <p class="muted" style="margin-top:16px">First sample is <b>free</b> — if you don't love it, you pay nothing.</p>
+</div></section>
+
+<section><div class="wrap">
+  <span class="eyebrow">How it works</span>
+  <h2>Three steps. 48 hours.</h2>
+  <div class="steps">
+    <div class="step"><b>1</b><div><b>Send a photo.</b> One clear photo of the car (or your listing link).</div></div>
+    <div class="step"><b>2</b><div><b>We direct it.</b> Cinematic motion, lighting and mood — built around your exact car, with your logo &amp; price.</div></div>
+    <div class="step"><b>3</b><div><b>You post it.</b> 9:16 video ready for TikTok, Reels, Marktplaats &amp; your site. Sells faster.</div></div>
+  </div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <div class="final">
+    <h2>Want a free sample of your car?</h2>
+    <p class="lead" style="margin:8px auto 18px">Reply with one photo — I'll send back a cinematic ad of that exact car, free. No strings.</p>
+    <!-- EDIT THESE before sharing: -->
+    <a class="cta" href="https://wa.me/31XXXXXXXXX?text=Hi%20Daimon%20Media%2C%20I%20want%20a%20free%20car%20ad%20sample">Message on WhatsApp</a>
+    <a class="cta ghost" href="mailto:jonathan@daimonmedia.com">Email us</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">Daimon Media · Cinematic AI car ads · daimonmedia.com · @daimonmedia</div></footer>
+</body>
+</html>
