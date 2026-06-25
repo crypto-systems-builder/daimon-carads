@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>
+/* Route Dutch visitors to the NL funnel. ?lang=en overrides + sticks for the session. */
+(function(){try{var p=new URLSearchParams(location.search);if(p.get('lang')==='en'){sessionStorage.setItem('lang','en');return;}if(sessionStorage.getItem('lang')==='en')return;var l=(navigator.language||navigator.userLanguage||'').toLowerCase();if(l&&l.indexOf('nl')===0){location.replace('index.html');}}catch(e){}})();
+</script>
+<title>Daimon Media — Your listing, brought to life. A cinematic ad from your own photos.</title>
+<meta name="description" content="We animate the photos from your own car listing into a cinematic video — specs and price on screen, within 48 hours, ready for Instagram, Reels and your site." />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#06080d; --bg2:#0a0e18; --panel:#0e1322; --overlay:#111827;
+    --line:#3d4560; --ink:#e8eaf0; --mut:#7a8299;
+    --accent:#00e5ff; --accent2:#7b61ff; --radius:16px;
+    --disp:"Syne",Inter,Helvetica,sans-serif;
+    --body:"Crimson Pro",Georgia,serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font:18px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto;padding:0 22px}
+  h1,h2,h3{font-family:var(--disp);font-weight:800;letter-spacing:-.02em;line-height:1.06}
+  .eyebrow{font-family:var(--mono);color:var(--accent);font-weight:500;letter-spacing:.22em;text-transform:uppercase;font-size:12px}
+  h1{font-size:clamp(34px,5.8vw,60px);margin:16px 0 14px}
+  h2{font-size:clamp(26px,3.4vw,38px);margin:6px 0 4px;font-weight:700}
+  p.lead{color:var(--mut);font-size:clamp(17px,2.2vw,21px);max-width:680px}
+  .mark{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+  .mark .d{font-family:var(--body);font-weight:700;color:var(--accent);font-size:22px;border:2px solid var(--accent);border-radius:6px;width:34px;height:34px;display:grid;place-items:center;line-height:1}
+  .mark .wm{font-family:var(--disp);font-weight:800;font-size:15px;letter-spacing:.04em;color:var(--ink)}
+  .mark .wm span{color:var(--accent);letter-spacing:.16em;font-weight:600}
+  header.hero{padding:30px 0 30px;background:radial-gradient(900px 440px at 74% -8%,rgba(0,229,255,.13),transparent 60%)}
+  .topbar{display:flex;justify-content:space-between;align-items:center;padding:8px 0 36px}
+  .heroGrid{display:grid;grid-template-columns:1.12fr .88fr;gap:36px;align-items:center}
+  @media(max-width:760px){.heroGrid{grid-template-columns:1fr}}
+  .demoCard{position:relative;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#000;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+  .demoCard video{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:cover;background:#000}
+  .badge{position:absolute;top:12px;left:12px;background:rgba(6,8,13,.62);backdrop-filter:blur(6px);border:1px solid var(--line);color:#fff;font-family:var(--mono);font-size:11px;font-weight:500;padding:6px 11px;border-radius:999px}
+  .cta{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#04121a;font-family:var(--disp);font-weight:700;padding:14px 24px;border-radius:999px;text-decoration:none;font-size:16px;transition:transform .15s,filter .15s}
+  .cta:hover{transform:translateY(-1px);filter:brightness(1.08)}
+  .cta.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .cta.ghost:hover{border-color:var(--accent)}
+  .ctaRow{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+  section{padding:50px 0;border-top:1px solid var(--line)}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+  @media(max-width:760px){.grid3{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  a.card{display:block;text-decoration:none;color:inherit;cursor:pointer;transition:transform .15s,border-color .15s}
+  a.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .card h3{font-size:19px;font-weight:700;margin-bottom:8px}
+  .pickcta{display:inline-block;margin-top:16px;color:var(--accent);font-family:var(--disp);font-weight:700;font-size:14px}
+  .card.feat{outline:2px solid var(--accent);position:relative}
+  .card .price{font-family:var(--disp);font-size:34px;font-weight:800;margin:8px 0}
+  .card .price span{font-size:15px;color:var(--mut);font-weight:600;font-family:var(--mono)}
+  .pill{display:inline-block;background:rgba(0,229,255,.14);color:var(--accent);font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:8px}
+  .muted{color:var(--mut)}
+  .stack{list-style:none;margin:22px 0 0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--panel)}
+  .stack li{display:flex;justify-content:space-between;gap:16px;padding:14px 20px;border-top:1px solid var(--line)}
+  .stack li:first-child{border-top:none}
+  .stack li b{font-family:var(--mono);font-weight:500;color:var(--accent);white-space:nowrap}
+  .stack .tot{background:rgba(0,229,255,.06);font-family:var(--disp);font-weight:700}
+  .steps{display:grid;gap:14px;margin-top:20px}
+  .step{display:flex;gap:14px;align-items:flex-start}
+  .step b{flex:0 0 36px;height:36px;border-radius:10px;background:var(--accent);color:#04121a;display:grid;place-items:center;font-family:var(--disp);font-weight:800}
+  .guarantee{background:linear-gradient(180deg,rgba(0,229,255,.08),transparent);border:1px solid var(--accent);border-radius:var(--radius);padding:32px}
+  .faq{margin-top:20px}
+  .faq details{border-top:1px solid var(--line);padding:16px 2px}
+  .faq summary{font-family:var(--disp);font-weight:700;font-size:18px;cursor:pointer;list-style:none}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::before{content:"+";color:var(--accent);font-family:var(--mono);margin-right:12px}
+  .faq details[open] summary::before{content:"–"}
+  .faq p{color:var(--mut);margin-top:10px;max-width:720px}
+  footer{padding:44px 0 80px;color:var(--mut);font-size:15px;text-align:center;font-family:var(--mono);font-weight:300}
+  footer a{color:var(--accent);text-decoration:none}
+  .final{background:linear-gradient(180deg,rgba(0,229,255,.10),transparent);border:1px solid var(--line);border-radius:var(--radius);padding:38px;text-align:center;margin-top:10px}
+  .langpill{position:fixed;top:12px;right:14px;z-index:20;color:var(--mut);text-decoration:none;font-family:var(--mono);font-size:12px;background:rgba(6,8,13,.5);padding:6px 12px;border-radius:999px;border:1px solid var(--line);backdrop-filter:blur(6px)}
+</style>
+</head>
+<body>
+<a class="langpill" href="index.html?lang=nl">NL</a>
+
+<header class="hero"><div class="wrap">
+  <div class="topbar">
+    <a class="mark" href="/"><span class="d">D</span><span class="wm">DAIMON <span>MEDIA</span></span></a>
+    <a class="cta ghost" href="#pricing" style="padding:9px 16px;font-size:14px">Pricing</a>
+  </div>
+  <div class="heroGrid">
+    <div>
+      <span class="eyebrow">Cinematic car ads</span>
+      <h1>Your listing.<br>Brought to life.</h1>
+      <p class="lead">We animate the photos from your own listing into a cinematic video — exterior, interior, with the real specs and price on screen. No photoshoot, no film crew. Ready for Instagram, Reels and your site within 48 hours.</p>
+      <div class="ctaRow">
+        <a class="cta" href="#work">See examples ↓</a>
+        <a class="cta ghost" href="#guarantee">The guarantee</a>
+      </div>
+    </div>
+    <div class="demoCard">
+      <span class="badge">Real listing · BMW 320e · €40,950</span>
+      <video src="press/listing_bmw320e.mp4" poster="poster_hero.jpg" autoplay muted loop playsinline controls preload="metadata"></video>
+    </div>
+  </div>
+</div></header>
+
+<section><div class="wrap">
+  <span class="eyebrow">The problem</span>
+  <h2>Your listings look like everyone else's.</h2>
+  <p class="lead">Flat photos get scrolled past. One calm, cinematic clip of the car makes it stop the feed, feel premium — and sell faster. The difference between being ignored and being called.</p>
+</div></section>
+
+<section id="product"><div class="wrap">
+  <span class="eyebrow">The product</span>
+  <h2>Real listing in. Cinematic video out.</h2>
+  <p class="lead">The video above was made from the photos already in the listing — a real BMW 320e (2025, 6,849 km, €40,950). We animate your own photos, put the specs and price on screen, and deliver 9:16, ready to post. You just send the listing link.</p>
+</div></section>
+
+<section id="whofor"><div class="wrap">
+  <span class="eyebrow">Who it's for</span>
+  <h2>Three kinds of shop. One reveal.</h2>
+  <div class="grid3">
+    <div class="card"><h3>Dealers &amp; importers</h3><p class="muted">Every listing cinematic. Your inventory moves faster than flat photos — premium import or everyday occasion.</p></div>
+    <div class="card"><h3>Detailers · ceramic &amp; coating</h3><p class="muted">The hero-reveal of your work you can't pull off the car with a phone. Additive to your own reels, not a replacement.</p></div>
+    <div class="card"><h3>Wrap &amp; PPF shops</h3><p class="muted">The before/after reveal, cinematic. Show the finish the way a snapshot never can.</p></div>
+  </div>
+</div></section>
+
+<section id="work"><div class="wrap">
+  <span class="eyebrow">Our work</span>
+  <h2>One service. Three flavors.</h2>
+  <p class="lead">By default you get the listing video — your ad, brought to life. Want more around the same car? Pick a style. Same 48 hours, same packages.</p>
+  <div class="grid3">
+    <div class="demoCard"><span class="badge">Lifestyle · the drive</span><video src="press/style_lifestyle.mp4" poster="poster_lifestyle.jpg" muted loop playsinline controls preload="metadata"></video></div>
+    <div class="demoCard"><span class="badge">On-location · Canal</span><video src="press/nl_canal.mp4" poster="poster_gracht.jpg" muted loop playsinline controls preload="metadata"></video></div>
+    <div class="demoCard"><span class="badge">On-location · Coast</span><video src="press/nl_coast.mp4" poster="poster_kust.jpg" muted loop playsinline controls preload="metadata"></video></div>
+  </div>
+</div></section>
+
+<section id="stack"><div class="wrap">
+  <span class="eyebrow">What you get</span>
+  <h2>Per car, everything included.</h2>
+  <p class="lead">A real location shoot runs €1,500 and up — drive the car, a photographer, an editor, a day gone. This is the same look, without the production.</p>
+  <ul class="stack">
+    <li><span>Cinematic hero ad · 8–12s, grid-QA'd</span><b>€750</b></li>
+    <li><span>Every-platform pack · 9:16, 1:1, 4:5</span><b>€180</b></li>
+    <li><span>On-brand overlay · name, model, price/lease, VAT, logo</span><b>€120</b></li>
+    <li><span>Scroll-stop hook + caption</span><b>€90</b></li>
+    <li><span>Listing thumbnail · marketplace cover</span><b>€60</b></li>
+    <li><span>Second variant of the same car</span><b>€150</b></li>
+    <li><span>Zero-effort done-for-you · within 48 hours</span><b>€240</b></li>
+    <li class="tot"><span>Total value per car</span><b>€1,590+</b></li>
+  </ul>
+</div></section>
+
+<section id="pricing"><div class="wrap">
+  <span class="eyebrow">Pricing</span>
+  <h2>Simple. Per car or per month.</h2>
+  <div class="grid3">
+    <a class="card" href="https://buy.stripe.com/28E14p4Ow2a9bTl4qj3Nm00" target="_blank" rel="noopener">
+      <h3 class="muted" style="font-weight:600">Founding Taste</h3>
+      <div class="price">€99</div>
+      <p class="muted">1 cinematic listing video of one car. See what it does to your ad.</p>
+      <span class="pickcta">Choose this →</span>
+    </a>
+    <a class="card feat" href="https://buy.stripe.com/6oU00lfta4ihcXpe0T3Nm01" target="_blank" rel="noopener">
+      <span class="pill">Most popular</span>
+      <h3 class="muted" style="font-weight:600">Pro</h3>
+      <div class="price">€349</div>
+      <p class="muted">3 listing videos from your inventory. Within 48 hours, with your logo, specs &amp; price.</p>
+      <span class="pickcta">Choose this →</span>
+    </a>
+    <a class="card" href="https://buy.stripe.com/7sY14p2Go2a97D54qj3Nm02" target="_blank" rel="noopener">
+      <h3 class="muted" style="font-weight:600">Listing Engine</h3>
+      <div class="price">€699<span>/mo</span></div>
+      <p class="muted">Every new listing cinematic, all year round. Cancel anytime.</p>
+      <span class="pickcta">Choose this →</span>
+    </a>
+  </div>
+  <p class="muted" style="margin-top:18px;font-family:var(--mono);font-size:13px">Founding cohort — the first 10 dealers keep this price for life.</p>
+</div></section>
+
+<section id="guarantee"><div class="wrap">
+  <span class="eyebrow">The guarantee</span>
+  <div class="guarantee">
+    <h2>Beat-Your-Post.</h2>
+    <p class="lead" style="margin-top:12px">We'll make your next listing cinematic. If that ad doesn't out-perform your own normal photo post of the same car within 14 days — more views, saves or inquiries — you don't pay a cent. And you keep the video to post anyway.</p>
+    <p class="lead" style="margin-top:14px">Only condition: post it once. On monthly: cancel anytime, and month one is free if it doesn't beat your normal posts. The question is simple — does it move the car faster? If not, it costs you nothing.</p>
+  </div>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <span class="eyebrow">How it works</span>
+  <h2>Three steps. 48 hours.</h2>
+  <div class="steps">
+    <div class="step"><b>1</b><div><b>Send your listing link.</b> We pull the photos and specs ourselves — you don't have to provide anything.</div></div>
+    <div class="step"><b>2</b><div><b>We bring it to life.</b> Your own photos, cinematically animated — exterior and interior, with logo, specs &amp; price.</div></div>
+    <div class="step"><b>3</b><div><b>You post it.</b> 9:16 video, ready for Instagram, Reels, your marketplace and your site. Sells faster.</div></div>
+  </div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <span class="eyebrow">Questions</span>
+  <h2>Short and honest.</h2>
+  <div class="faq">
+    <details><summary>Does it use my real car?</summary><p>Yes. We animate the photos from your own listing — your car in motion, not a generic stock clip. Exterior and interior, with the real specs and price on screen.</p></details>
+    <details><summary>Isn't it expensive?</summary><p>Most dealers start with three videos and go monthly once a listing sells faster. One quicker sale already pays the package back — and the guarantee covers the risk.</p></details>
+    <details><summary>I already post videos.</summary><p>Good. This is the cinematic hero-reveal you can't get out of a car with a phone — additive to what you already do, the intro that grabs attention.</p></details>
+    <details><summary>How fast do I get it?</summary><p>Within 48 hours of your listing link. Nothing to provide; we pull the photos and specs and deliver post-ready.</p></details>
+    <details><summary>What do I send you?</summary><p>Just the link to your listing — marketplace or your own site. We do the rest.</p></details>
+  </div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <div class="final">
+    <h2>Interested? Send a message.</h2>
+    <p class="lead" style="margin:10px auto 22px">DM us on Instagram or email — we'll happily show examples and make one of your car.</p>
+    <a class="cta" href="https://instagram.com/daimonmedia.ai" target="_blank" rel="noopener">DM on Instagram</a>
+    <a class="cta ghost" href="mailto:jonathan@daimonmedia.com">Email us</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">Daimon Media · Cinematic car ads · <a href="https://instagram.com/daimonmedia.ai" target="_blank" rel="noopener">@daimonmedia.ai</a> · daimonmedia.com</div></footer>
+</body>
+</html>

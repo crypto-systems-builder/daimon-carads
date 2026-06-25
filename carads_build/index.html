@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>
+/* Route non-Dutch visitors to the English funnel. ?lang=nl overrides + sticks for the session. */
+(function(){try{var p=new URLSearchParams(location.search);if(p.get('lang')==='nl'){sessionStorage.setItem('lang','nl');return;}if(sessionStorage.getItem('lang')==='nl')return;var l=(navigator.language||navigator.userLanguage||'').toLowerCase();if(l&&l.indexOf('nl')!==0){location.replace('us.html');}}catch(e){}})();
+</script>
+<title>Daimon Media — Jouw listing tot leven. Filmische video uit je eigen advertentie.</title>
+<meta name="description" content="Wij animeren de foto's uit je eigen autoadvertentie tot een filmische video — specs en prijs in beeld, binnen 48 uur, klaar voor Instagram, Reels en Marktplaats." />
+<meta property="og:title" content="Daimon Media — Jouw listing. Tot leven gebracht." />
+<meta property="og:description" content="Filmische auto-ads uit je eigen advertentie. Binnen 48 uur. Nederland." />
+<meta property="og:image" content="poster_hero.jpg" />
+<meta property="og:type" content="website" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600;700&family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#06080d; --bg2:#0a0e18; --panel:#0e1322; --overlay:#111827;
+    --line:#3d4560; --line-soft:rgba(61,69,96,.42);
+    --ink:#e8eaf0; --mut:#7a8299;
+    --accent:#00e5ff; --accent2:#7b61ff; --success:#00e676; --radius:16px;
+    --disp:"Syne",Inter,Helvetica,sans-serif;
+    --body:"Crimson Pro",Georgia,serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--ink);
+    font:18px/1.62 var(--body);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+    background:
+      radial-gradient(120% 70% at 50% -10%,transparent 55%,rgba(0,0,0,.55) 100%),
+      radial-gradient(80% 50% at 80% 0%,rgba(0,229,255,.05),transparent 60%);
+  }
+  ::selection{background:rgba(0,229,255,.28);color:#fff}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative;z-index:2}
+  a{color:inherit}
+  img,video{max-width:100%}
+
+  h1,h2,h3{font-family:var(--disp);font-weight:800;letter-spacing:-.025em;line-height:1.02}
+  h2{font-weight:700;letter-spacing:-.02em}
+  .eyebrow{
+    font-family:var(--mono);color:var(--accent);font-weight:500;letter-spacing:.26em;
+    text-transform:uppercase;font-size:11.5px;display:inline-flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--accent);opacity:.7;display:inline-block}
+  h1{font-size:clamp(40px,7.4vw,84px);margin:0}
+  h2{font-size:clamp(28px,4vw,46px);margin:18px 0 0}
+  p.lead{color:var(--mut);font-size:clamp(17px,1.55vw,21px);max-width:620px;line-height:1.6}
+  .chapno{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--mut);opacity:.65}
+
+  .mark{display:inline-flex;align-items:center;gap:11px;text-decoration:none}
+  .mark .d{
+    font-family:var(--disp);font-weight:800;color:var(--accent);font-size:19px;
+    border:2px solid var(--accent);border-radius:8px;width:34px;height:34px;
+    display:grid;place-items:center;line-height:1;
+    box-shadow:0 0 0 0 rgba(0,229,255,.4);transition:box-shadow .3s,transform .3s;
+  }
+  .mark:hover .d{box-shadow:0 0 22px -2px rgba(0,229,255,.55);transform:translateY(-1px)}
+  .mark .wm{font-family:var(--disp);font-weight:800;font-size:15px;letter-spacing:.02em;color:var(--ink)}
+  .mark .wm span{color:var(--accent);letter-spacing:.2em;font-weight:600;font-size:13px}
+
+  nav.bar{
+    position:sticky;top:0;z-index:40;
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    background:rgba(6,8,13,.55);border-bottom:1px solid transparent;
+    transition:background .3s,border-color .3s;
+  }
+  nav.bar.scrolled{background:rgba(6,8,13,.82);border-bottom:1px solid var(--line-soft)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .nav-links{display:flex;align-items:center;gap:30px}
+  .nav-links a{
+    font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:var(--mut);
+    text-decoration:none;transition:color .2s;position:relative;
+  }
+  .nav-links a.navlink:hover{color:var(--ink)}
+  .nav-links a.navlink::after{
+    content:"";position:absolute;left:0;bottom:-5px;height:1px;width:0;background:var(--accent);transition:width .25s;
+  }
+  .nav-links a.navlink:hover::after{width:100%}
+  @media(max-width:760px){.nav-links a.navlink{display:none}}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;border-radius:999px;text-decoration:none;
+    font-family:var(--disp);font-weight:700;transition:transform .18s,filter .18s,box-shadow .18s,border-color .2s,background .2s;
+    white-space:nowrap;cursor:pointer;border:none;
+  }
+  .btn .arr{transition:transform .2s;display:inline-block}
+  .btn:hover .arr{transform:translateX(3px)}
+  .btn-pri{background:var(--accent);color:#04121a;padding:14px 26px;font-size:16px;box-shadow:0 8px 30px -8px rgba(0,229,255,.5)}
+  .btn-pri:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:0 14px 40px -8px rgba(0,229,255,.6)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line);padding:13px 25px;font-size:16px}
+  .btn-ghost:hover{border-color:var(--accent);transform:translateY(-2px);color:#fff}
+  .navcta{background:var(--accent);color:#04121a;padding:9px 18px;border-radius:999px;font-family:var(--disp);font-weight:700;font-size:13px;text-decoration:none;transition:transform .18s,filter .18s}
+  .navcta:hover{transform:translateY(-1px);filter:brightness(1.07)}
+
+  .hero{position:relative;padding:clamp(40px,7vw,96px) 0 clamp(56px,7vw,104px);overflow:hidden}
+  .hero-glow{
+    position:absolute;top:-180px;right:-120px;width:760px;height:760px;z-index:0;pointer-events:none;
+    background:radial-gradient(closest-side,rgba(0,229,255,.16),rgba(123,97,255,.07) 45%,transparent 72%);
+    filter:blur(8px);
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(28px,4vw,64px);align-items:center;
+    position:relative;z-index:2;
+  }
+  .hero-copy{max-width:620px}
+  .hero h1{margin-top:22px}
+  .hero h1 .accent{color:var(--accent);display:block;text-shadow:0 0 44px rgba(0,229,255,.28)}
+  .hero .lead{margin-top:26px;color:#aeb6cc}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+  .hero-meta{display:flex;gap:22px;flex-wrap:wrap;margin-top:34px;padding-top:26px;border-top:1px solid var(--line-soft)}
+  .hero-meta .m{display:flex;flex-direction:column;gap:3px}
+  .hero-meta .m b{font-family:var(--disp);font-weight:800;font-size:21px;color:var(--ink)}
+  .hero-meta .m span{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+
+  .reel{
+    position:relative;z-index:2;border-radius:20px;overflow:hidden;background:#000;
+    border:1px solid var(--line);
+    box-shadow:0 50px 120px -30px rgba(0,0,0,.9),0 0 0 1px rgba(0,229,255,.08),0 30px 80px -40px rgba(0,229,255,.22);
+    aspect-ratio:9/16;max-width:430px;margin:0 auto;
+  }
+  .reel::after{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:3;
+    background:linear-gradient(180deg,rgba(0,0,0,.42),transparent 22%,transparent 72%,rgba(0,0,0,.62) 100%);
+    border-radius:20px;
+  }
+  .reel video{display:block;width:100%;height:100%;object-fit:cover;background:#000}
+  .reel-badge{
+    position:absolute;top:16px;left:16px;z-index:4;
+    background:rgba(6,8,13,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    border:1px solid var(--line-soft);color:#fff;
+    font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.03em;
+    padding:7px 13px;border-radius:999px;display:flex;align-items:center;gap:8px;
+  }
+  .reel-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--success);box-shadow:0 0 8px var(--success);animation:pulse 2.2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .reel-tag{
+    position:absolute;bottom:16px;left:16px;z-index:4;
+    font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+    color:rgba(255,255,255,.78);background:rgba(6,8,13,.5);backdrop-filter:blur(6px);
+    padding:6px 11px;border-radius:8px;border:1px solid var(--line-soft);
+  }
+  .soundbtn{
+    position:absolute;bottom:16px;right:16px;z-index:5;width:38px;height:38px;border-radius:50%;
+    background:rgba(6,8,13,.6);border:1px solid var(--line-soft);color:#fff;cursor:pointer;
+    display:grid;place-items:center;backdrop-filter:blur(6px);transition:border-color .2s,transform .2s;
+  }
+  .soundbtn:hover{border-color:var(--accent);transform:scale(1.06)}
+  .soundbtn svg{width:16px;height:16px}
+
+  .strip{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:var(--bg2);overflow:hidden;position:relative;z-index:2}
+  .strip-track{display:flex;padding:16px 0;width:max-content;animation:slide 34s linear infinite}
+  @media(prefers-reduced-motion:reduce){.strip-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}}
+  .strip-track span{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--mut);text-transform:uppercase;white-space:nowrap;display:inline-flex;align-items:center;padding:0 28px}
+  .strip-track span::after{content:"◆";color:var(--accent);opacity:.55;font-size:8px;margin-left:28px}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  section{padding:clamp(60px,8vw,116px) 0;position:relative}
+  section.bordered{border-top:1px solid var(--line-soft)}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .sec-head .lead{margin-top:18px}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  .problem h2{font-size:clamp(30px,4.6vw,56px);max-width:900px}
+  .problem .em{color:var(--accent)}
+  .problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:46px}
+  @media(max-width:760px){.problem-grid{grid-template-columns:1fr;gap:20px}}
+  .problem-grid .col p{color:var(--mut);font-size:18px;line-height:1.65}
+  .problem-grid .col + .col{padding-left:30px;border-left:1px solid var(--line-soft)}
+  @media(max-width:760px){.problem-grid .col + .col{padding-left:0;border-left:none;padding-top:20px;border-top:1px solid var(--line-soft)}}
+
+  .product-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,72px);align-items:center}
+  @media(max-width:860px){.product-grid{grid-template-columns:1fr;gap:36px}}
+  .spec-list{list-style:none;margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);border-radius:14px;overflow:hidden}
+  .spec-list li{background:var(--panel);padding:16px 18px;display:flex;flex-direction:column;gap:4px}
+  .spec-list li span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+  .spec-list li b{font-family:var(--disp);font-weight:700;font-size:18px;color:var(--ink)}
+  .spec-list li b.cyan{color:var(--accent)}
+  .product-reel{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#000;aspect-ratio:9/16;max-width:380px;box-shadow:0 40px 90px -36px rgba(0,0,0,.85)}
+  .product-reel video{width:100%;height:100%;object-fit:cover}
+  .product-reel::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.3),transparent 30%,transparent 75%,rgba(0,0,0,.5));pointer-events:none}
+
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px}
+  @media(max-width:860px){.grid3{grid-template-columns:1fr}}
+  .card{
+    background:linear-gradient(180deg,var(--panel),rgba(14,19,34,.5));
+    border:1px solid var(--line-soft);border-radius:var(--radius);padding:30px 28px;
+    transition:transform .25s,border-color .25s,box-shadow .25s;position:relative;overflow:hidden;
+  }
+  .card:hover{transform:translateY(-4px);border-color:rgba(0,229,255,.4);box-shadow:0 30px 60px -34px rgba(0,229,255,.3)}
+  .card .knum{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.16em;opacity:.85}
+  .card h3{font-size:21px;font-weight:700;margin:14px 0 10px;letter-spacing:-.01em}
+  .card p{color:var(--mut);font-size:16.5px;line-height:1.6}
+
+  .reel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px}
+  @media(max-width:860px){.reel-grid{grid-template-columns:1fr;max-width:380px;margin-left:auto;margin-right:auto}}
+  .reel-item{position:relative;border-radius:14px;overflow:hidden;background:#000;border:1px solid var(--line-soft);aspect-ratio:9/16;cursor:pointer;transition:border-color .25s,transform .25s,box-shadow .25s}
+  .reel-item:hover{border-color:rgba(0,229,255,.45);transform:translateY(-3px);box-shadow:0 30px 60px -34px rgba(0,229,255,.28)}
+  .reel-item video{width:100%;height:100%;object-fit:cover;display:block}
+  .reel-item .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent 28%,transparent 60%,rgba(6,8,13,.78));pointer-events:none;transition:opacity .3s;z-index:2}
+  .reel-item:hover .ov{opacity:.78}
+  .reel-item .label{position:absolute;left:14px;bottom:14px;z-index:3;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:#fff}
+  .reel-item .label small{display:block;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:3px}
+  .reel-item .play{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;
+    width:54px;height:54px;border-radius:50%;background:rgba(6,8,13,.5);border:1px solid rgba(255,255,255,.35);
+    display:grid;place-items:center;backdrop-filter:blur(4px);transition:opacity .3s,transform .3s;
+  }
+  .reel-item.playing .play{opacity:0;transform:translate(-50%,-50%) scale(.7)}
+  .reel-item.playing .ov{opacity:.4}
+  .reel-item .play svg{width:18px;height:18px;margin-left:2px}
+
+  .stack-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(28px,4vw,56px);align-items:start;margin-top:46px}
+  @media(max-width:860px){.stack-wrap{grid-template-columns:1fr;gap:30px}}
+  .stack{list-style:none;border:1px solid var(--line-soft);border-radius:var(--radius);overflow:hidden;background:var(--panel)}
+  .stack li{display:flex;justify-content:space-between;gap:18px;padding:16px 22px;border-top:1px solid var(--line-soft);align-items:baseline}
+  .stack li:first-child{border-top:none}
+  .stack li span{font-size:16px;color:var(--ink)}
+  .stack li span small{display:block;color:var(--mut);font-size:13px;font-family:var(--mono);letter-spacing:.02em;margin-top:2px}
+  .stack li b{font-family:var(--mono);font-weight:500;color:var(--accent);white-space:nowrap;font-size:15px}
+  .stack .tot{background:rgba(0,229,255,.06)}
+  .stack .tot span{font-family:var(--disp);font-weight:700;font-size:17px}
+  .stack .tot b{font-family:var(--disp);font-weight:800;font-size:21px}
+  .stack-aside{position:relative}
+  .stack-aside .anchor{border:1px solid var(--line-soft);border-radius:var(--radius);padding:28px;background:linear-gradient(180deg,rgba(123,97,255,.08),transparent)}
+  .stack-aside .anchor .old{font-family:var(--disp);font-weight:800;font-size:clamp(36px,5vw,52px);color:var(--ink);line-height:1}
+  .stack-aside .anchor .old s{color:var(--mut);text-decoration-color:rgba(122,130,153,.5)}
+  .stack-aside .anchor .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-bottom:8px}
+  .stack-aside .anchor p{color:var(--mut);margin-top:16px;font-size:16px;line-height:1.6}
+
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px;align-items:stretch}
+  @media(max-width:860px){.price-grid{grid-template-columns:1fr;max-width:440px;margin-left:auto;margin-right:auto}}
+  .pcard{
+    background:linear-gradient(180deg,var(--panel),rgba(10,14,24,.6));
+    border:1px solid var(--line-soft);border-radius:var(--radius);padding:30px 28px;
+    display:flex;flex-direction:column;text-decoration:none;color:inherit;
+    transition:transform .25s,border-color .25s,box-shadow .25s;position:relative;
+  }
+  .pcard:hover{transform:translateY(-5px);border-color:rgba(0,229,255,.4);box-shadow:0 34px 70px -36px rgba(0,229,255,.32)}
+  .pcard.feat{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 30px 70px -30px rgba(0,229,255,.4)}
+  .pcard.feat::before{
+    content:"";position:absolute;inset:0;border-radius:var(--radius);pointer-events:none;
+    background:radial-gradient(120% 60% at 50% 0%,rgba(0,229,255,.1),transparent 60%);
+  }
+  .pcard .ptag{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);position:relative;z-index:1}
+  .pcard.feat .ptag{color:var(--accent)}
+  .ppop{position:absolute;top:-12px;left:28px;background:var(--accent);color:#04121a;font-family:var(--mono);font-weight:500;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding:5px 13px;border-radius:999px;z-index:2}
+  .pcard .pname{font-family:var(--disp);font-weight:700;font-size:22px;margin:8px 0 4px;position:relative;z-index:1}
+  .pcard .pprice{font-family:var(--disp);font-size:clamp(40px,5.5vw,52px);font-weight:800;line-height:1;margin:14px 0 2px;letter-spacing:-.03em;position:relative;z-index:1}
+  .pcard .pprice small{font-size:15px;color:var(--mut);font-weight:500;font-family:var(--mono);letter-spacing:0}
+  .pcard .pdesc{color:var(--mut);font-size:16px;line-height:1.6;margin:14px 0 22px;flex:1;position:relative;z-index:1}
+  .pcard .ppick{
+    display:flex;align-items:center;justify-content:space-between;font-family:var(--disp);font-weight:700;font-size:15px;
+    padding-top:18px;border-top:1px solid var(--line-soft);color:var(--accent);position:relative;z-index:1;
+  }
+  .pcard .ppick .arr{transition:transform .2s;display:inline-block}
+  .pcard:hover .ppick .arr{transform:translateX(4px)}
+  .founding-note{margin-top:26px;font-family:var(--mono);font-size:13px;color:var(--mut);display:flex;align-items:center;gap:10px}
+  .founding-note::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);flex:none}
+
+  .guarantee-sec{position:relative}
+  .guarantee{
+    position:relative;border-radius:24px;padding:clamp(34px,5vw,64px);overflow:hidden;
+    border:1px solid rgba(0,229,255,.32);
+    background:linear-gradient(160deg,rgba(0,229,255,.1),rgba(10,14,24,.5) 42%,var(--bg2));
+    box-shadow:0 50px 120px -50px rgba(0,229,255,.4);
+  }
+  .guarantee::before{
+    content:"";position:absolute;top:-40%;right:-10%;width:520px;height:520px;
+    background:radial-gradient(closest-side,rgba(0,229,255,.16),transparent 70%);pointer-events:none;
+  }
+  .guarantee .gtag{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+  .guarantee .gtag .shield{width:15px;height:15px}
+  .guarantee h2{font-size:clamp(34px,5.4vw,64px);margin:0}
+  .guarantee .gbody{position:relative;z-index:2;max-width:760px}
+  .guarantee .gbody p{color:#c2cae0;font-size:clamp(17px,1.7vw,22px);line-height:1.62;margin-top:20px}
+  .guarantee .gbody p strong{color:var(--ink);font-weight:600}
+  .gpoints{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+  .gpoints .gp{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:13px;color:var(--ink);background:rgba(6,8,13,.4);border:1px solid var(--line-soft);padding:10px 16px;border-radius:999px}
+  .gpoints .gp svg{width:14px;height:14px;color:var(--success);flex:none}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:46px}
+  @media(max-width:860px){.steps{grid-template-columns:1fr}}
+  .step{
+    position:relative;border:1px solid var(--line-soft);border-radius:var(--radius);padding:30px 28px;
+    background:linear-gradient(180deg,var(--panel),rgba(10,14,24,.4));transition:border-color .25s,transform .25s;
+  }
+  .step:hover{border-color:rgba(0,229,255,.35);transform:translateY(-3px)}
+  .step .sn{
+    font-family:var(--disp);font-weight:800;font-size:15px;width:40px;height:40px;border-radius:11px;
+    background:rgba(0,229,255,.12);border:1px solid rgba(0,229,255,.4);color:var(--accent);
+    display:grid;place-items:center;margin-bottom:20px;
+  }
+  .step h3{font-size:19px;font-weight:700;margin-bottom:9px}
+  .step p{color:var(--mut);font-size:16px;line-height:1.6}
+  .step-line{display:flex;align-items:center;gap:14px;margin-top:30px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+  .step-line .ln{flex:1;height:1px;background:linear-gradient(90deg,var(--accent),transparent)}
+
+  .faq{margin-top:42px;border-top:1px solid var(--line-soft)}
+  .faq details{border-bottom:1px solid var(--line-soft);padding:6px 0}
+  .faq summary{
+    font-family:var(--disp);font-weight:700;font-size:clamp(18px,2vw,22px);cursor:pointer;list-style:none;
+    padding:22px 44px 22px 2px;position:relative;transition:color .2s;letter-spacing:-.01em;
+  }
+  .faq summary:hover{color:var(--accent)}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{
+    content:"";position:absolute;right:6px;top:50%;width:13px;height:13px;
+    background:
+      linear-gradient(var(--accent),var(--accent)) center/13px 1.5px no-repeat,
+      linear-gradient(var(--accent),var(--accent)) center/1.5px 13px no-repeat;
+    transform:translateY(-50%);transition:transform .25s;
+  }
+  .faq details[open] summary::after{transform:translateY(-50%) rotate(135deg)}
+  .faq details[open] summary{color:var(--accent)}
+  .faq p{color:var(--mut);max-width:760px;font-size:17px;line-height:1.66;padding:0 2px 22px}
+
+  .final{
+    position:relative;border-radius:24px;overflow:hidden;text-align:center;
+    padding:clamp(48px,7vw,92px) 28px;border:1px solid var(--line-soft);
+    background:linear-gradient(180deg,rgba(0,229,255,.09),rgba(10,14,24,.4) 60%,var(--bg2));
+  }
+  .final::before{content:"";position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:640px;height:340px;background:radial-gradient(closest-side,rgba(0,229,255,.18),transparent 70%);pointer-events:none}
+  .final h2{font-size:clamp(32px,5vw,58px);position:relative;z-index:2}
+  .final p{color:var(--mut);max-width:560px;margin:20px auto 34px;font-size:clamp(17px,1.6vw,20px);position:relative;z-index:2}
+  .final-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:2}
+
+  footer{border-top:1px solid var(--line-soft);padding:48px 0 60px;position:relative;z-index:2}
+  .foot-in{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .foot-in .fmeta{font-family:var(--mono);font-size:12.5px;color:var(--mut);letter-spacing:.02em;line-height:1.8}
+  .foot-in .fmeta a{color:var(--accent);text-decoration:none}
+  .foot-in .fmeta a:hover{text-decoration:underline}
+
+  .langpill{
+    position:fixed;bottom:20px;right:20px;z-index:50;color:var(--ink);text-decoration:none;
+    font-family:var(--mono);font-size:12px;letter-spacing:.08em;
+    background:rgba(6,8,13,.7);padding:9px 16px;border-radius:999px;border:1px solid var(--line-soft);
+    backdrop-filter:blur(8px);transition:border-color .2s,transform .2s;display:flex;align-items:center;gap:7px;
+  }
+  .langpill:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .langpill .glb{width:13px;height:13px;opacity:.7}
+
+  @media(max-width:760px){
+    .hero-grid{grid-template-columns:1fr}
+    .reel{margin-top:8px;max-width:360px}
+    .spec-list{grid-template-columns:1fr 1fr}
+    .sec-head{align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<nav class="bar" id="nav"><div class="wrap"><div class="nav-in">
+  <a class="mark" href="/" aria-label="Daimon Media">
+    <span class="d">D</span>
+    <span class="wm">DAIMON <span>MEDIA</span></span>
+  </a>
+  <div class="nav-links">
+    <a class="navlink" href="#werk">Werk</a>
+    <a class="navlink" href="#prijzen">Prijzen</a>
+    <a class="navlink" href="#garantie">Garantie</a>
+    <a class="navcta" href="#contact">Start een ad</a>
+  </div>
+</div></div></nav>
+
+<header class="hero">
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow reveal in">Filmische auto-ads · Nederland</span>
+        <h1 class="reveal in d1">Jouw listing.<br><span class="accent">Tot leven gebracht.</span></h1>
+        <p class="lead reveal in d2">Wij animeren de foto's uit je eigen advertentie tot een filmische video — exterieur, interieur, met de echte specs en prijs in beeld. Geen fotoshoot, geen filmcrew. Binnen 48 uur klaar voor Instagram, Reels en Marktplaats.</p>
+        <div class="hero-cta reveal in d3">
+          <a class="btn btn-pri" href="#werk">Bekijk voorbeelden <span class="arr">↓</span></a>
+          <a class="btn btn-ghost" href="#garantie">De garantie</a>
+        </div>
+        <div class="hero-meta reveal in d3">
+          <div class="m"><b>48u</b><span>Levertijd</span></div>
+          <div class="m"><b>9:16</b><span>Post-klaar</span></div>
+          <div class="m"><b>€0</b><span>Risico · garantie</span></div>
+        </div>
+      </div>
+
+      <div class="reel reveal in d2">
+        <span class="reel-badge"><span class="dot"></span>Echte listing · BMW 320e · €40.950</span>
+        <span class="reel-tag">Reel 01 · BMW 320e</span>
+        <button class="soundbtn" id="soundBtn" aria-label="Geluid aan/uit" title="Geluid aan/uit">
+          <svg id="soundIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+        </button>
+        <video id="heroVid" src="press/listing_bmw320e.mp4" poster="poster_hero.jpg" autoplay muted loop playsinline preload="metadata"></video>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="strip"><div class="strip-track" aria-hidden="true">
+  <span>Dealers &amp; importeurs</span><span>Detailers · ceramic &amp; coating</span><span>Wrap &amp; PPF shops</span><span>Marktplaats · AutoScout · Instagram</span><span>Levering binnen 48 uur</span>
+  <span>Dealers &amp; importeurs</span><span>Detailers · ceramic &amp; coating</span><span>Wrap &amp; PPF shops</span><span>Marktplaats · AutoScout · Instagram</span><span>Levering binnen 48 uur</span>
+</div></div>
+
+<section class="problem bordered" id="probleem"><div class="wrap">
+  <span class="eyebrow reveal">Het probleem · 01</span>
+  <h2 class="reveal d1">Je listings zien eruit als <span class="em">alle andere</span>.</h2>
+  <div class="problem-grid">
+    <div class="col reveal d1">
+      <p>Platte foto's worden weggescrold. Twaalf advertenties op een rij, allemaal dezelfde drie hoeken op dezelfde grijze parkeerplaats. De koper voelt niets, en swipet door.</p>
+    </div>
+    <div class="col reveal d2">
+      <p>Eén rustige, filmische clip van de auto laat 'm opvallen, premium aanvoelen — en sneller verkopen. Het verschil tussen genegeerd worden en gebeld worden.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="bordered" id="product"><div class="wrap">
+  <div class="product-grid">
+    <div>
+      <span class="eyebrow reveal">Het product · 02</span>
+      <h2 class="reveal d1">Echte advertentie in.<br>Filmische video uit.</h2>
+      <p class="lead reveal d1" style="margin-top:22px">De reel hiernaast is gemaakt uit de foto's die al in de advertentie stonden — een echte BMW 320e. Wij animeren jouw eigen foto's, zetten specs en prijs in beeld, en leveren 9:16, klaar om te posten. Jij stuurt alleen de listing-link.</p>
+      <ul class="spec-list reveal d2">
+        <li><span>Model</span><b>BMW 320e</b></li>
+        <li><span>Bouwjaar</span><b>2025</b></li>
+        <li><span>Kilometerstand</span><b>6.849 km</b></li>
+        <li><span>Vraagprijs</span><b class="cyan">€40.950</b></li>
+      </ul>
+    </div>
+    <div class="reveal d2" style="display:flex;justify-content:center">
+      <div class="product-reel" data-reel>
+        <video src="press/listing_bmw320e.mp4" poster="poster_hero.jpg" muted loop playsinline preload="none"></video>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="bordered" id="voorwie"><div class="wrap">
+  <div class="sec-head">
+    <div>
+      <span class="eyebrow reveal">Voor wie · 03</span>
+      <h2 class="reveal d1">Drie soorten shops.<br>Eén onthulling.</h2>
+    </div>
+  </div>
+  <div class="grid3">
+    <div class="card reveal d1">
+      <div class="knum">01</div>
+      <h3>Dealers &amp; importeurs</h3>
+      <p>Elke listing filmisch. Jouw voorraad beweegt sneller dan platte foto's — of het nu premium import is of een betaalbare occasion.</p>
+    </div>
+    <div class="card reveal d2">
+      <div class="knum">02</div>
+      <h3>Detailers · ceramic &amp; coating</h3>
+      <p>De hero-reveal van je werk die je met een telefoon niet uit de auto haalt. Aanvullend op je eigen reels — niet vervangend.</p>
+    </div>
+    <div class="card reveal d3">
+      <div class="knum">03</div>
+      <h3>Wrap &amp; PPF shops</h3>
+      <p>De before/after-onthulling, cinematisch. Laat de finish zien zoals een snapshot dat nooit kan.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="bordered" id="werk"><div class="wrap">
+  <div class="sec-head">
+    <div>
+      <span class="eyebrow reveal">Het werk · 04</span>
+      <h2 class="reveal d1">Eén service. Drie smaken.</h2>
+      <p class="lead reveal d1">Standaard krijg je de listing-video — jouw advertentie, tot leven gebracht. Wil je meer rond dezelfde auto? Kies een stijl. Zelfde 48 uur, zelfde pakketten.</p>
+    </div>
+    <span class="chapno reveal d1">SHOWREEL · 3 CLIPS</span>
+  </div>
+  <div class="reel-grid">
+    <div class="reel-item reveal d1" data-reel>
+      <video src="press/style_lifestyle.mp4" poster="poster_lifestyle.jpg" muted loop playsinline preload="none"></video>
+      <div class="ov"></div>
+      <div class="play"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="label"><small>Lifestyle</small>De rit</div>
+    </div>
+    <div class="reel-item reveal d2" data-reel>
+      <video src="press/nl_canal.mp4" poster="poster_gracht.jpg" muted loop playsinline preload="none"></video>
+      <div class="ov"></div>
+      <div class="play"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="label"><small>On-location</small>Gracht</div>
+    </div>
+    <div class="reel-item reveal d3" data-reel>
+      <video src="press/nl_coast.mp4" poster="poster_kust.jpg" muted loop playsinline preload="none"></video>
+      <div class="ov"></div>
+      <div class="play"><svg viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+      <div class="label"><small>On-location</small>Kust</div>
+    </div>
+  </div>
+</div></section>
+
+<section class="bordered" id="stack"><div class="wrap">
+  <span class="eyebrow reveal">Wat je krijgt · 05</span>
+  <h2 class="reveal d1">Per auto, alles inbegrepen.</h2>
+  <p class="lead reveal d1" style="margin-top:18px">Een echte locatie-shoot kost €1.500 en up — auto rijden, fotograaf, editor, een dag kwijt. Dit is dezelfde uitstraling, zonder de productie.</p>
+  <div class="stack-wrap">
+    <div class="stack-aside reveal d1">
+      <div class="anchor">
+        <div class="lbl">Locatie-shoot</div>
+        <div class="old"><s>€1.500+</s></div>
+        <p>Een halve dag rijden, een fotograaf inhuren, een editor betalen. En aan het eind heb je foto's — geen beweging.</p>
+      </div>
+    </div>
+    <ul class="stack reveal d2">
+      <li><span>Filmische hero-ad<small>8–12s · grid-QA'd</small></span><b>€750</b></li>
+      <li><span>Elk-platform pakket<small>9:16 · 1:1 · 4:5</small></span><b>€180</b></li>
+      <li><span>On-brand overlay<small>naam, model, prijs/lease, BTW, logo</small></span><b>€120</b></li>
+      <li><span>Scroll-stop hook<small>+ Nederlandse caption</small></span><b>€90</b></li>
+      <li><span>Listing-thumbnail<small>Marktplaats / AutoScout cover</small></span><b>€60</b></li>
+      <li><span>Tweede variant<small>van dezelfde auto</small></span><b>€150</b></li>
+      <li><span>Zero-effort done-for-you<small>binnen 48 uur</small></span><b>€240</b></li>
+      <li class="tot"><span>Totale waarde per auto</span><b>€1.590+</b></li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="bordered" id="prijzen"><div class="wrap">
+  <span class="eyebrow reveal">Prijzen · 06</span>
+  <h2 class="reveal d1">Simpel. Per auto of per maand.</h2>
+  <div class="price-grid">
+    <a class="pcard reveal d1" href="https://buy.stripe.com/28E14p4Ow2a9bTl4qj3Nm00" target="_blank" rel="noopener">
+      <span class="ptag">Founding Taste</span>
+      <div class="pname">Even proeven</div>
+      <div class="pprice">€99</div>
+      <p class="pdesc">1 filmische listing-video van één auto. Zie zelf wat het met je advertentie doet.</p>
+      <span class="ppick">Kies dit pakket <span class="arr">→</span></span>
+    </a>
+    <a class="pcard feat reveal d2" href="https://buy.stripe.com/6oU00lfta4ihcXpe0T3Nm01" target="_blank" rel="noopener">
+      <span class="ppop">Populairst</span>
+      <span class="ptag">Pro</span>
+      <div class="pname">De standaard</div>
+      <div class="pprice">€349</div>
+      <p class="pdesc">3 listing-video's uit jouw voorraad. Binnen 48 uur, met jouw logo, specs &amp; prijs in beeld.</p>
+      <span class="ppick">Kies dit pakket <span class="arr">→</span></span>
+    </a>
+    <a class="pcard reveal d3" href="https://buy.stripe.com/7sY14p2Go2a97D54qj3Nm02" target="_blank" rel="noopener">
+      <span class="ptag">Listing Engine</span>
+      <div class="pname">Elke listing</div>
+      <div class="pprice">€699<small>/mnd</small></div>
+      <p class="pdesc">Elke nieuwe listing filmisch, het hele jaar door. Maandelijks, altijd opzegbaar.</p>
+      <span class="ppick">Kies dit pakket <span class="arr">→</span></span>
+    </a>
+  </div>
+  <p class="founding-note reveal d1">Founding cohort — de eerste 10 dealers houden deze prijs voor altijd.</p>
+</div></section>
+
+<section class="guarantee-sec bordered" id="garantie"><div class="wrap">
+  <div class="guarantee reveal">
+    <div class="gbody">
+      <span class="gtag">
+        <svg class="shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        De garantie · 07
+      </span>
+      <h2>Beat-Your-Post.</h2>
+      <p>Wij maken je volgende listing filmisch. Verslaat die ad binnen 14 dagen jouw eigen normale fotopost van dezelfde auto niet — <strong>meer views, saves of reacties</strong> — dan betaal je niets. En je houdt de video om alsnog te plaatsen.</p>
+      <p>Enige voorwaarde: plaats 'm één keer. Maandelijks: <strong>altijd opzegbaar</strong>, en de eerste maand gratis als het je posts niet verslaat. De vraag is simpel — verkoopt het de auto sneller? Zo niet, kost het je niets.</p>
+      <div class="gpoints">
+        <span class="gp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>14 dagen om te verslaan</span>
+        <span class="gp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Je houdt de video</span>
+        <span class="gp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Eerste maand gratis als het faalt</span>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="bordered" id="hoe"><div class="wrap">
+  <span class="eyebrow reveal">Zo werkt het · 08</span>
+  <h2 class="reveal d1">Drie stappen. 48 uur.</h2>
+  <div class="steps">
+    <div class="step reveal d1">
+      <div class="sn">01</div>
+      <h3>Stuur je listing-link</h3>
+      <p>Wij halen de foto's en specs er zelf uit — jij hoeft niets aan te leveren. Marktplaats, AutoScout of je eigen site.</p>
+    </div>
+    <div class="step reveal d2">
+      <div class="sn">02</div>
+      <h3>Wij brengen 'm tot leven</h3>
+      <p>Jouw eigen foto's, filmisch geanimeerd — exterieur én interieur, met jouw logo, specs en prijs in beeld.</p>
+    </div>
+    <div class="step reveal d3">
+      <div class="sn">03</div>
+      <h3>Jij plaatst 'm</h3>
+      <p>9:16 video, klaar voor Instagram, Reels, Marktplaats en je site. En de auto verkoopt sneller.</p>
+    </div>
+  </div>
+  <div class="step-line reveal d1"><span>Listing-link</span><span class="ln"></span><span>Post-klaar in 48u</span></div>
+</div></section>
+
+<section class="bordered" id="faq"><div class="wrap">
+  <span class="eyebrow reveal">Veelgestelde vragen · 09</span>
+  <h2 class="reveal d1">Kort en eerlijk.</h2>
+  <div class="faq reveal d1">
+    <details>
+      <summary>Gebruikt het mijn echte auto?</summary>
+      <p>Ja. We animeren de foto's uit jouw eigen advertentie — jouw auto in beweging, geen generieke stockclip. Exterieur en interieur, met de echte specs en prijs in beeld.</p>
+    </details>
+    <details>
+      <summary>Is het niet te duur?</summary>
+      <p>De meeste dealers starten met drie video's en gaan maandelijks zodra een listing sneller verkoopt. Eén snellere verkoop verdient het pakket al terug — en de garantie dekt het risico.</p>
+    </details>
+    <details>
+      <summary>Ik post zelf al video's.</summary>
+      <p>Mooi. Dit is de filmische hero-reveal die je er met een telefoon niet uithaalt — aanvullend op wat je al doet, als de intro die de aandacht pakt.</p>
+    </details>
+    <details>
+      <summary>Hoe snel heb ik 'm?</summary>
+      <p>Binnen 48 uur na je listing-link. Niets aanleveren; wij halen de foto's en specs eruit en leveren post-klaar aan.</p>
+    </details>
+    <details>
+      <summary>Wat moet ik aanleveren?</summary>
+      <p>Alleen de link naar je advertentie — Marktplaats, AutoScout of je eigen site. De rest doen wij.</p>
+    </details>
+  </div>
+</div></section>
+
+<section id="contact" style="padding-bottom:clamp(60px,8vw,116px)"><div class="wrap">
+  <div class="final reveal">
+    <h2>Interesse? Stuur een bericht.</h2>
+    <p>DM ons op Instagram of mail — we laten je graag voorbeelden zien en maken er één van jouw auto. Geen verplichtingen.</p>
+    <div class="final-cta">
+      <a class="btn btn-pri" href="https://instagram.com/daimonmedia.ai" target="_blank" rel="noopener">DM op Instagram <span class="arr">→</span></a>
+      <a class="btn btn-ghost" href="mailto:jonathan@daimonmedia.com">Mail ons</a>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><div class="foot-in">
+  <a class="mark" href="/">
+    <span class="d">D</span>
+    <span class="wm">DAIMON <span>MEDIA</span></span>
+  </a>
+  <div class="fmeta">Filmische auto-ads · <a href="https://instagram.com/daimonmedia.ai" target="_blank" rel="noopener">@daimonmedia.ai</a> · <a href="mailto:jonathan@daimonmedia.com">jonathan@daimonmedia.com</a> · daimonmedia.com</div>
+</div></div></footer>
+
+<a class="langpill" href="us.html?lang=en" aria-label="English version">
+  <svg class="glb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+  EN
+</a>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var nav = document.getElementById('nav');
+  function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 24); }
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  if (!reduce && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.reveal:not(.in)').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+
+  var hv = document.getElementById('heroVid'),
+      sb = document.getElementById('soundBtn'),
+      si = document.getElementById('soundIcon');
+  var onIcon = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M18 6a8 8 0 0 1 0 12"></path>';
+  var offIcon = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>';
+  if (sb && hv){
+    sb.addEventListener('click', function(){
+      hv.muted = !hv.muted;
+      si.innerHTML = hv.muted ? offIcon : onIcon;
+      if (!hv.muted){ hv.play().catch(function(){}); }
+    });
+  }
+
+  var reels = document.querySelectorAll('[data-reel]');
+  reels.forEach(function(item){
+    var v = item.querySelector('video');
+    if (!v) return;
+    var loaded = false;
+    function load(){ if (!loaded){ v.preload='auto'; v.load(); loaded=true; } }
+    function play(){ load(); v.play().then(function(){ item.classList.add('playing'); }).catch(function(){}); }
+    function stop(){ v.pause(); item.classList.remove('playing'); }
+
+    item.addEventListener('mouseenter', play);
+    item.addEventListener('mouseleave', stop);
+    item.addEventListener('click', function(){
+      if (item.classList.contains('playing')){ stop(); }
+      else { play(); }
+    });
+
+    if ('IntersectionObserver' in window){
+      var vo = new IntersectionObserver(function(es){
+        es.forEach(function(e){ if (!e.isIntersecting && !v.paused){ stop(); } });
+      }, {threshold:0});
+      vo.observe(item);
+    }
+  });
+
+  if (hv && 'IntersectionObserver' in window){
+    var ho = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (e.isIntersecting){ hv.play().catch(function(){}); }
+        else { hv.pause(); }
+      });
+    }, {threshold:0.1});
+    ho.observe(hv);
+  }
+})();
+</script>
+</body>
+</html>
