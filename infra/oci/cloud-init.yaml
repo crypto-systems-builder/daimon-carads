@@ -49,7 +49,11 @@ runcmd:
   # --- Caddy (TLS certificates handled automatically) -----------------------
   - [ sh, -c, "curl -fsSL https://dl.cloudsmith.io/public/caddy/stable/gpg.key | gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg" ]
   - [ sh, -c, "echo 'deb [signed-by=/usr/share/keyrings/caddy-stable-archive-keyring.gpg] https://dl.cloudsmith.io/public/caddy/stable/deb/debian any-version main' > /etc/apt/sources.list.d/caddy-stable.list" ]
-  - [ sh, -c, "apt-get update && apt-get install -y caddy" ]
+  # --force-confold: write_files above already seeded /etc/caddy/Caddyfile, which
+  # is a dpkg conffile of the caddy package. Without it dpkg stops at a conffile
+  # prompt (stdin is /dev/null under cloud-init), aborts the install, and the box
+  # boots with no web server while still reporting success.
+  - [ sh, -c, "apt-get update && apt-get install -y -o Dpkg::Options::=--force-confold caddy" ]
 
   # Let the login user publish the site without sudo on every rsync.
   - [ sh, -c, "chown -R ubuntu:ubuntu /srv/daimon && usermod -aG caddy ubuntu || true" ]

@@ -16,12 +16,29 @@ RETRY_SLEEP="${RETRY_SLEEP:-60}"
 [ -f "$SSH_PUBLIC_KEY_FILE" ] || die "no SSH public key at $SSH_PUBLIC_KEY_FILE
   generate one with: ssh-keygen -t ed25519 -f ${SSH_PRIVATE_KEY_FILE} -C $STACK_NAME"
 
-# --- Already running? --------------------------------------------------------
+# --- Already provisioned? ----------------------------------------------------
+# Match any live state, not just RUNNING: an interrupted --wait-for-state poll
+# leaves a PROVISIONING/STARTING instance behind, and launching on top of it
+# would double-spend the Always Free allowance (or trip LimitExceeded).
 existing="$(o compute instance list --compartment-id "$OCI_COMPARTMENT_ID" \
-              --display-name "$INSTANCE_NAME" --lifecycle-state RUNNING | first_id)"
+              --display-name "$INSTANCE_NAME" \
+  | jq -r '[.data[] | select(."lifecycle-state"
+        | IN("RUNNING","PROVISIONING","STARTING","STOPPING","STOPPED"))][0].id // empty')"
 if [ -n "$existing" ]; then
-  c_ylw "instance $INSTANCE_NAME is already running — reusing it"
+  c_ylw "instance $INSTANCE_NAME already exists — reusing it"
   instance_id="$existing"
+  state="$(o compute instance get --instance-id "$instance_id" \
+             | jq -r '.data."lifecycle-state"' || true)"
+  if [ "$state" = "STOPPED" ]; then
+    say "instance is STOPPED — starting it"
+    o compute instance action --instance-id "$instance_id" --action START >/dev/null
+  fi
+  while [ "$state" != "RUNNING" ]; do
+    say "waiting for instance to reach RUNNING (currently ${state:-unknown})"
+    sleep 10
+    state="$(o compute instance get --instance-id "$instance_id" 2>/dev/null \
+               | jq -r '.data."lifecycle-state"' || true)"
+  done
 else
   # --- Resolve the image ------------------------------------------------------
   if [ -z "${OCI_IMAGE_ID:-}" ]; then
