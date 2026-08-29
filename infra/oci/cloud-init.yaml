@@ -39,6 +39,8 @@ runcmd:
   # single most common reason a fresh OCI box "ignores" port 80.
   - [ sh, -c, "iptables -I INPUT 1 -p tcp --dport 80  -m conntrack --ctstate NEW -j ACCEPT" ]
   - [ sh, -c, "iptables -I INPUT 1 -p tcp --dport 443 -m conntrack --ctstate NEW -j ACCEPT" ]
+  # UDP 443 lets Caddy's advertised HTTP/3 (QUIC) actually connect once TLS is on.
+  - [ sh, -c, "iptables -I INPUT 1 -p udp --dport 443 -j ACCEPT" ]
   - [ sh, -c, "netfilter-persistent save || true" ]
 
   # --- Swap -----------------------------------------------------------------

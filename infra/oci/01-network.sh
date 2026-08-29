@@ -10,6 +10,15 @@ SUBNET_NAME="$STACK_NAME-public-subnet"
 
 say "Using profile '$OCI_PROFILE' in compartment ${OCI_COMPARTMENT_ID: -8}"
 
+# VCN DNS label: 1-15 chars, lowercase alphanumeric, must start with a letter —
+# derive it safely from STACK_NAME instead of failing later with a bare
+# InvalidParameter from CreateVcn.
+dns_label="$(printf '%s' "$STACK_NAME" | tr '[:upper:]' '[:lower:]' | tr -cd 'a-z0-9' | cut -c1-15)"
+case "$dns_label" in
+  [a-z]*) : ;;
+  *) die "STACK_NAME '$STACK_NAME' cannot form a VCN DNS label — it needs at least one letter (got '$dns_label')" ;;
+esac
+
 # --- VCN ---------------------------------------------------------------------
 vcn_id="$(o network vcn list --compartment-id "$OCI_COMPARTMENT_ID" \
             --display-name "$VCN_NAME" --lifecycle-state AVAILABLE | first_id)"
@@ -19,7 +28,7 @@ if [ -z "$vcn_id" ]; then
       --compartment-id "$OCI_COMPARTMENT_ID" \
       --cidr-blocks '["10.0.0.0/16"]' \
       --display-name "$VCN_NAME" \
-      --dns-label "${STACK_NAME//[^a-z0-9]/}" \
+      --dns-label "$dns_label" \
       --wait-for-state AVAILABLE | jq -r '.data.id')"
 else
   say "VCN $VCN_NAME already exists"
@@ -51,7 +60,7 @@ o network route-table update --rt-id "$rt_id" --force \
 # --- Security list -----------------------------------------------------------
 # This is only half the firewall. Oracle's Ubuntu images also ship iptables rules
 # that drop everything but 22 — cloud-init.yaml opens 80/443 on the host side.
-say "opening 22/80/443 on the security list"
+say "opening 22/80/443 (and UDP 443 for HTTP/3) on the security list"
 o network security-list update --security-list-id "$sl_id" --force \
   --egress-security-rules '[
     {"destination":"0.0.0.0/0","destinationType":"CIDR_BLOCK","protocol":"all","isStateless":false}
@@ -63,6 +72,8 @@ o network security-list update --security-list-id "$sl_id" --force \
      "tcpOptions":{"destinationPortRange":{"min":80,"max":80}}},
     {"source":"0.0.0.0/0","sourceType":"CIDR_BLOCK","protocol":"6","isStateless":false,
      "tcpOptions":{"destinationPortRange":{"min":443,"max":443}}},
+    {"source":"0.0.0.0/0","sourceType":"CIDR_BLOCK","protocol":"17","isStateless":false,
+     "udpOptions":{"destinationPortRange":{"min":443,"max":443}}},
     {"source":"0.0.0.0/0","sourceType":"CIDR_BLOCK","protocol":"1","isStateless":false,
      "icmpOptions":{"type":3,"code":4}}
   ]' >/dev/null

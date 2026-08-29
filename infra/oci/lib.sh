@@ -24,9 +24,14 @@ load_env() {
   : "${OCI_COMPARTMENT_ID:?set OCI_COMPARTMENT_ID in oci.env}"
   STACK_NAME="${STACK_NAME:-daimon}"
 
-  # Expand ~ / $HOME that survived the .env as literal text.
-  SSH_PUBLIC_KEY_FILE="$(eval echo "${SSH_PUBLIC_KEY_FILE:-$HOME/.ssh/oci_daimon2.pub}")"
-  SSH_PRIVATE_KEY_FILE="$(eval echo "${SSH_PRIVATE_KEY_FILE:-$HOME/.ssh/oci_daimon2}")"
+  # Expand a leading ~/ or a literal $HOME that survived the .env as text —
+  # without eval, which would also glob, word-split, and execute the value.
+  SSH_PUBLIC_KEY_FILE="${SSH_PUBLIC_KEY_FILE:-$HOME/.ssh/oci_daimon2.pub}"
+  SSH_PUBLIC_KEY_FILE="${SSH_PUBLIC_KEY_FILE/#\~\//$HOME/}"
+  SSH_PUBLIC_KEY_FILE="${SSH_PUBLIC_KEY_FILE//\$HOME/$HOME}"
+  SSH_PRIVATE_KEY_FILE="${SSH_PRIVATE_KEY_FILE:-$HOME/.ssh/oci_daimon2}"
+  SSH_PRIVATE_KEY_FILE="${SSH_PRIVATE_KEY_FILE/#\~\//$HOME/}"
+  SSH_PRIVATE_KEY_FILE="${SSH_PRIVATE_KEY_FILE//\$HOME/$HOME}"
 
   command -v oci >/dev/null || die "oci CLI not found — see README.md step 3"
   command -v jq  >/dev/null || die "jq not found — install it (brew install jq / apt install jq)"

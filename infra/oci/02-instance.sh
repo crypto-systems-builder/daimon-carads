@@ -132,15 +132,27 @@ save_state PUBLIC_IP "$public_ip"
 
 c_grn "instance $INSTANCE_NAME is up at $public_ip"
 
-# --- Wait for SSH ------------------------------------------------------------
-say "waiting for SSH (cloud-init still installing packages — a few minutes)"
+# --- Wait for SSH, then for cloud-init to finish -----------------------------
+# SSH answers minutes before runcmd completes (package upgrade, Caddy install,
+# the chown of /srv/daimon), and deploying in that window fails — so readiness
+# is cloud-init completion, not the first successful ssh probe.
+say "waiting for SSH (instance is booting)"
 for _ in $(seq 1 60); do
   if ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=5 -o BatchMode=yes \
          -i "$SSH_PRIVATE_KEY_FILE" "$SSH_USER@$public_ip" true 2>/dev/null; then
-    c_grn "SSH is up:  ssh -i $SSH_PRIVATE_KEY_FILE $SSH_USER@$public_ip"
+    say "SSH is up — waiting for cloud-init to finish (first boot installs packages)"
+    # exit 2 = finished with recoverable errors on newer cloud-init: still usable.
+    if ssh -o StrictHostKeyChecking=accept-new -o BatchMode=yes \
+           -i "$SSH_PRIVATE_KEY_FILE" "$SSH_USER@$public_ip" \
+           'cloud-init status --wait >/dev/null 2>&1 || [ $? -eq 2 ]'; then
+      c_grn "bootstrap finished:  ssh -i $SSH_PRIVATE_KEY_FILE $SSH_USER@$public_ip"
+    else
+      c_ylw "cloud-init reported errors — inspect with:
+  ssh -i $SSH_PRIVATE_KEY_FILE $SSH_USER@$public_ip cloud-init status --long"
+    fi
     exit 0
   fi
   sleep 10
 done
-c_ylw "SSH not answering yet. The instance is running; give cloud-init a few more
-minutes, then: ssh -i $SSH_PRIVATE_KEY_FILE $SSH_USER@$public_ip"
+c_ylw "SSH not answering yet. The instance is running; give it a few more minutes, then:
+  ssh -i $SSH_PRIVATE_KEY_FILE $SSH_USER@$public_ip 'cloud-init status --wait'"

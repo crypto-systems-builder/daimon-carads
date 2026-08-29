@@ -147,7 +147,11 @@ The 4/24 ARM allowance is the whole point — one 4/24 box, or four 1/6 boxes.
 - **No swap by default.** `cloud-init.yaml` adds a 4 GB swapfile.
 - **TLS.** Caddy provisions and renews certificates automatically — but only once
   `SITE_DOMAIN`'s A record points at the instance IP. Point DNS first, then run
-  `03-deploy-site.sh`.
+  `03-deploy-site.sh`. With `SITE_WWW=true`, `www.$SITE_DOMAIN` needs its own
+  A/CNAME record too.
+- **Deploys wait for first boot.** Both `02-instance.sh` and `03-deploy-site.sh`
+  gate on `cloud-init status --wait`, since SSH answers minutes before the
+  first-boot package installs finish.
 - **Idle reclamation applies to Pay As You Go tenancies, not Always Free ones.**
   Always Free A1 instances are not reclaimed for being idle; do not bother with
   fake-load cron jobs.
