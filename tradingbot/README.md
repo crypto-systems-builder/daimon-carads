@@ -29,3 +29,21 @@ engine's desired positions onto the demo account. It only manages trades tagged 
 
 ## Test
 `node tradingbot/test-bridge.mjs` — runs the script against a mock Framework (no network, no broker).
+
+## Status (2026-09-27)
+| Check | State |
+|---|---|
+| Script logic vs MyTrader API reference | ✅ verified (offline mock test passes) |
+| Live feed `/tradingbot/webhook/signals` returns `want[]` with `sl` + CORS header | ⏳ unverified — engine source not found in accessible repos; check on first run |
+| First live run on LiquidCharts demo | ⏳ pending — see checklist below |
+
+### First-run checklist (LiquidCharts demo)
+1. Open browser devtools console (F12) before START.
+2. Expect `[daimon] feed: N desired position(s)` within a few seconds.
+   - `feed error, holding: TypeError: Failed to fetch` → feed is missing the CORS header (`Access-Control-Allow-Origin: *`).
+   - `feed error, holding: Error: HTTP 401/403` → wrong secret.
+   - `feed: no usable data, holding` → feed JSON has no `want` array.
+   - `SKIP ... feed gave no sl` → engine must add `sl` to each signal.
+3. Opens/closes appear as toasts; trades carry magic `778899` and comment `daimon:...`.
+4. `OPEN FAILED ... <code>` → look the code up in the framework reference's error table
+   (e.g. market closed, volume too small, instrumentId mismatch).
