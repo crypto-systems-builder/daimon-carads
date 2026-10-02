@@ -3,8 +3,17 @@
 How work gets done in this repo. Three laws. They compose: Law 1 tells you how to
 know something, Law 2 tells you what to point it at, Law 3 tells you how to move.
 
-Applies to research, planning, implementation, and shipping. No exceptions for
-"small" tasks — small tasks are where undisciplined habits get installed.
+Applies to research, planning, implementation, and shipping. **Scale the ceremony
+to the stakes:**
+
+| Task | Rigor |
+|---|---|
+| Trivial, reversible, one step (rename, typo, obvious fix) | Just do it. No write-up |
+| Uncertain, multi-step, or costly to redo | Full Law 1 loop, written down |
+| One-way door (public, irreversible, spends real money) | Full loop + pre-mortem (see Law 1) |
+
+The habit still applies everywhere — know what you expect before you look, and
+say what would change your mind — but only non-trivial work gets the written form.
 
 ---
 
@@ -201,6 +210,20 @@ Countermeasures, applied by default:
   each prompted to *refute*. Never let the producing agent be its own verifier.
 - Escalate to the expensive model only what survives verification.
 
+### How to run it here
+
+- **This section is standing authorization to spawn subagents.** Don't ask first
+  on decomposable work — that's the point of the doctrine.
+- Use the `Agent` tool with `model: "sonnet"` for executors. Send all independent
+  agents **in a single message** so they run concurrently; one-per-message is
+  sequential and defeats the fan-out.
+- Plan first, in the main (top-tier) session. Put the full contract in each
+  agent's prompt — a subagent has none of this conversation's context.
+- Verification agents get the producer's *output* and the acceptance criteria,
+  and are told to refute it.
+- Git-writing work (commits, pushes) stays in the main session. Agents return
+  results; they don't touch the shared branch.
+
 ### Standing defaults
 
 - Every non-trivial task: **plan top-tier → execute wide → verify independently.**
@@ -223,3 +246,9 @@ Law 2  →  re-measure — the constraint has moved
 
 Repeat. Every pass through this loop should leave behind one written, repeatable
 procedure. That accumulation *is* the compounding asset — not any individual win.
+
+**Where it goes:** `docs/lab-notebook.md`. Append one entry per non-trivial pass:
+hypothesis, prediction, result (failures included), constraint found, and the
+procedure in `Do X, under condition C, to get Y — because Z` form. Read it before
+starting related work — re-running a logged dead end is the cheapest waste to avoid.
+Keep `CLAUDE.md` for the doctrine; keep results in the notebook.
