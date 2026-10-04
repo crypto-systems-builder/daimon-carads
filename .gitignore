@@ -1,1 +1,4 @@
 carads_build/.DS_Store
+infra/oci/oci.env
+infra/oci/oci-*.env
+infra/oci/.state.*.env

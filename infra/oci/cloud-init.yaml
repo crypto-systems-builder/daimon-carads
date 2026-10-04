@@ -1,0 +1,65 @@
+#cloud-config
+# Runs once, on first boot of the new instance.
+package_update: true
+package_upgrade: true
+
+packages:
+  - curl
+  - debian-keyring
+  - debian-archive-keyring
+  - apt-transport-https
+  - iptables-persistent
+  - fail2ban
+  - unattended-upgrades
+
+write_files:
+  # Placeholder site so you can confirm the box is reachable before deploying anything.
+  - path: /srv/daimon/index.html
+    permissions: '0644'
+    content: |
+      <!doctype html><meta charset="utf-8"><title>daimon</title>
+      <body style="background:#0c0d10;color:#f3f4f6;font:16px system-ui;padding:60px">
+      <p style="color:#c9a24b">OCI instance up. Deploy with infra/oci/03-deploy-site.sh</p>
+
+  # Plain HTTP on the raw IP. 03-deploy-site.sh replaces this with a TLS config
+  # once a domain is pointed at the instance.
+  - path: /etc/caddy/Caddyfile
+    permissions: '0644'
+    content: |
+      :80 {
+        root * /srv/daimon
+        file_server
+        encode gzip zstd
+      }
+
+runcmd:
+  # --- Host firewall --------------------------------------------------------
+  # Oracle's Ubuntu images ship an iptables ruleset that REJECTs everything past
+  # port 22. Opening the VCN security list alone is not enough — this is the
+  # single most common reason a fresh OCI box "ignores" port 80.
+  - [ sh, -c, "iptables -I INPUT 1 -p tcp --dport 80  -m conntrack --ctstate NEW -j ACCEPT" ]
+  - [ sh, -c, "iptables -I INPUT 1 -p tcp --dport 443 -m conntrack --ctstate NEW -j ACCEPT" ]
+  # UDP 443 lets Caddy's advertised HTTP/3 (QUIC) actually connect once TLS is on.
+  - [ sh, -c, "iptables -I INPUT 1 -p udp --dport 443 -j ACCEPT" ]
+  - [ sh, -c, "netfilter-persistent save || true" ]
+
+  # --- Swap -----------------------------------------------------------------
+  # Cheap insurance against the OOM killer on a box with no swap by default.
+  - [ sh, -c, "fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile" ]
+  - [ sh, -c, "grep -q '^/swapfile' /etc/fstab || echo '/swapfile none swap sw 0 0' >> /etc/fstab" ]
+
+  # --- Caddy (TLS certificates handled automatically) -----------------------
+  - [ sh, -c, "curl -fsSL https://dl.cloudsmith.io/public/caddy/stable/gpg.key | gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg" ]
+  - [ sh, -c, "echo 'deb [signed-by=/usr/share/keyrings/caddy-stable-archive-keyring.gpg] https://dl.cloudsmith.io/public/caddy/stable/deb/debian any-version main' > /etc/apt/sources.list.d/caddy-stable.list" ]
+  # --force-confold: write_files above already seeded /etc/caddy/Caddyfile, which
+  # is a dpkg conffile of the caddy package. Without it dpkg stops at a conffile
+  # prompt (stdin is /dev/null under cloud-init), aborts the install, and the box
+  # boots with no web server while still reporting success.
+  - [ sh, -c, "apt-get update && apt-get install -y -o Dpkg::Options::=--force-confold caddy" ]
+
+  # Let the login user publish the site without sudo on every rsync.
+  - [ sh, -c, "chown -R ubuntu:ubuntu /srv/daimon && usermod -aG caddy ubuntu || true" ]
+  - [ sh, -c, "systemctl enable --now caddy && systemctl restart caddy" ]
+  - [ sh, -c, "systemctl enable --now fail2ban" ]
+
+final_message: "daimon bootstrap finished after $UPTIME seconds"
