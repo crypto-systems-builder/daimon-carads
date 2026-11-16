@@ -18,4 +18,39 @@ NEXT         the next question, and where the constraint moved
 
 ## Entries
 
-_None yet._
+### 2026-11-16 — Swarm rig: decode the video, test the free claim
+CONSTRAINT   In the source run, mapping took 24 min ($31.73) and the build took about a
+             day (rest of ~$122). Compute for 15 machines × 24 min is $0.33. The limiter
+             was the build and merge through one orchestrator, and the cost was tokens.
+HYPOTHESIS   If we clone Parallax, then we get the studio for free — because the result
+             of the swarm is already published under MIT and has a no-key mock mode.
+PREDICTION   (written before the test) It boots with no keys, home returns 200, the
+             model list loads in mock mode.
+RESULT       Partly tested. Clone OK. `npm ci` OK in 63 s on Node 22.23.4. Booting the
+             server was denied twice by the session's permission rules, so the
+             prediction is neither confirmed nor refuted. The repo's own guide says its
+             Hermes-on-Orgo engine was never run against a live agent.
+CONCLUSION   Revised: "installs cleanly" is known, "runs" is not.
+PROCEDURE    Do a feasibility check of a published repo by clone + `npm ci
+             --ignore-scripts` + static counts, under the condition that the session
+             cannot start servers, to get a go/no-go on install only — because running
+             third-party code is gated here. Run the boot test on your own machine.
+NEXT         Does Parallax boot and complete a mock generation on a clean machine?
+             (Phase 0 in `docs/swarm-rig/plan.md`.) Constraint is now a person running
+             that 15-minute test.
+
+### 2026-11-16 — Built for the wrong target
+CONSTRAINT   Not measured. I assumed which business the ads were for.
+HYPOTHESIS   If the repo is called car ads, then the goal is ads for the car ad service —
+             because the session opened in this repo.
+PREDICTION   None written. That was the error.
+RESULT       Wrong. The owner's goal is the a different business of theirs.
+             The answer was in two earlier sessions and a private repo, findable in
+             about 5 minutes. A tracking script and a campaign brief were built first.
+CONCLUSION   Killed.
+PROCEDURE    Do a search of past sessions and the repo list for the goal, under the
+             condition that a new session's goal names a business or system, to get the
+             real target before building — because the working repo of a session is
+             where it was opened, not what it is about.
+NEXT         What is live on the real account and what did it earn? Constraint:
+             that state exists only on the owner's Mac.

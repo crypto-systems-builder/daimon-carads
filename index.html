@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script>
 /* Route non-Dutch visitors to the English funnel. ?lang=nl overrides + sticks for the session. */
-(function(){try{var p=new URLSearchParams(location.search);if(p.get('lang')==='nl'){sessionStorage.setItem('lang','nl');return;}if(sessionStorage.getItem('lang')==='nl')return;var l=(navigator.language||navigator.userLanguage||'').toLowerCase();if(l&&l.indexOf('nl')!==0){location.replace('us.html');}}catch(e){}})();
+(function(){try{var p=new URLSearchParams(location.search);if(p.get('lang')==='nl'){sessionStorage.setItem('lang','nl');return;}if(sessionStorage.getItem('lang')==='nl')return;var l=(navigator.language||navigator.userLanguage||'').toLowerCase();if(l&&l.indexOf('nl')!==0){location.replace('us.html'+location.search);}}catch(e){}})();
 </script>
 <title>Daimon Media — Filmische auto-ads, op locatie in Nederland</title>
 <style>
@@ -84,20 +84,20 @@
   <span class="eyebrow">Prijzen</span>
   <h2>Simpel. Per auto of per maand.</h2>
   <div class="grid3">
-    <a class="card" href="#contact">
+    <a class="card" href="#contact" data-pkg="Proef €79">
       <div class="muted">Proef</div>
       <div class="price">€79</div>
       <p class="muted">1 filmische ad van één auto. Even zien wat het doet.</p>
       <span class="pickcta">Kies dit pakket →</span>
     </a>
-    <a class="card feat" href="#contact">
+    <a class="card feat" href="#contact" data-pkg="Pro €249">
       <span class="pill">Populairst</span>
       <div class="muted">Pro</div>
       <div class="price">€249</div>
       <p class="muted">3 ads — verschillende auto's of hoeken. 48 uur, met jouw logo &amp; prijs.</p>
       <span class="pickcta">Kies dit pakket →</span>
     </a>
-    <a class="card" href="#contact">
+    <a class="card" href="#contact" data-pkg="Dealer maandelijks €499">
       <div class="muted">Dealer maandelijks</div>
       <div class="price">€499<span>/mnd</span></div>
       <p class="muted">12 ads per maand. Elke listing filmisch, het hele jaar door.</p>
@@ -126,5 +126,6 @@
 </div></section>
 
 <footer><div class="wrap">Daimon Media · Filmische auto-ads op locatie in Nederland · <a href="https://instagram.com/daimonmedia.ai" target="_blank" rel="noopener" style="color:var(--accent2);text-decoration:none">@daimonmedia.ai</a> · daimonmedia.com</div></footer>
+<script src="track.js" defer></script>
 </body>
 </html>
