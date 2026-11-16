@@ -4,7 +4,7 @@ Goal: own the setup from the video (see `video-breakdown.md`) so that an orchest
 can fan agents out over many cloud computers, map a product into a spec, and build
 from it. And have a working image, video and audio studio the agents can drive.
 
-Status: **planning done, nothing bought, nothing running.** Last updated 2026-11-16.
+Status: **parked on 2026-11-16.** The goal is the ad loop in `docs/ad-loop/README.md`; this rig does not limit it. Nothing bought, nothing running.
 
 ## 1. Observations (measured on 2026-11-16)
 
