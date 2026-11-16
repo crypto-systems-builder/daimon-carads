@@ -1,6 +1,6 @@
 # Ad loop — the actual goal
 
-Status: **goal set, loop not started.** Last updated 2026-11-16.
+Status: **site is measurable, campaign 001 is written, waiting on the owner to connect an ad account and approve a budget.** Last updated 2026-11-16.
 
 ## Goal
 
@@ -50,6 +50,26 @@ tooling adds zero output until an ad is running and its results can be read.
 Evidence that would change this plan: the first campaign shows the clips themselves
 are the reason ads fail (people do not stop to watch). Then the create stage becomes
 the constraint and Parallax or a better generator moves up.
+
+## Built so far
+
+| What | Where | State |
+|---|---|---|
+| Source tracking on both landing pages | `track.js` | Tested in a headless browser, 10 of 10 checks. Live once merged to `main` |
+| Language redirect keeps campaign tags | `index.html` | Tested |
+| Pixel loader with a consent banner | `track.js` | Off until a pixel id is filled in |
+| First campaign brief | `campaign-001.md` | Ready, not launched |
+| Lead and sales ledger | `ledger.csv` | Empty |
+| Brand saved in the ad tool, competitors checked | `campaign-001.md` | Done |
+
+## Needed from the owner
+
+1. Connect a Meta ad account to the ad tool (a sign-in link, free).
+2. Approve the budget in `campaign-001.md` (proposal: €70).
+3. Merge the pull request so the tracking is on the live page.
+4. Say what one clip costs to make, in money and minutes. Profit needs it.
+5. Decide where the ads should land: the current `github.io` address, or a
+   `daimonmedia.com` address.
 
 ## Related
 
