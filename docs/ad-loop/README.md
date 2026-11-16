@@ -1,6 +1,6 @@
 # Ad loop — the actual goal
 
-Status: **site is measurable, campaign 001 is written, waiting on the owner to connect an ad account and approve a budget.** Last updated 2026-11-16.
+Status: **wrong target, parked on 2026-11-16.** The owner's goal is the search arbitrage business (Neukirch / LION), not ads for Daimon Media's car ad service. Campaign 001 below must not be launched. The site tracking in `track.js` is harmless and can stay or go. The arbitrage work lives in the `NeukirchArbitrage-Exploration` repo (Campaign Command Center) and in `neukirch-creatives` on the owner's Mac.
 
 ## Goal
 

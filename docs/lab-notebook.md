@@ -38,3 +38,19 @@ PROCEDURE    Do a feasibility check of a published repo by clone + `npm ci
 NEXT         Does Parallax boot and complete a mock generation on a clean machine?
              (Phase 0 in `docs/swarm-rig/plan.md`.) Constraint is now a person running
              that 15-minute test.
+
+### 2026-11-16 — Built for the wrong target
+CONSTRAINT   Not measured. I assumed which business the ads were for.
+HYPOTHESIS   If the repo is called car ads, then the goal is ads for the car ad service —
+             because the session opened in this repo.
+PREDICTION   None written. That was the error.
+RESULT       Wrong. The owner's goal is the search arbitrage business (Neukirch, LION).
+             The answer was in two earlier sessions and a private repo, findable in
+             about 5 minutes. A tracking script and a campaign brief were built first.
+CONCLUSION   Killed.
+PROCEDURE    Do a search of past sessions and the repo list for the goal, under the
+             condition that a new session's goal names a business or system, to get the
+             real target before building — because the working repo of a session is
+             where it was opened, not what it is about.
+NEXT         What is live on the arbitrage account and what did it earn? Constraint:
+             that state exists only on the owner's Mac.

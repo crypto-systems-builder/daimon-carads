@@ -1,6 +1,6 @@
 # Campaign 001 — first pass through the loop
 
-Status: **ready to launch, waiting on the owner** (ad account, budget approval, merge).
+Status: **cancelled on 2026-11-16, wrong target. Do not launch.** Was: ready to launch, waiting on the owner (ad account, budget approval, merge).
 Nothing is running and nothing has been spent. Written 2026-11-16.
 
 Purpose: get the first real numbers. Not to make a profit yet.
