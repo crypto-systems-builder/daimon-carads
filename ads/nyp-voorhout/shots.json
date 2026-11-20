@@ -1,70 +1,110 @@
 {
+  "_paths": "All relative paths in this file are relative to ads/nyp-voorhout/.",
   "project": "NYP Voorhout - Hot Slice",
-  "format": { "aspect": "9:16", "seconds": 8, "audio": true, "takes_per_shot": 2 },
+  "format": {
+    "aspect": "9:16",
+    "seconds": 8,
+    "outputs_per_prompt": 1,
+    "takes_per_shot": 2,
+    "_take": "A take is one generation with one output. Take 2 is a second, separate generation.",
+    "video_model": "FILL AT STAGE 2: exact label of the fast video model as shown in Flow",
+    "image_model": "FILL AT STAGE 2: exact label of the image model as shown in Flow",
+    "route": "FILL AT STAGE 2: K, D or T (plan section 8b)",
+    "mode_labels": {
+      "frames_to_video": "FILL AT STAGE 2",
+      "ingredients_to_video": "FILL AT STAGE 2",
+      "create_image": "FILL AT STAGE 2"
+    }
+  },
   "hero": {
     "name": "Daan",
     "image_out": "keyframes/hero.png",
-    "prompt": "Photorealistic next-gen video game character render of Daan, a Dutch pizza delivery rider in his late 20s, short messy blond hair, light stubble, red bomber jacket over a white t-shirt, black jeans, white sneakers, open-face helmet under his arm, standing beside a red electric delivery scooter with a plain insulated box on the back, Dutch brick village street at golden hour, full body, cinematic depth of field, vertical 9:16. No text, no logos."
+    "prompt_a_game": "Character reference sheet, two views side by side of the same man and the same scooter. Photorealistic, next-gen game-engine look. Daan, a Dutch pizza delivery rider in his late 20s, short messy blond hair, light stubble, red bomber jacket over a white t-shirt, black jeans, white sneakers. Left view: standing beside a red electric delivery scooter with a plain unbranded insulated box on the back, open-face black helmet under his arm. Right view: riding the same scooter, wearing the helmet, seen from behind at a three-quarter angle. Neutral Dutch brick street, golden-hour light, full body. All surfaces clean and unbranded.",
+    "prompt_b_photo": "Character reference sheet, two views side by side of the same man and the same scooter. Photorealistic photograph, cinema camera, natural skin, a real person. Daan, a Dutch pizza delivery rider in his late 20s, short messy blond hair, light stubble, red bomber jacket over a white t-shirt, black jeans, white sneakers. Left view: standing beside a red electric delivery scooter with a plain unbranded insulated box on the back, open-face black helmet under his arm. Right view: riding the same scooter, wearing the helmet, seen from behind at a three-quarter angle. Neutral Dutch brick street, golden-hour light, full body. All surfaces clean and unbranded.",
+    "_ab": "G1 generates both; the owner picks one. This is the only variable that differs between them."
   },
-  "style_prefix": "Photorealistic next-gen open-world video game cutscene set in a real Dutch village, golden-hour light, slightly heightened colours, cinematic camera. No on-screen text, no logos, no subtitles.",
-  "keyframe_instruction": "Use the location photo as the exact background and camera position. Place the character from the reference image into it as described. Keep every building, sign and road marking of the photo unchanged. Photorealistic game-cutscene look, golden-hour light. Do not add text or logos.",
+  "style_prefix": "Original fictional delivery story with the look of a photorealistic open-world game cutscene, set in a real Dutch village. Golden-hour light, slightly heightened colours. All surfaces clean and unbranded. No on-screen text, no subtitles, no interface elements.",
+  "audio_suffix": "No music, no voices.",
+  "keyframe_instruction": "Use the location frame as the exact background and camera position. Add the man and scooter from the reference sheet as described below. Buildings, road layout and street furniture stay exactly as in the location frame; only what the description below names may change. Extend the picture only if needed to fill 9:16, without altering the original area. No added text or logos.",
+  "prompt_composition": {
+    "still": "keyframe_instruction + ' ' + keyframe_prompt, with the location frame and keyframes/hero.png attached",
+    "video": "style_prefix + ' ' + video_prompt + ' Audio: ' + audio_prompt + ' ' + audio_suffix, with the start frame attached"
+  },
   "shots": [
     {
       "id": 1,
       "name": "the-call",
-      "location_photo": "refs/photo2_shop_three_quarter.jpg",
-      "keyframe_prompt": "The character leans on his red delivery scooter parked on the pavement in front of the pizzeria, looking at the phone in his hand.",
-      "video_prompt": "His phone buzzes, he reads it, smirks, pockets it and puts on his helmet. Slow push-in.",
-      "audio_prompt": "Phone buzz, quiet village street, a distant church bell."
+      "start_frame": { "type": "keyframe", "location": "refs/loc2_shop_three_quarter.jpg" },
+      "keyframe_prompt": "He leans on his red delivery scooter parked on the pavement in front of the pizzeria, helmet resting on the seat, looking at the phone in his hand. The shop sign stays exactly as in the location frame.",
+      "video_prompt": "Static camera, no zoom. He glances at his phone, smirks, pockets it and picks up his helmet.",
+      "audio_prompt": "A phone buzzing, quiet village street, a distant church bell.",
+      "edit_seconds": 4.0
     },
     {
       "id": 2,
       "name": "pickup",
-      "location_photo": "refs/photo1_shop_front.jpg",
-      "keyframe_prompt": "The pizzeria door is open and the character steps out of it carrying two stacked plain pizza boxes, his red delivery scooter waiting at the kerb with its box lid open.",
-      "video_prompt": "He strides to the scooter, slides the boxes into the delivery box and snaps the lid shut. Handheld camera at waist height.",
-      "audio_prompt": "Door swinging, box latch click, a man's voice from inside shouting 'Rijden!'."
+      "start_frame": { "type": "keyframe", "location": "refs/loc1_shop_front.jpg" },
+      "keyframe_prompt": "The pizzeria door is open and he steps out of it carrying two stacked plain pizza boxes, helmet on. His red delivery scooter waits at the kerb with its box lid open. The shop sign stays exactly as in the location frame.",
+      "video_prompt": "Steady camera at waist height, barely moving. He strides to the scooter, slides the boxes into the delivery box and snaps the lid shut.",
+      "audio_prompt": "A door swinging, a box latch clicking, muffled kitchen noise from inside.",
+      "edit_seconds": 4.0
     },
     {
       "id": 3,
       "name": "launch",
-      "location_photo": "refs/photo3_herenstraat_toward_crossing.jpg",
-      "keyframe_prompt": "Seen from behind and low, the character sits on his red delivery scooter in the right-hand lane of the brick street, about to ride away from the camera.",
-      "video_prompt": "Low rear tracking shot as he accelerates down the brick village street beside a red cycle lane, passing terraced houses, parked bicycles and a small hatchback with a soft, unreadable yellow number plate. He keeps to the right side of the road.",
-      "audio_prompt": "Electric scooter whine rising, tyres on brick paving."
+      "start_frame": { "type": "keyframe", "location": "refs/loc3_herenstraat_toward_crossing.jpg" },
+      "keyframe_prompt": "Seen from behind and low, he sits on his red delivery scooter in the right-hand lane of the brick street, wearing the open-face helmet, about to ride away from the camera. The scooter's rear plate is hidden in the shadow under the box.",
+      "video_prompt": "Third-person game camera low behind him with slight camera lag. He pulls away and accelerates; the camera barely moves forward. Same street, same houses, no new junctions. He keeps to the right side of the road.",
+      "audio_prompt": "An electric scooter whine rising, tyres on brick paving.",
+      "edit_seconds": 4.0,
+      "_note": "Use only the first 3-4 seconds; the street is invented after that."
     },
     {
       "id": 4,
       "name": "barriers-close",
-      "location_photo": "refs/photo4_crossing_stop_line.jpg",
-      "keyframe_prompt": "The character on his red delivery scooter rolls up to the stop line of the level crossing, seen from behind and slightly to the side. The barriers are still up.",
-      "video_prompt": "The two red warning lights start flashing alternately and the red and white barriers lower. He brakes smoothly and stops well before the line, puts one foot down, checks his watch and exhales. A cyclist stops beside him. He stays completely still behind the closed barrier.",
-      "audio_prompt": "Level crossing warning bell ringing, soft brake squeak, a bicycle bell."
+      "start_frame": { "type": "keyframe", "location": "refs/loc4_crossing_stop_line.jpg" },
+      "keyframe_prompt": "He rolls up to the level crossing on his red delivery scooter, wearing the open-face helmet, seen from behind and slightly to the side, still several metres before the stop line. The barriers are up, as in the location frame.",
+      "video_prompt": "Third-person game camera behind him. The two red warning lights start flashing alternately and the red and white barriers lower. He brakes smoothly, stops well before the stop line and puts one foot on the ground. He stays completely still behind the closed barrier.",
+      "audio_prompt": "A level crossing warning bell ringing, a soft brake squeak.",
+      "edit_seconds": 6.0
     },
     {
       "id": 5,
       "name": "train-passes",
-      "location_photo": "refs/photo4_crossing_stop_line.jpg",
-      "keyframe_prompt": "Low camera behind the character, who waits on his red delivery scooter with one foot on the ground in front of the closed red and white barriers, warning lights lit.",
-      "video_prompt": "A yellow Dutch passenger train with blue bands rushes past on the tracks beyond the barriers, left to right, wind tugging his jacket. The train clears, the barriers rise fully, and only then does he pull away across the crossing.",
-      "audio_prompt": "Train roar and rail clatter, the warning bell stops, electric scooter whine."
+      "start_frame": { "type": "last_frame_of", "shot": 4 },
+      "video_prompt": "Locked-off low camera behind him. He stays still with one foot on the ground as a yellow Dutch passenger train with blue bands rushes past on the tracks beyond the barriers, wind tugging his jacket. The barriers stay down and the red lights keep flashing for the whole shot.",
+      "audio_prompt": "A train roaring past, rail clatter, the warning bell ringing throughout.",
+      "edit_seconds": 6.0,
+      "_note": "Generate only after the shot 4 take is chosen. Start frame: ffmpeg -sseof -0.1 -i raw/s4_tK.mp4 -frames:v 1 keyframes/s5_start.png"
     },
     {
       "id": 6,
-      "name": "bulb-fields",
-      "location_photo": "refs/photo6_field_edge.jpg",
-      "location_optional": true,
-      "keyframe_prompt": "The character rides his red delivery scooter along a narrow straight road between rows of red and yellow tulips in full bloom, a ditch beside the road, flat Dutch landscape, low sun flaring. Side view from a distance.",
-      "video_prompt": "Drone-style side tracking shot keeping pace with the scooter along the tulip fields.",
-      "audio_prompt": "Wind, scooter whine, birdsong."
+      "name": "barriers-open",
+      "start_frame": { "type": "last_frame_of", "shot": 5 },
+      "video_prompt": "Same low camera behind him. The track is empty. The red lights stop flashing and the barriers rise fully. Only when they are fully up does he pull away and ride across the crossing, away from the camera.",
+      "audio_prompt": "The warning bell stopping, an electric scooter whine pulling away.",
+      "edit_seconds": 3.5,
+      "_note": "Generate only after the shot 5 take is chosen."
     },
     {
       "id": 7,
+      "name": "landmark-or-fields",
+      "optional": true,
+      "start_frame": { "type": "keyframe", "location": "refs/loc6_landmark.jpg", "location_optional": true },
+      "keyframe_prompt": "He rides his red delivery scooter along the road, wearing the open-face helmet, seen from the side at a distance. If no location frame is attached: a narrow straight road between rows of red and yellow tulips in full bloom, a ditch beside the road, flat Dutch landscape, low sun.",
+      "video_prompt": "Third-person game camera tracking sideways, keeping pace with the scooter.",
+      "audio_prompt": "Wind, an electric scooter whine, birdsong.",
+      "edit_seconds": 3.5,
+      "_note": "Ask the owner at G1: a recognisable local landmark frame, the text-only tulip field, or drop this shot."
+    },
+    {
+      "id": 8,
       "name": "delivery",
-      "location_photo": "refs/photo5_front_door.jpg",
-      "keyframe_prompt": "The character stands at the front door of the brick terraced house holding two plain pizza boxes, his red delivery scooter parked behind him on the street.",
-      "video_prompt": "The door opens, he hands the boxes to a delighted customer, the top lid opens on a steaming pizza. Slow push-in on the pizza.",
-      "audio_prompt": "Doorbell, a happy 'Lekker!', steam hiss."
+      "start_frame": { "type": "keyframe", "location": "refs/loc5_front_door.jpg" },
+      "keyframe_prompt": "He stands at the front door of the brick terraced house holding two plain pizza boxes, helmet in his other hand, his red delivery scooter parked behind him on the street. Seen from behind his shoulder. No house number visible.",
+      "video_prompt": "The door opens, a hand and sleeve reach out and take the boxes. The camera pushes in on the top box as the lid lifts on a steaming pizza with stretching cheese. The customer is seen only as a hand and a sleeve.",
+      "audio_prompt": "A doorbell, a door opening, a hiss of steam.",
+      "edit_seconds": 7.0
     }
   ]
 }
