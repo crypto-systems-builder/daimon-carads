@@ -1,0 +1,468 @@
+{
+  "source": "projects/test-short/raw/test-recording.mp4",
+  "backend": "sherpa",
+  "duration": 33.728,
+  "text": "Here is a fact about the iPhone that surprises most people. When the first iPhone came out in, when the first iPhone went on sale in June 2007, it had no App Store. You could not install a single app from another company. You could not install a single app from another company. The App Store only arrived a year. The App Store only arrived in July 2008. About a year later, it opened with just 500 apps. So, the phone that changed everything shipped without the thing it is famous for.",
+  "words": [
+    {
+      "w": "Here",
+      "start": 0.41,
+      "end": 0.56
+    },
+    {
+      "w": "is",
+      "start": 0.56,
+      "end": 0.72
+    },
+    {
+      "w": "a",
+      "start": 0.72,
+      "end": 0.88
+    },
+    {
+      "w": "fact",
+      "start": 0.88,
+      "end": 1.12
+    },
+    {
+      "w": "about",
+      "start": 1.12,
+      "end": 1.36
+    },
+    {
+      "w": "the",
+      "start": 1.36,
+      "end": 1.44
+    },
+    {
+      "w": "iPhone",
+      "start": 1.44,
+      "end": 2.0
+    },
+    {
+      "w": "that",
+      "start": 2.0,
+      "end": 2.16
+    },
+    {
+      "w": "surprises",
+      "start": 2.16,
+      "end": 3.04
+    },
+    {
+      "w": "most",
+      "start": 3.04,
+      "end": 3.36
+    },
+    {
+      "w": "people.",
+      "start": 3.36,
+      "end": 3.7
+    },
+    {
+      "w": "When",
+      "start": 4.06,
+      "end": 4.24
+    },
+    {
+      "w": "the",
+      "start": 4.24,
+      "end": 4.4
+    },
+    {
+      "w": "first",
+      "start": 4.4,
+      "end": 4.64
+    },
+    {
+      "w": "iPhone",
+      "start": 4.64,
+      "end": 5.2
+    },
+    {
+      "w": "came",
+      "start": 5.2,
+      "end": 5.44
+    },
+    {
+      "w": "out",
+      "start": 5.44,
+      "end": 5.68
+    },
+    {
+      "w": "in,",
+      "start": 5.68,
+      "end": 5.93
+    },
+    {
+      "w": "when",
+      "start": 6.24,
+      "end": 6.4
+    },
+    {
+      "w": "the",
+      "start": 6.4,
+      "end": 6.56
+    },
+    {
+      "w": "first",
+      "start": 6.56,
+      "end": 6.8
+    },
+    {
+      "w": "iPhone",
+      "start": 6.8,
+      "end": 7.36
+    },
+    {
+      "w": "went",
+      "start": 7.36,
+      "end": 7.52
+    },
+    {
+      "w": "on",
+      "start": 7.52,
+      "end": 7.68
+    },
+    {
+      "w": "sale",
+      "start": 7.68,
+      "end": 8.0
+    },
+    {
+      "w": "in",
+      "start": 8.0,
+      "end": 8.16
+    },
+    {
+      "w": "June",
+      "start": 8.16,
+      "end": 8.48
+    },
+    {
+      "w": "2007,",
+      "start": 8.48,
+      "end": 9.6
+    },
+    {
+      "w": "it",
+      "start": 9.7,
+      "end": 9.84
+    },
+    {
+      "w": "had",
+      "start": 9.84,
+      "end": 10.0
+    },
+    {
+      "w": "no",
+      "start": 10.0,
+      "end": 10.16
+    },
+    {
+      "w": "App",
+      "start": 10.16,
+      "end": 10.33
+    },
+    {
+      "w": "Store.",
+      "start": 10.41,
+      "end": 10.83
+    },
+    {
+      "w": "You",
+      "start": 11.17,
+      "end": 11.36
+    },
+    {
+      "w": "could",
+      "start": 11.36,
+      "end": 11.52
+    },
+    {
+      "w": "not",
+      "start": 11.52,
+      "end": 11.76
+    },
+    {
+      "w": "install",
+      "start": 11.76,
+      "end": 12.16
+    },
+    {
+      "w": "a",
+      "start": 12.16,
+      "end": 12.32
+    },
+    {
+      "w": "single",
+      "start": 12.32,
+      "end": 12.72
+    },
+    {
+      "w": "app",
+      "start": 12.72,
+      "end": 12.91
+    },
+    {
+      "w": "from",
+      "start": 13.03,
+      "end": 13.36
+    },
+    {
+      "w": "another",
+      "start": 13.36,
+      "end": 13.68
+    },
+    {
+      "w": "company.",
+      "start": 13.68,
+      "end": 14.21
+    },
+    {
+      "w": "You",
+      "start": 14.62,
+      "end": 14.8
+    },
+    {
+      "w": "could",
+      "start": 14.8,
+      "end": 14.96
+    },
+    {
+      "w": "not",
+      "start": 14.96,
+      "end": 15.2
+    },
+    {
+      "w": "install",
+      "start": 15.2,
+      "end": 15.6
+    },
+    {
+      "w": "a",
+      "start": 15.6,
+      "end": 15.76
+    },
+    {
+      "w": "single",
+      "start": 15.76,
+      "end": 16.24
+    },
+    {
+      "w": "app",
+      "start": 16.24,
+      "end": 16.36
+    },
+    {
+      "w": "from",
+      "start": 16.48,
+      "end": 16.8
+    },
+    {
+      "w": "another",
+      "start": 16.8,
+      "end": 17.12
+    },
+    {
+      "w": "company.",
+      "start": 17.12,
+      "end": 17.66
+    },
+    {
+      "w": "The",
+      "start": 20.67,
+      "end": 20.72
+    },
+    {
+      "w": "App",
+      "start": 20.72,
+      "end": 20.96
+    },
+    {
+      "w": "Store",
+      "start": 20.96,
+      "end": 21.36
+    },
+    {
+      "w": "only",
+      "start": 21.36,
+      "end": 21.6
+    },
+    {
+      "w": "arrived",
+      "start": 21.6,
+      "end": 22.0
+    },
+    {
+      "w": "a",
+      "start": 22.0,
+      "end": 22.16
+    },
+    {
+      "w": "year.",
+      "start": 22.16,
+      "end": 22.31
+    },
+    {
+      "w": "The",
+      "start": 22.6,
+      "end": 22.72
+    },
+    {
+      "w": "App",
+      "start": 22.72,
+      "end": 22.96
+    },
+    {
+      "w": "Store",
+      "start": 22.96,
+      "end": 23.36
+    },
+    {
+      "w": "only",
+      "start": 23.36,
+      "end": 23.52
+    },
+    {
+      "w": "arrived",
+      "start": 23.52,
+      "end": 23.92
+    },
+    {
+      "w": "in",
+      "start": 23.92,
+      "end": 24.0
+    },
+    {
+      "w": "July",
+      "start": 24.0,
+      "end": 24.4
+    },
+    {
+      "w": "2008.",
+      "start": 24.4,
+      "end": 25.26
+    },
+    {
+      "w": "About",
+      "start": 25.38,
+      "end": 25.76
+    },
+    {
+      "w": "a",
+      "start": 25.76,
+      "end": 25.84
+    },
+    {
+      "w": "year",
+      "start": 25.84,
+      "end": 26.08
+    },
+    {
+      "w": "later,",
+      "start": 26.08,
+      "end": 26.39
+    },
+    {
+      "w": "it",
+      "start": 26.74,
+      "end": 26.88
+    },
+    {
+      "w": "opened",
+      "start": 26.88,
+      "end": 27.2
+    },
+    {
+      "w": "with",
+      "start": 27.2,
+      "end": 27.44
+    },
+    {
+      "w": "just",
+      "start": 27.44,
+      "end": 27.68
+    },
+    {
+      "w": "500",
+      "start": 27.68,
+      "end": 28.4
+    },
+    {
+      "w": "apps.",
+      "start": 28.4,
+      "end": 28.81
+    },
+    {
+      "w": "So,",
+      "start": 29.16,
+      "end": 29.36
+    },
+    {
+      "w": "the",
+      "start": 29.36,
+      "end": 29.52
+    },
+    {
+      "w": "phone",
+      "start": 29.52,
+      "end": 29.84
+    },
+    {
+      "w": "that",
+      "start": 29.84,
+      "end": 30.08
+    },
+    {
+      "w": "changed",
+      "start": 30.08,
+      "end": 30.56
+    },
+    {
+      "w": "everything",
+      "start": 30.56,
+      "end": 30.74
+    },
+    {
+      "w": "shipped",
+      "start": 30.8,
+      "end": 31.15
+    },
+    {
+      "w": "without",
+      "start": 31.23,
+      "end": 31.76
+    },
+    {
+      "w": "the",
+      "start": 31.76,
+      "end": 31.86
+    },
+    {
+      "w": "thing",
+      "start": 31.93,
+      "end": 32.16
+    },
+    {
+      "w": "it",
+      "start": 32.16,
+      "end": 32.39
+    },
+    {
+      "w": "is",
+      "start": 32.46,
+      "end": 32.48
+    },
+    {
+      "w": "famous",
+      "start": 32.48,
+      "end": 32.86
+    },
+    {
+      "w": "for.",
+      "start": 32.94,
+      "end": 33.21
+    }
+  ]
+}

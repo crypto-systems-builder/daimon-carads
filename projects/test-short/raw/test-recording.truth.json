@@ -1,0 +1,91 @@
+{
+  "file": "test-recording.mp4",
+  "engine": "flite",
+  "duration": 33.709,
+  "fact": "First iPhone on sale 29 June 2007 with no App Store; App Store opened 10 July 2008 with 500 apps.",
+  "planted_mistakes": {
+    "restarts": 2,
+    "repeated_sentences": 1,
+    "long_pauses": 1
+  },
+  "long_pause": {
+    "start": 17.678,
+    "end": 20.678,
+    "action": "cut"
+  },
+  "segments": [
+    {
+      "index": 0,
+      "kind": "keep",
+      "action": "keep",
+      "text": "Here is a fact about the iPhone that surprises most people.",
+      "start": 0.4,
+      "end": 3.713
+    },
+    {
+      "index": 1,
+      "kind": "restart",
+      "action": "cut",
+      "text": "When the first iPhone came out in.",
+      "start": 4.063,
+      "end": 5.94
+    },
+    {
+      "index": 2,
+      "kind": "keep",
+      "action": "keep",
+      "text": "When the first iPhone went on sale in June two thousand seven, it had no App Store.",
+      "start": 6.24,
+      "end": 10.829
+    },
+    {
+      "index": 3,
+      "kind": "keep",
+      "action": "keep",
+      "text": "You could not install a single app from another company.",
+      "start": 11.179,
+      "end": 14.229
+    },
+    {
+      "index": 4,
+      "kind": "repeat",
+      "action": "cut",
+      "text": "You could not install a single app from another company.",
+      "start": 14.629,
+      "end": 17.678
+    },
+    {
+      "index": 5,
+      "kind": "restart",
+      "action": "cut",
+      "text": "The App Store only arrived a year.",
+      "start": 20.678,
+      "end": 22.307
+    },
+    {
+      "index": 6,
+      "kind": "keep",
+      "action": "keep",
+      "text": "The App Store only arrived in July two thousand eight, about a year later.",
+      "start": 22.607,
+      "end": 26.389
+    },
+    {
+      "index": 7,
+      "kind": "keep",
+      "action": "keep",
+      "text": "It opened with just five hundred apps.",
+      "start": 26.739,
+      "end": 28.806
+    },
+    {
+      "index": 8,
+      "kind": "keep",
+      "action": "keep",
+      "text": "So the phone that changed everything shipped without the thing it is famous for.",
+      "start": 29.156,
+      "end": 33.209
+    }
+  ],
+  "clean_script": "Here is a fact about the iPhone that surprises most people. When the first iPhone went on sale in June two thousand seven, it had no App Store. You could not install a single app from another company. The App Store only arrived in July two thousand eight, about a year later. It opened with just five hundred apps. So the phone that changed everything shipped without the thing it is famous for."
+}

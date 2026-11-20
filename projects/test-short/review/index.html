@@ -1,0 +1,237 @@
+<meta charset="utf-8">
+<title>Test Short Review</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap">
+<style>
+/* Layout: the player stays pinned on the left like a phone on a stand; the evidence scrolls on the right. */
+:root {
+  --bg: #F2F4F6; --surface: #FFFFFF; --ink: #14181D; --muted: #5A6572; --line: #D8DEE5;
+  --kept: #2B3440; --cap: #FFD60A; --cap-ink: #1A1500;
+  --pass: #17794A; --pass-bg: #E3F4EA; --fail: #B3261E; --fail-bg: #FBE6E4; --cut: #C8483F;
+  --display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --text: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0E1217; --surface: #171C23; --ink: #E7EBEF; --muted: #94A1AF; --line: #2A323C;
+  --kept: #B9C4D0; --cap: #FFD60A; --cap-ink: #1A1500;
+  --pass: #55C792; --pass-bg: #12301F; --fail: #FF8176; --fail-bg: #3A1614; --cut: #E0665C; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0E1217; --surface: #171C23; --ink: #E7EBEF; --muted: #94A1AF; --line: #2A323C;
+  --kept: #B9C4D0; --cap: #FFD60A; --cap-ink: #1A1500;
+  --pass: #55C792; --pass-bg: #12301F; --fail: #FF8176; --fail-bg: #3A1614; --cut: #E0665C; color-scheme: dark }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--ink); font: 400 15px/1.55 var(--text); }
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 28px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 36px; align-items: start; }
+.stage { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 20px); display: grid; gap: 10px; }
+.tabs { display: flex; gap: 6px; }
+.tabs button { flex: 1; font: 500 13px var(--text); padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line);
+  background: transparent; color: var(--muted); cursor: pointer; }
+.tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+video { width: 100%; aspect-ratio: 9 / 16; max-width: 100%; background: #000; border-radius: 14px; display: block; }
+.hint { font-size: 12.5px; color: var(--muted); }
+main { display: grid; gap: 32px; min-width: 0; }
+h1 { font: 600 30px/1.15 var(--display); margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+h2 { font: 600 18px/1.2 var(--display); margin: 0 0 12px; }
+.eyebrow { font: 500 12px var(--text); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+.verdict { display: inline-flex; align-items: center; gap: 8px; font: 600 14px var(--text); padding: 6px 12px; border-radius: 999px; margin-top: 14px; }
+.verdict.ok { background: var(--pass-bg); color: var(--pass); }
+.verdict.bad { background: var(--fail-bg); color: var(--fail); }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 14px 0 0; padding: 0; list-style: none; color: var(--muted); font-size: 14px; }
+.facts b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+section { min-width: 0; }
+.bar { position: relative; height: 34px; border-radius: 6px; background: repeating-linear-gradient(135deg, transparent 0 5px, var(--line) 5px 7px); border: 1px solid var(--line); cursor: pointer; overflow: hidden; }
+.bar span { position: absolute; top: 0; bottom: 0; }
+.bar .k { background: var(--kept); }
+.bar .x { background: repeating-linear-gradient(135deg, transparent 0 5px, var(--cut) 5px 7px); }
+.bar .head { width: 2px; background: var(--cap); box-shadow: 0 0 0 1px var(--cap-ink); pointer-events: none; }
+.scale { position: relative; height: 18px; font: 11px var(--mono); color: var(--muted); }
+.scale i { position: absolute; top: 3px; font-style: normal; transform: translateX(-50%); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 12.5px; color: var(--muted); margin-top: 4px; }
+.legend span::before { content: ""; display: inline-block; width: 14px; height: 10px; margin-right: 6px; border-radius: 2px; vertical-align: -1px; }
+.legend .lk::before { background: var(--kept); }
+.legend .lx::before { background: repeating-linear-gradient(135deg, transparent 0 3px, var(--cut) 3px 5px); border: 1px solid var(--line); }
+.legend .lp::before { background: repeating-linear-gradient(135deg, transparent 0 3px, var(--line) 3px 5px); border: 1px solid var(--line); }
+.rows { display: grid; border-top: 1px solid var(--line); }
+.row { display: grid; grid-template-columns: 124px minmax(0, 1fr) auto; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.tc { font: 12.5px var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.row p { margin: 0; }
+.row small { display: block; color: var(--muted); font-size: 13px; }
+.row q { quotes: "\201C" "\201D"; }
+.play { font: 500 13px var(--text); padding: 6px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; white-space: nowrap; }
+.play:hover, .tabs button:hover { border-color: var(--muted); }
+button:focus-visible, textarea:focus-visible, .bar:focus-visible, .say span:focus-visible { outline: 2px solid var(--cap); outline-offset: 2px; }
+.checks .row { grid-template-columns: 62px 96px minmax(0, 1fr); }
+.pill { font: 600 11.5px var(--text); letter-spacing: 0.05em; padding: 2px 8px; border-radius: 4px; justify-self: start; }
+.pill.ok { background: var(--pass-bg); color: var(--pass); }
+.pill.bad { background: var(--fail-bg); color: var(--fail); }
+.checks b { font-weight: 600; }
+.say { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; font-size: 16px; line-height: 1.75; max-width: 65ch; }
+.say span { cursor: pointer; border-radius: 3px; padding: 1px 0; }
+.say span.on { background: var(--cap); color: var(--cap-ink); }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+td { padding: 7px 0; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+td:first-child { color: var(--muted); width: 42%; }
+textarea { width: 100%; min-height: 110px; font: 15px/1.5 var(--text); padding: 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); resize: vertical; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; align-items: center; }
+.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.choice { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-bottom: 10px; }
+.choice label { display: inline-flex; gap: 7px; align-items: center; cursor: pointer; }
+#copied { color: var(--muted); font-size: 13px; }
+@media (max-width: 760px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .stage { position: static; max-width: 300px; margin: 0 auto; width: 100%; }
+  h1 { font-size: 25px; }
+  .row { grid-template-columns: minmax(0, 1fr) auto; }
+  .row .tc { grid-column: 1 / -1; }
+  .checks .row { grid-template-columns: 62px minmax(0, 1fr); }
+  .checks .row b { grid-column: 2; } .checks .row span:last-child { grid-column: 1 / -1; }
+}
+</style>
+
+<div class="wrap">
+  <aside class="stage">
+    <div class="tabs" role="tablist">
+      <button id="tab-final" role="tab" aria-selected="true">Finished short</button>
+      <button id="tab-raw" role="tab" aria-selected="false">Raw recording</button>
+    </div>
+    <video id="v-final" src="final.mp4" controls playsinline preload="metadata"></video>
+    <video id="v-raw" src="raw.mp4" controls playsinline preload="metadata" hidden></video>
+    <div class="hint" id="hint">Click any line of the transcript to jump there.</div>
+  </aside>
+
+  <main>
+    <header>
+      <p class="eyebrow">Review sheet</p>
+      <h1 id="h1"></h1>
+      <div id="verdict"></div>
+      <ul class="facts" id="facts"></ul>
+    </header>
+
+    <section>
+      <h2>Where the cuts fall in the raw recording</h2>
+      <div class="bar" id="bar" tabindex="0" role="slider" aria-label="Raw recording timeline; click to play from that point"></div>
+      <div class="scale" id="scale"></div>
+      <div class="legend"><span class="lk">Kept</span><span class="lx">Line removed</span><span class="lp">Silence removed</span></div>
+    </section>
+
+    <section>
+      <h2>What was removed</h2>
+      <div class="rows" id="removed"></div>
+    </section>
+
+    <section class="checks">
+      <h2>Checks run on the cut</h2>
+      <div class="rows" id="checks"></div>
+    </section>
+
+    <section>
+      <h2>What the finished short says</h2>
+      <div class="say" id="say"></div>
+    </section>
+
+    <section>
+      <h2>File</h2>
+      <table id="spec"></table>
+    </section>
+
+    <section>
+      <h2>Your verdict</h2>
+      <div class="choice">
+        <label><input type="radio" name="decision" id="d-approve" value="Approved"> Approve</label>
+        <label><input type="radio" name="decision" id="d-change" value="Needs changes"> Needs changes</label>
+      </div>
+      <textarea id="notes" placeholder="Notes for the editor. Use the button below to stamp the current time of the finished short."></textarea>
+      <div class="actions">
+        <button class="play" id="stamp">Add current time</button>
+        <button class="play primary" id="copy">Copy feedback</button>
+        <span id="copied" role="status"></span>
+      </div>
+      <p class="hint">Paste the copied feedback back to Claude to apply it.</p>
+    </section>
+  </main>
+</div>
+
+<script>
+const D = {"project": "test-short", "title": "The first iPhone had no App Store", "approved_by": "Claude, for this test run only", "style": "default.md", "backend": "sherpa", "edl": {"duration_src": 33.728, "duration_out": 22.833, "keep": [{"start": 0.3, "text": "Here is a fact about the iPhone that surprises most people.", "end": 3.8333}, {"start": 6.1, "text": "when the first iPhone went on sale in June 2007, it had no App Store.", "end": 10.9667}, {"start": 14.4667, "text": "You could not install a single app from another company.", "end": 17.8}, {"start": 22.4667, "text": "The App Store only arrived in July 2008. About a year later, it opened with just 500 apps. So, the phone that changed everything shipped without the thing it is famous for.", "end": 33.5667}], "removed": [{"kind": "false_start", "reason": "line restarted; kept the complete take", "start": 4.06, "end": 5.93, "text": "When the first iPhone came out in,"}, {"kind": "repeat", "reason": "same sentence repeated; kept the last take", "start": 11.17, "end": 14.21, "text": "You could not install a single app from another company."}, {"kind": "pause", "reason": "3.0s of silence", "start": 17.66, "end": 20.67, "text": ""}, {"kind": "false_start", "reason": "line restarted; kept the complete take", "start": 20.67, "end": 22.31, "text": "The App Store only arrived a year."}]}, "verify": {"passed": true, "checks": [{"check": "words", "pass": true, "detail": "all 68 kept words heard in the cut, in order, nothing extra"}, {"check": "removed", "pass": true, "detail": "3 removed lines and 1 long pauses are gone"}, {"check": "pauses", "pass": true, "detail": "longest silence in the cut is 0.34s after 'later,' (limit 0.55s)"}, {"check": "joins", "pass": true, "detail": "all 3 joins fall on silence"}, {"check": "edges", "pass": true, "detail": "every segment has at least 30 ms of silence at both ends"}, {"check": "sync", "pass": true, "detail": "picture 22.867s, sound 22.866s"}, {"check": "truth", "pass": true, "detail": "planted mistakes all removed (2 restarts, 1 repeat, 1 long pause); every other line kept whole"}]}, "words": [{"w": "Here", "start": 0.11}, {"w": "is", "start": 0.32}, {"w": "a", "start": 0.48}, {"w": "fact", "start": 0.64}, {"w": "about", "start": 0.88}, {"w": "the", "start": 1.04}, {"w": "iPhone", "start": 1.2}, {"w": "that", "start": 1.68}, {"w": "surprises", "start": 1.84}, {"w": "most", "start": 2.72}, {"w": "people.", "start": 3.04}, {"w": "When", "start": 3.67}, {"w": "the", "start": 3.84}, {"w": "first", "start": 4.0}, {"w": "iPhone", "start": 4.24}, {"w": "went", "start": 4.72}, {"w": "on", "start": 4.96}, {"w": "sale", "start": 5.12}, {"w": "in", "start": 5.44}, {"w": "June", "start": 5.6}, {"w": "2007,", "start": 5.92}, {"w": "it", "start": 7.13}, {"w": "had", "start": 7.28}, {"w": "no", "start": 7.44}, {"w": "App", "start": 7.6}, {"w": "Store.", "start": 7.85}, {"w": "You", "start": 8.59}, {"w": "could", "start": 8.8}, {"w": "not", "start": 8.96}, {"w": "install", "start": 9.2}, {"w": "a", "start": 9.6}, {"w": "single", "start": 9.76}, {"w": "app", "start": 10.16}, {"w": "from", "start": 10.44}, {"w": "another", "start": 10.72}, {"w": "company.", "start": 11.04}, {"w": "The", "start": 11.9}, {"w": "App", "start": 12.0}, {"w": "Store", "start": 12.24}, {"w": "only", "start": 12.64}, {"w": "arrived", "start": 12.8}, {"w": "in", "start": 13.2}, {"w": "July", "start": 13.36}, {"w": "2008.", "start": 13.68}, {"w": "About", "start": 14.68}, {"w": "a", "start": 15.04}, {"w": "year", "start": 15.2}, {"w": "later,", "start": 15.36}, {"w": "it", "start": 16.03}, {"w": "opened", "start": 16.16}, {"w": "with", "start": 16.48}, {"w": "just", "start": 16.72}, {"w": "500", "start": 17.03}, {"w": "apps.", "start": 17.68}, {"w": "So", "start": 18.45}, {"w": "the", "start": 18.64}, {"w": "phone", "start": 18.8}, {"w": "that", "start": 19.12}, {"w": "changed", "start": 19.36}, {"w": "everything", "start": 19.84}, {"w": "shipped", "start": 20.1}, {"w": "without", "start": 20.53}, {"w": "the", "start": 21.04}, {"w": "thing", "start": 21.23}, {"w": "it", "start": 21.44}, {"w": "is", "start": 21.6}, {"w": "famous", "start": 21.76}, {"w": "for.", "start": 22.24}], "spec": {"file": "projects/test-short/out/final.mp4", "width": 1080, "height": 1920, "fps": 30.0, "duration": 22.867, "size_mb": 1.3, "video": "h264", "audio": "aac", "loudness_lufs": -14.2, "peak_dbfs": -1.5, "music": null}};
+const $ = id => document.getElementById(id);
+const vf = $("v-final"), vr = $("v-raw");
+const fmt = t => { const m = Math.floor(t / 60), s = t - m * 60; return m + ":" + (s < 10 ? "0" : "") + s.toFixed(1); };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+let stopAt = null;
+
+function show(which) {
+  const raw = which === "raw";
+  vf.hidden = raw; vr.hidden = !raw;
+  (raw ? vf : vr).pause();
+  $("tab-final").setAttribute("aria-selected", String(!raw));
+  $("tab-raw").setAttribute("aria-selected", String(raw));
+  $("hint").textContent = raw ? "This is the untouched recording, mistakes included." : "Click any line of the transcript to jump there.";
+}
+function playRaw(from, to) { show("raw"); stopAt = to ?? null; vr.currentTime = Math.max(0, from); vr.play().catch(() => {}); }
+function playFinal(from) { show("final"); vf.currentTime = from; vf.play().catch(() => {}); }
+$("tab-final").onclick = () => show("final");
+$("tab-raw").onclick = () => { stopAt = null; show("raw"); };
+
+// Header
+$("h1").textContent = D.title;
+const passed = D.verify.checks.filter(c => c.pass).length, total = D.verify.checks.length;
+$("verdict").innerHTML = `<span class="verdict ${D.verify.passed ? "ok" : "bad"}">${D.verify.passed ? "Cut verified" : "Cut failed verification"}: ${passed} of ${total} checks passed</span>`;
+const lines = D.edl.removed.filter(r => r.kind !== "pause").length, pauses = D.edl.removed.length - lines;
+$("facts").innerHTML = [
+  `<b>${D.edl.duration_src.toFixed(1)}s</b> raw`, `<b>${D.spec.duration.toFixed(1)}s</b> finished`,
+  `<b>${lines}</b> line${lines === 1 ? "" : "s"} and <b>${pauses}</b> long pause${pauses === 1 ? "" : "s"} removed`,
+  `cut approved by <b>${esc(D.approved_by)}</b>`].map(x => `<li>${x}</li>`).join("");
+
+// Timeline of the raw recording, to scale
+const S = D.edl.duration_src, pct = t => (100 * t / S).toFixed(3) + "%";
+$("bar").innerHTML = D.edl.keep.map(k => `<span class="k" style="left:${pct(k.start)};width:${pct(k.end - k.start)}"></span>`).join("")
+  + D.edl.removed.filter(r => r.kind !== "pause").map(r => `<span class="x" style="left:${pct(r.start)};width:${pct(r.end - r.start)}"></span>`).join("")
+  + `<span class="head" id="head" style="left:0"></span>`;
+const step = S > 90 ? 30 : S > 40 ? 10 : 5; let ticks = "";
+for (let t = 0; t <= S; t += step) ticks += `<i style="left:${pct(t)}">${t}s</i>`;
+$("scale").innerHTML = ticks;
+$("bar").onclick = e => { const r = e.currentTarget.getBoundingClientRect(); playRaw(S * (e.clientX - r.left) / r.width); };
+vr.ontimeupdate = () => { $("head").style.left = pct(vr.currentTime); if (stopAt !== null && vr.currentTime >= stopAt) { vr.pause(); stopAt = null; } };
+
+// Removed items
+const kind = {false_start: "False start", repeat: "Repeated sentence", pause: "Long pause", filler: "Filler", manual: "Removed by editor"};
+$("removed").innerHTML = D.edl.removed.map((r, i) => `<div class="row"><span class="tc">${fmt(r.start)} to ${fmt(r.end)}</span>
+  <p><b>${kind[r.kind] || r.kind}</b>${r.text ? ` <q>${esc(r.text)}</q>` : ""}<small>${esc(r.reason)}</small></p>
+  <button class="play" data-i="${i}">Play in raw</button></div>`).join("") || `<div class="row"><p>Nothing was removed.</p></div>`;
+$("removed").onclick = e => { const b = e.target.closest("button"); if (!b) return; const r = D.edl.removed[+b.dataset.i]; playRaw(r.start - 0.6, r.end + 0.6); };
+
+// Checks
+$("checks").innerHTML = D.verify.checks.map(c => `<div class="row"><span class="pill ${c.pass ? "ok" : "bad"}">${c.pass ? "PASS" : "FAIL"}</span><b>${esc(c.check)}</b><span>${esc(c.detail)}</span></div>`).join("");
+
+// Transcript of the finished short, word by word
+$("say").innerHTML = D.words.map((w, i) => `<span tabindex="0" data-i="${i}">${esc(w.w)}</span>`).join(" ");
+const spans = [...$("say").children]; let on = -1;
+$("say").onclick = e => { const s = e.target.closest("span"); if (s) playFinal(D.words[+s.dataset.i].start); };
+$("say").onkeydown = e => { if (e.key === "Enter" && e.target.dataset.i) playFinal(D.words[+e.target.dataset.i].start); };
+vf.ontimeupdate = () => { const t = vf.currentTime; let k = -1;
+  for (let i = 0; i < D.words.length; i++) { if (D.words[i].start <= t + 0.02) k = i; else break; }
+  if (k !== on) { if (on >= 0) spans[on].classList.remove("on"); if (k >= 0) spans[k].classList.add("on"); on = k; } };
+
+// File specs
+const sp = D.spec;
+$("spec").innerHTML = [["Size", `${sp.width} x ${sp.height}, ${sp.fps} fps`], ["Length", `${sp.duration.toFixed(2)} s`],
+  ["Loudness", `${sp.loudness_lufs} LUFS, peak ${sp.peak_dbfs} dBFS`], ["Codecs", `${sp.video} video, ${sp.audio} audio`],
+  ["File size", `${sp.size_mb} MB`], ["Music", sp.music || "None"], ["Style", D.style], ["Transcribed with", D.backend]]
+  .map(r => `<tr><td>${r[0]}</td><td>${esc(r[1])}</td></tr>`).join("");
+
+// Feedback
+const notes = $("notes"), key = "review-notes-" + D.project;
+try { notes.value = localStorage.getItem(key) || ""; } catch (e) {}
+notes.oninput = () => { try { localStorage.setItem(key, notes.value); } catch (e) {} };
+$("stamp").onclick = () => { notes.value += (notes.value && !notes.value.endsWith("\n") ? "\n" : "") + "[" + fmt(vf.currentTime) + "] "; notes.focus(); notes.oninput(); };
+$("copy").onclick = () => {
+  const d = document.querySelector("input[name=decision]:checked");
+  const text = `REVIEW of ${D.project}\nDecision: ${d ? d.value : "not chosen"}\nNotes:\n${notes.value.trim() || "(none)"}`;
+  const done = () => { $("copied").textContent = "Copied. Paste it to Claude."; };
+  const fallback = () => { notes.value = text; notes.select(); $("copied").textContent = "Select all and copy the text above."; };
+  try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+};
+</script>
