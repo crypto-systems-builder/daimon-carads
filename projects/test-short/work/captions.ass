@@ -1,0 +1,83 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Caption,Inter ExtraBold,92,&H00FFFFFF,&H00FFFFFF,&H00000000,&H80000000,0,0,0,0,100,100,0,0,1,7,3,5,40,40,0,1
+Style: Title,Inter,58,&H00FFFFFF,&H00FFFFFF,&H00181411,&H00181411,-1,0,0,0,100,100,0,0,3,18,0,5,60,60,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 1,0:00:00.00,0:00:03.00,Title,,0,0,0,,{\an5\pos(540,250)\fad(150,250)}The first iPhone had no\NApp Store
+Dialogue: 0,0:00:00.11,0:00:00.32,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}HERE{\c&H00FFFFFF} IS A
+Dialogue: 0,0:00:00.32,0:00:00.48,Caption,,0,0,0,,{\an5\pos(540,1290)}HERE {\c&H000AD6FF}IS{\c&H00FFFFFF} A
+Dialogue: 0,0:00:00.48,0:00:00.64,Caption,,0,0,0,,{\an5\pos(540,1290)}HERE IS {\c&H000AD6FF}A{\c&H00FFFFFF}
+Dialogue: 0,0:00:00.64,0:00:00.88,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}FACT{\c&H00FFFFFF} ABOUT THE
+Dialogue: 0,0:00:00.88,0:00:01.04,Caption,,0,0,0,,{\an5\pos(540,1290)}FACT {\c&H000AD6FF}ABOUT{\c&H00FFFFFF} THE
+Dialogue: 0,0:00:01.04,0:00:01.20,Caption,,0,0,0,,{\an5\pos(540,1290)}FACT ABOUT {\c&H000AD6FF}THE{\c&H00FFFFFF}
+Dialogue: 0,0:00:01.20,0:00:01.68,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}IPHONE{\c&H00FFFFFF} THAT
+Dialogue: 0,0:00:01.68,0:00:01.84,Caption,,0,0,0,,{\an5\pos(540,1290)}IPHONE {\c&H000AD6FF}THAT{\c&H00FFFFFF}
+Dialogue: 0,0:00:01.84,0:00:02.72,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}SURPRISES{\c&H00FFFFFF} MOST
+Dialogue: 0,0:00:02.72,0:00:03.04,Caption,,0,0,0,,{\an5\pos(540,1290)}SURPRISES {\c&H000AD6FF}MOST{\c&H00FFFFFF}
+Dialogue: 0,0:00:03.04,0:00:03.65,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}PEOPLE{\c&H00FFFFFF}
+Dialogue: 0,0:00:03.67,0:00:03.84,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}WHEN{\c&H00FFFFFF} THE FIRST
+Dialogue: 0,0:00:03.84,0:00:04.00,Caption,,0,0,0,,{\an5\pos(540,1290)}WHEN {\c&H000AD6FF}THE{\c&H00FFFFFF} FIRST
+Dialogue: 0,0:00:04.00,0:00:04.24,Caption,,0,0,0,,{\an5\pos(540,1290)}WHEN THE {\c&H000AD6FF}FIRST{\c&H00FFFFFF}
+Dialogue: 0,0:00:04.24,0:00:04.72,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}IPHONE{\c&H00FFFFFF} WENT ON
+Dialogue: 0,0:00:04.72,0:00:04.96,Caption,,0,0,0,,{\an5\pos(540,1290)}IPHONE {\c&H000AD6FF}WENT{\c&H00FFFFFF} ON
+Dialogue: 0,0:00:04.96,0:00:05.12,Caption,,0,0,0,,{\an5\pos(540,1290)}IPHONE WENT {\c&H000AD6FF}ON{\c&H00FFFFFF}
+Dialogue: 0,0:00:05.12,0:00:05.44,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}SALE{\c&H00FFFFFF} IN JUNE
+Dialogue: 0,0:00:05.44,0:00:05.60,Caption,,0,0,0,,{\an5\pos(540,1290)}SALE {\c&H000AD6FF}IN{\c&H00FFFFFF} JUNE
+Dialogue: 0,0:00:05.60,0:00:05.92,Caption,,0,0,0,,{\an5\pos(540,1290)}SALE IN {\c&H000AD6FF}JUNE{\c&H00FFFFFF}
+Dialogue: 0,0:00:05.92,0:00:07.13,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}2007{\c&H00FFFFFF}
+Dialogue: 0,0:00:07.13,0:00:07.28,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}IT{\c&H00FFFFFF} HAD NO
+Dialogue: 0,0:00:07.28,0:00:07.44,Caption,,0,0,0,,{\an5\pos(540,1290)}IT {\c&H000AD6FF}HAD{\c&H00FFFFFF} NO
+Dialogue: 0,0:00:07.44,0:00:07.60,Caption,,0,0,0,,{\an5\pos(540,1290)}IT HAD {\c&H000AD6FF}NO{\c&H00FFFFFF}
+Dialogue: 0,0:00:07.60,0:00:07.85,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}APP{\c&H00FFFFFF} STORE
+Dialogue: 0,0:00:07.85,0:00:08.51,Caption,,0,0,0,,{\an5\pos(540,1290)}APP {\c&H000AD6FF}STORE{\c&H00FFFFFF}
+Dialogue: 0,0:00:08.59,0:00:08.80,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}YOU{\c&H00FFFFFF} COULD NOT
+Dialogue: 0,0:00:08.80,0:00:08.96,Caption,,0,0,0,,{\an5\pos(540,1290)}YOU {\c&H000AD6FF}COULD{\c&H00FFFFFF} NOT
+Dialogue: 0,0:00:08.96,0:00:09.20,Caption,,0,0,0,,{\an5\pos(540,1290)}YOU COULD {\c&H000AD6FF}NOT{\c&H00FFFFFF}
+Dialogue: 0,0:00:09.20,0:00:09.60,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}INSTALL{\c&H00FFFFFF} A SINGLE
+Dialogue: 0,0:00:09.60,0:00:09.76,Caption,,0,0,0,,{\an5\pos(540,1290)}INSTALL {\c&H000AD6FF}A{\c&H00FFFFFF} SINGLE
+Dialogue: 0,0:00:09.76,0:00:10.16,Caption,,0,0,0,,{\an5\pos(540,1290)}INSTALL A {\c&H000AD6FF}SINGLE{\c&H00FFFFFF}
+Dialogue: 0,0:00:10.16,0:00:10.44,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}APP{\c&H00FFFFFF} FROM ANOTHER
+Dialogue: 0,0:00:10.44,0:00:10.72,Caption,,0,0,0,,{\an5\pos(540,1290)}APP {\c&H000AD6FF}FROM{\c&H00FFFFFF} ANOTHER
+Dialogue: 0,0:00:10.72,0:00:11.04,Caption,,0,0,0,,{\an5\pos(540,1290)}APP FROM {\c&H000AD6FF}ANOTHER{\c&H00FFFFFF}
+Dialogue: 0,0:00:11.04,0:00:11.87,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}COMPANY{\c&H00FFFFFF}
+Dialogue: 0,0:00:11.90,0:00:12.00,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}THE{\c&H00FFFFFF} APP STORE
+Dialogue: 0,0:00:12.00,0:00:12.24,Caption,,0,0,0,,{\an5\pos(540,1290)}THE {\c&H000AD6FF}APP{\c&H00FFFFFF} STORE
+Dialogue: 0,0:00:12.24,0:00:12.64,Caption,,0,0,0,,{\an5\pos(540,1290)}THE APP {\c&H000AD6FF}STORE{\c&H00FFFFFF}
+Dialogue: 0,0:00:12.64,0:00:12.80,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}ONLY{\c&H00FFFFFF} ARRIVED IN
+Dialogue: 0,0:00:12.80,0:00:13.20,Caption,,0,0,0,,{\an5\pos(540,1290)}ONLY {\c&H000AD6FF}ARRIVED{\c&H00FFFFFF} IN
+Dialogue: 0,0:00:13.20,0:00:13.36,Caption,,0,0,0,,{\an5\pos(540,1290)}ONLY ARRIVED {\c&H000AD6FF}IN{\c&H00FFFFFF}
+Dialogue: 0,0:00:13.36,0:00:13.68,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}JULY{\c&H00FFFFFF} 2008
+Dialogue: 0,0:00:13.68,0:00:14.68,Caption,,0,0,0,,{\an5\pos(540,1290)}JULY {\c&H000AD6FF}2008{\c&H00FFFFFF}
+Dialogue: 0,0:00:14.68,0:00:15.04,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}ABOUT{\c&H00FFFFFF} A YEAR
+Dialogue: 0,0:00:15.04,0:00:15.20,Caption,,0,0,0,,{\an5\pos(540,1290)}ABOUT {\c&H000AD6FF}A{\c&H00FFFFFF} YEAR
+Dialogue: 0,0:00:15.20,0:00:15.36,Caption,,0,0,0,,{\an5\pos(540,1290)}ABOUT A {\c&H000AD6FF}YEAR{\c&H00FFFFFF}
+Dialogue: 0,0:00:15.36,0:00:15.94,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}LATER{\c&H00FFFFFF}
+Dialogue: 0,0:00:16.03,0:00:16.16,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}IT{\c&H00FFFFFF} OPENED WITH
+Dialogue: 0,0:00:16.16,0:00:16.48,Caption,,0,0,0,,{\an5\pos(540,1290)}IT {\c&H000AD6FF}OPENED{\c&H00FFFFFF} WITH
+Dialogue: 0,0:00:16.48,0:00:16.72,Caption,,0,0,0,,{\an5\pos(540,1290)}IT OPENED {\c&H000AD6FF}WITH{\c&H00FFFFFF}
+Dialogue: 0,0:00:16.72,0:00:17.03,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}JUST{\c&H00FFFFFF} 500 APPS
+Dialogue: 0,0:00:17.03,0:00:17.68,Caption,,0,0,0,,{\an5\pos(540,1290)}JUST {\c&H000AD6FF}500{\c&H00FFFFFF} APPS
+Dialogue: 0,0:00:17.68,0:00:18.36,Caption,,0,0,0,,{\an5\pos(540,1290)}JUST 500 {\c&H000AD6FF}APPS{\c&H00FFFFFF}
+Dialogue: 0,0:00:18.45,0:00:18.64,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}SO{\c&H00FFFFFF} THE PHONE
+Dialogue: 0,0:00:18.64,0:00:18.80,Caption,,0,0,0,,{\an5\pos(540,1290)}SO {\c&H000AD6FF}THE{\c&H00FFFFFF} PHONE
+Dialogue: 0,0:00:18.80,0:00:19.12,Caption,,0,0,0,,{\an5\pos(540,1290)}SO THE {\c&H000AD6FF}PHONE{\c&H00FFFFFF}
+Dialogue: 0,0:00:19.12,0:00:19.36,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}THAT{\c&H00FFFFFF} CHANGED
+Dialogue: 0,0:00:19.36,0:00:19.84,Caption,,0,0,0,,{\an5\pos(540,1290)}THAT {\c&H000AD6FF}CHANGED{\c&H00FFFFFF}
+Dialogue: 0,0:00:19.84,0:00:20.10,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}EVERYTHING{\c&H00FFFFFF}
+Dialogue: 0,0:00:20.10,0:00:20.53,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}SHIPPED{\c&H00FFFFFF} WITHOUT
+Dialogue: 0,0:00:20.53,0:00:21.04,Caption,,0,0,0,,{\an5\pos(540,1290)}SHIPPED {\c&H000AD6FF}WITHOUT{\c&H00FFFFFF}
+Dialogue: 0,0:00:21.04,0:00:21.23,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}THE{\c&H00FFFFFF} THING IT
+Dialogue: 0,0:00:21.23,0:00:21.44,Caption,,0,0,0,,{\an5\pos(540,1290)}THE {\c&H000AD6FF}THING{\c&H00FFFFFF} IT
+Dialogue: 0,0:00:21.44,0:00:21.60,Caption,,0,0,0,,{\an5\pos(540,1290)}THE THING {\c&H000AD6FF}IT{\c&H00FFFFFF}
+Dialogue: 0,0:00:21.60,0:00:21.76,Caption,,0,0,0,,{\an5\pos(540,1290)\fscx86\fscy86\t(0,90,\fscx100\fscy100)}{\c&H000AD6FF}IS{\c&H00FFFFFF} FAMOUS FOR
+Dialogue: 0,0:00:21.76,0:00:22.24,Caption,,0,0,0,,{\an5\pos(540,1290)}IS {\c&H000AD6FF}FAMOUS{\c&H00FFFFFF} FOR
+Dialogue: 0,0:00:22.24,0:00:22.76,Caption,,0,0,0,,{\an5\pos(540,1290)}IS FAMOUS {\c&H000AD6FF}FOR{\c&H00FFFFFF}

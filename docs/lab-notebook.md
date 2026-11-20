@@ -53,3 +53,35 @@ NEXT         Where does the kit live? Bring it into the session (private repo, o
              on the Mac), then re-run the proof from step 1. In a cloud session the
              next constraint is already known: allow huggingface.co or faster-whisper
              has no model.
+
+### 2026-11-20 — Video-editing system built here and proven on the test recording
+
+CONSTRAINT   The kit the original prompt assumed was never found, and waiting on it was the
+             queue. Policy constraint: "prove the existing kit" was the rule blocking
+             output. Dropped it and built the system in this repo instead.
+HYPOTHESIS   If mistakes are separated from their retakes by a pause, then comparing each
+             utterance with the next one (same opening words = restart, near-identical =
+             repeat) finds them without an LLM — because a retake repeats its own start.
+PREDICTION   (before running) All 4 planted mistakes are found with 0 good lines lost, and
+             a re-transcript of the cut equals the kept words exactly.
+RESULT       Held: 4 of 4 found, 68 of 68 kept words heard in order, 7 of 7 checks pass,
+             33.7 s -> 22.9 s. The verifier was then attacked: a cut that keeps two
+             mistakes FAILS (truth check), a cut shifted to clip words FAILS (4 checks).
+             Failures on the way:
+             - faster-whisper still has no model (huggingface.co blocked). Switched the
+               default to Parakeet TDT v2 via sherpa-onnx from GitHub releases. It is
+               verbatim and gives token times; word ends are measured from the audio.
+             - First cut render failed: odd pixel sizes after the punch-in zoom changed
+               the aspect flag and concat refused. Fixed by rounding to even sizes.
+             - Review page showed both videos at once: my own `display:block` beat the
+               `hidden` attribute. Fixed with an explicit `[hidden]` rule.
+             - New skills did not load until a few minutes after they were written.
+             Weak spot found: without a truth file the verifier passes a cut that leaves
+             mistakes in, because it checks the cut against the cut list, not against taste.
+CONCLUSION   Kept, for clean synthetic speech only. Untested on a human voice.
+PROCEDURE    Do the eight commands under "Edit a recording into a short" in CLAUDE.md,
+             under the condition that takes are separated by a pause, to get a verified
+             cut and a rendered short — because the cut list is checked by re-transcribing
+             the result, which catches clipped or missing words before a human looks.
+NEXT         Does it hold on a real recording of a person? That is now the constraint:
+             one real 30-60 s phone recording with natural mistakes.
