@@ -123,11 +123,11 @@ log the ceiling you raised.
 
 | Phase | Who | Output |
 |---|---|---|
-| Frame | Opus 5 / Fable 5 | Question, hypothesis, constraint |
-| Plan | Opus 5 / Fable 5 | Decomposed tasks + contracts + acceptance criteria |
-| Execute | Sonnet 5 × 5–15 parallel | Structured results against contract |
+| Frame | Top-tier model (Fable or Opus) | Question, hypothesis, constraint |
+| Plan | Top-tier model (Fable or Opus) | Decomposed tasks + contracts + acceptance criteria |
+| Execute | Sonnet × 5–15 parallel | Structured results against contract |
 | Verify | A **different** agent than the producer | Confirm / refute, with evidence |
-| Synthesize | Opus 5 / Fable 5 | Decision, next question, doctrine update |
+| Synthesize | Top-tier model (Fable or Opus) | Decision, next question, doctrine update |
 
 **Top-tier model writes the plan before any fan-out.** Cheap models execute a
 precise plan well and author one badly. Fanning out an unclear plan multiplies

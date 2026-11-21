@@ -166,11 +166,11 @@ architectural decisions.
 
 | Phase | Who | Output |
 |---|---|---|
-| **Frame** | Opus 5 / Fable 5 | The question, the hypothesis, the constraint |
-| **Plan** | Opus 5 / Fable 5 | Decomposed tasks + per-task contracts + acceptance criteria |
-| **Execute** | Sonnet 5 fan-out — 5, 10, 15+ agents in parallel | Structured results against the contract |
+| **Frame** | Top-tier model (Fable or Opus) | The question, the hypothesis, the constraint |
+| **Plan** | Top-tier model (Fable or Opus) | Decomposed tasks + per-task contracts + acceptance criteria |
+| **Execute** | Sonnet fan-out — 5, 10, 15+ agents in parallel | Structured results against the contract |
 | **Verify** | A *different* agent than the one that produced the work | Confirm / refute, with evidence |
-| **Synthesize** | Opus 5 / Fable 5 | Decision, next question, updated doctrine |
+| **Synthesize** | Top-tier model (Fable or Opus) | Decision, next question, updated doctrine |
 
 **The plan is always made by the top-tier model before any fan-out.** Cheap
 models are excellent executors of a precise plan and unreliable authors of one.
