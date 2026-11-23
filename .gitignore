@@ -1,1 +1,5 @@
 carads_build/.DS_Store
+__pycache__/
+engine/models/
+engine/out/
+projects/*/work/*.mp4

@@ -1,0 +1,141 @@
+{
+  "source": "projects/test-short/raw/test-recording.mp4",
+  "fps": 30,
+  "duration_src": 33.728,
+  "duration_out": 22.833,
+  "keep": [
+    {
+      "start": 0.3,
+      "text": "Here is a fact about the iPhone that surprises most people.",
+      "end": 3.8333
+    },
+    {
+      "start": 6.1,
+      "text": "when the first iPhone went on sale in June 2007, it had no App Store.",
+      "end": 10.9667
+    },
+    {
+      "start": 14.4667,
+      "text": "You could not install a single app from another company.",
+      "end": 17.8
+    },
+    {
+      "start": 22.4667,
+      "text": "The App Store only arrived in July 2008. About a year later, it opened with just 500 apps. So, the phone that changed everything shipped without the thing it is famous for.",
+      "end": 33.5667
+    }
+  ],
+  "removed": [
+    {
+      "kind": "false_start",
+      "reason": "line restarted; kept the complete take",
+      "start": 4.06,
+      "end": 5.93,
+      "text": "When the first iPhone came out in,"
+    },
+    {
+      "kind": "repeat",
+      "reason": "same sentence repeated; kept the last take",
+      "start": 11.17,
+      "end": 14.21,
+      "text": "You could not install a single app from another company."
+    },
+    {
+      "kind": "pause",
+      "reason": "3.0s of silence",
+      "start": 17.66,
+      "end": 20.67,
+      "text": ""
+    },
+    {
+      "kind": "false_start",
+      "reason": "line restarted; kept the complete take",
+      "start": 20.67,
+      "end": 22.31,
+      "text": "The App Store only arrived a year."
+    }
+  ],
+  "warnings": [],
+  "utterances": [
+    {
+      "i": 0,
+      "start": 0.41,
+      "end": 3.7,
+      "text": "Here is a fact about the iPhone that surprises most people.",
+      "action": "keep",
+      "why": ""
+    },
+    {
+      "i": 1,
+      "start": 4.06,
+      "end": 5.93,
+      "text": "When the first iPhone came out in,",
+      "action": "cut",
+      "why": "line restarted; kept the complete take"
+    },
+    {
+      "i": 2,
+      "start": 6.24,
+      "end": 10.83,
+      "text": "when the first iPhone went on sale in June 2007, it had no App Store.",
+      "action": "keep",
+      "why": ""
+    },
+    {
+      "i": 3,
+      "start": 11.17,
+      "end": 14.21,
+      "text": "You could not install a single app from another company.",
+      "action": "cut",
+      "why": "same sentence repeated; kept the last take"
+    },
+    {
+      "i": 4,
+      "start": 14.62,
+      "end": 17.66,
+      "text": "You could not install a single app from another company.",
+      "action": "keep",
+      "why": ""
+    },
+    {
+      "i": 5,
+      "start": 20.67,
+      "end": 22.31,
+      "text": "The App Store only arrived a year.",
+      "action": "cut",
+      "why": "line restarted; kept the complete take"
+    },
+    {
+      "i": 6,
+      "start": 22.6,
+      "end": 25.26,
+      "text": "The App Store only arrived in July 2008.",
+      "action": "keep",
+      "why": ""
+    },
+    {
+      "i": 7,
+      "start": 25.38,
+      "end": 26.39,
+      "text": "About a year later,",
+      "action": "keep",
+      "why": ""
+    },
+    {
+      "i": 8,
+      "start": 26.74,
+      "end": 28.81,
+      "text": "it opened with just 500 apps.",
+      "action": "keep",
+      "why": ""
+    },
+    {
+      "i": 9,
+      "start": 29.16,
+      "end": 33.21,
+      "text": "So, the phone that changed everything shipped without the thing it is famous for.",
+      "action": "keep",
+      "why": ""
+    }
+  ]
+}

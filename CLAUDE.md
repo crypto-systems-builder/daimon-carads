@@ -252,3 +252,97 @@ hypothesis, prediction, result (failures included), constraint found, and the
 procedure in `Do X, under condition C, to get Y — because Z` form. Read it before
 starting related work — re-running a logged dead end is the cheapest waste to avoid.
 Keep `CLAUDE.md` for the doctrine; keep results in the notebook.
+
+---
+
+## Video editing system
+
+Turns a raw talking-head recording into a finished vertical short. The rules are in
+`playbook.md`, the look in `styles/default.md`, the code in `engine/` (Python + ffmpeg),
+and seven skills in `.claude/skills/`: `short` (runs everything), `transcribe`,
+`rough-cut`, `verify-cut`, `captions`, `render`, `review-page`. Start with `/short <file>`.
+
+### Working commands
+
+Every command below was run on 2026-11-20 in a Linux cloud session and worked as written.
+Run them from the repository root.
+
+**Setup, once per machine**
+
+```bash
+ffmpeg -version && python3 --version          # ffmpeg 6.1.1 and Python 3.13 here; Node is not needed
+pip install numpy sherpa-onnx faster-whisper  # or: pip install -r engine/requirements.txt
+mkdir -p engine/models && cd engine/models
+curl -L -o pk.tar.bz2 https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-nemo-parakeet-tdt-0.6b-v2-int8.tar.bz2
+tar xjf pk.tar.bz2 && rm pk.tar.bz2 && cd ../..
+python3 engine/test_render.py                 # 3-second test render; then look at engine/out/test-render.png
+```
+
+The speech model is about 660 MB and is not committed. A cloud session starts without it,
+so the download has to be repeated there.
+
+**Make the test recording** (only needed to test the system)
+
+```bash
+python3 projects/test-short/make_test_recording.py
+```
+
+**Edit a recording into a short**
+
+```bash
+P=projects/test-short; REC=$P/raw/test-recording.mp4
+python3 engine/transcribe.py $REC --out $P/work/words.json
+python3 engine/propose_cuts.py $P/work/words.json --out $P/work/edl.json      # add --drop 3,7 / --keep 4 to overrule
+python3 engine/apply_cuts.py $REC $P/work/edl.json --out $P/work/cut.mp4
+python3 engine/verify_cut.py $P/work/words.json $P/work/edl.json $P/work/cut.mp4 --out $P/work/verify.json
+#   test recordings only: add  --truth $P/raw/test-recording.truth.json
+#   CHECKPOINT: a human approves the cut here. Nothing below runs on a FAIL.
+python3 engine/captions.py $P/work/cut.words.json --out $P/work/captions.ass --title "The first iPhone had no App Store"
+python3 engine/render.py $P/work/cut.mp4 $P/work/captions.ass --out $P/out/final.mp4
+python3 engine/review_page.py $P --title "The first iPhone had no App Store" --approved-by "name"
+```
+
+**Not run yet (macOS equivalents, written from knowledge, not tested)**
+
+```bash
+brew install ffmpeg python                                    # instead of the Linux packages
+python3 projects/test-short/make_test_recording.py --engine say   # macOS voice instead of flite
+```
+
+### Status
+
+Last updated 2026-11-20. "Works" means it ran on real output and the result was checked.
+
+**Works, on the synthetic test recording, on Linux**
+
+- 3-second test render: captions, title, progress bar; frame looked at.
+- Transcription with word timings (Parakeet via sherpa-onnx), including a 101-second file.
+- Finding mistakes: both restarts, the repeated sentence and the 3-second pause were found
+  with no hints. 33.7 s became 22.9 s.
+- Cut verification: 7 of 7 checks pass on the good cut, and it correctly fails two
+  deliberately bad cuts (one that leaves mistakes in, one that clips words).
+- Captions, hook title, progress bar, loudness (-14.2 LUFS measured), 1080x1920 at 30 fps.
+- Music mix runs (tested with a generated tone, then removed).
+- Review page: builds, opens at desktop and phone width with no errors, buttons work.
+- All seven skills load in a session, and `/short` launches.
+
+**Not proven**
+
+- **A real human voice.** The test voice is synthetic, with perfectly clean silences. Real
+  speech has breaths, room noise, "um", and stumbles with no pause before the retake. The
+  mistake finder only catches a restart or repeat when a pause separates the takes.
+- **Real camera footage.** Phone video (rotation flags, variable frame rate, sizes other
+  than 1080x1920) and how the punch-in zoom looks on a face.
+- **macOS.** Nothing here has run on a Mac: Homebrew setup, the `say` voice, Homebrew
+  ffmpeg's caption support.
+- **faster-whisper.** Installed, but it cannot download a model in cloud sessions because
+  huggingface.co is blocked there. That code path has never run.
+- **Music with a real track**, and whether -24 dB under the voice sounds right.
+- **Languages other than English.** The proven transcription model is English only.
+- **The human checkpoint.** In the test run Claude approved its own cut, by instruction,
+  for that run only.
+- **The fact check** in the test short was done from memory, not looked up.
+
+**Not built**
+
+- Posting or scheduling (left out on purpose), b-roll, Higgsfield or any paid generation.

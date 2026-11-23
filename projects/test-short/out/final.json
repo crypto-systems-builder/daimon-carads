@@ -1,0 +1,13 @@
+{
+  "file": "projects/test-short/out/final.mp4",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30.0,
+  "duration": 22.867,
+  "size_mb": 1.3,
+  "video": "h264",
+  "audio": "aac",
+  "loudness_lufs": -14.2,
+  "peak_dbfs": -1.5,
+  "music": null
+}

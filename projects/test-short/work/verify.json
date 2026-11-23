@@ -1,0 +1,43 @@
+{
+  "cut": "projects/test-short/work/cut.mp4",
+  "duration": 22.866667,
+  "transcript": "Here is a fact about the iPhone that surprises most people. When the first iPhone went on sale in June 2007, it had no App Store. You could not install a single app from another company. The App Store only arrived in July 2008. About a year later, it opened with just 500 apps. So the phone that changed everything shipped without the thing it is famous for.",
+  "passed": true,
+  "checks": [
+    {
+      "check": "words",
+      "pass": true,
+      "detail": "all 68 kept words heard in the cut, in order, nothing extra"
+    },
+    {
+      "check": "removed",
+      "pass": true,
+      "detail": "3 removed lines and 1 long pauses are gone"
+    },
+    {
+      "check": "pauses",
+      "pass": true,
+      "detail": "longest silence in the cut is 0.34s after 'later,' (limit 0.55s)"
+    },
+    {
+      "check": "joins",
+      "pass": true,
+      "detail": "all 3 joins fall on silence"
+    },
+    {
+      "check": "edges",
+      "pass": true,
+      "detail": "every segment has at least 30 ms of silence at both ends"
+    },
+    {
+      "check": "sync",
+      "pass": true,
+      "detail": "picture 22.867s, sound 22.866s"
+    },
+    {
+      "check": "truth",
+      "pass": true,
+      "detail": "planted mistakes all removed (2 restarts, 1 repeat, 1 long pause); every other line kept whole"
+    }
+  ]
+}
