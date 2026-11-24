@@ -123,11 +123,11 @@ log the ceiling you raised.
 
 | Phase | Who | Output |
 |---|---|---|
-| Frame | Opus 5 / Fable 5 | Question, hypothesis, constraint |
-| Plan | Opus 5 / Fable 5 | Decomposed tasks + contracts + acceptance criteria |
-| Execute | Sonnet 5 × 5–15 parallel | Structured results against contract |
+| Frame | Top-tier model (Fable or Opus) | Question, hypothesis, constraint |
+| Plan | Top-tier model (Fable or Opus) | Decomposed tasks + contracts + acceptance criteria |
+| Execute | Sonnet × 5–15 parallel | Structured results against contract |
 | Verify | A **different** agent than the producer | Confirm / refute, with evidence |
-| Synthesize | Opus 5 / Fable 5 | Decision, next question, doctrine update |
+| Synthesize | Top-tier model (Fable or Opus) | Decision, next question, doctrine update |
 
 **Top-tier model writes the plan before any fan-out.** Cheap models execute a
 precise plan well and author one badly. Fanning out an unclear plan multiplies
@@ -143,6 +143,13 @@ BOUNDARIES  no shared mutable state with siblings
 ```
 
 Vague prompt × 15 agents = 15× garbage, paid for in review time.
+
+### Mechanics
+
+`Agent` tool, `model: "sonnet"`, all independent agents in **one message** (separate
+messages run sequentially). Full contract in each prompt — subagents don't see this
+conversation. Verifiers get output + acceptance criteria and are told to refute.
+Commits/pushes stay in the main session. Fan-out here is pre-authorized; don't ask.
 
 ### Fan out / don't
 
@@ -168,7 +175,7 @@ never verifies itself · escalate only survivors to the expensive model.
 ## Closing the loop
 
 Every pass leaves behind **one written, repeatable procedure** — appended to
-`CLAUDE.md` or a doc, stated as `Do X, under condition C, to get Y — because Z`.
+`docs/lab-notebook.md` (read it before related work), stated as `Do X, under condition C, to get Y — because Z`.
 The accumulation is the asset. Individual wins are not.
 
 ```
