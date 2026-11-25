@@ -1,0 +1,86 @@
+{
+ "frozen_on": "2026-11-25",
+ "rule": "docs/lab-notebook.md selection rule",
+ "candidates": [
+  {
+   "family": "breakout",
+   "params": null
+  },
+  {
+   "family": "calendar",
+   "params": null
+  },
+  {
+   "family": "carry",
+   "params": null
+  },
+  {
+   "family": "meanrev",
+   "params": null
+  },
+  {
+   "family": "session",
+   "params": null
+  },
+  {
+   "family": "trend",
+   "params": null
+  }
+ ],
+ "summary": [
+  {
+   "family": "breakout",
+   "n_trials": 24,
+   "best_config": "B_N55_X10_k4",
+   "best_is_sharpe": -0.116,
+   "median_is_sharpe": -0.385,
+   "share_positive": 0.0,
+   "candidate": null
+  },
+  {
+   "family": "calendar",
+   "n_trials": 14,
+   "best_config": "F1_w4_longUSD",
+   "best_is_sharpe": 0.357,
+   "median_is_sharpe": -0.222,
+   "share_positive": 0.286,
+   "candidate": null
+  },
+  {
+   "family": "carry",
+   "n_trials": 18,
+   "best_config": "E_tau0.02_mom60_k3",
+   "best_is_sharpe": -0.094,
+   "median_is_sharpe": -0.342,
+   "share_positive": 0.0,
+   "candidate": null
+  },
+  {
+   "family": "meanrev",
+   "n_trials": 48,
+   "best_config": "C1_x5_H3_sma200_k3",
+   "best_is_sharpe": 0.175,
+   "median_is_sharpe": -0.407,
+   "share_positive": 0.083,
+   "candidate": null
+  },
+  {
+   "family": "session",
+   "n_trials": 20,
+   "best_config": "D2_fade_X15_k4",
+   "best_is_sharpe": -0.503,
+   "median_is_sharpe": -1.349,
+   "share_positive": 0.0,
+   "candidate": null
+  },
+  {
+   "family": "trend",
+   "n_trials": 32,
+   "best_config": "A1_L20_k4",
+   "best_is_sharpe": -0.128,
+   "median_is_sharpe": -0.403,
+   "share_positive": 0.0,
+   "candidate": null
+  }
+ ]
+}
