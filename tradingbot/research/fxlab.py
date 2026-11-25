@@ -204,8 +204,8 @@ def _simulate(bo, bh, bl, bc, ao, ah, al, ac, roll, wday, carry_l, target, stop_
                 blocked = 0
             if want != 0 and want == blocked:
                 want = 0 if pos == 0 else pos
-            if pos != 0 and max_hold > 0 and s - entry_i >= max_hold:
-                want = 0
+            if pos != 0 and max_hold > 0 and s - entry_i >= max_hold and want == pos:
+                want = 0   # time exit only when the signal still wants to hold (a reversal fills normally)
                 blocked = pos
                 exit_reason = 3
             if want != pos:
@@ -315,7 +315,7 @@ def metrics(daily: pd.Series, trades: pd.DataFrame | None = None, cost_daily: pd
     mu, sd = x.mean(), x.std(ddof=1)
     sharpe = float(mu / sd * math.sqrt(260)) if sd > 0 else 0.0
     eq = x.cumsum()
-    dd = float((eq - eq.cummax()).min()) if n else 0.0
+    dd = float((eq - np.maximum(eq.cummax(), 0.0)).min()) if n else 0.0   # peak includes starting equity
     yearly = x.groupby(pd.DatetimeIndex(x.index).year).sum()
     out = {
         "days": n, "ann_ret": float(mu * 260), "ann_vol": float(sd * math.sqrt(260)),

@@ -159,13 +159,13 @@
    "profit_factor": 0.9660822596868887,
    "cost_ann": 8.392345019064082e-05,
    "pct_pos_years": 0.5,
-   "neighbour_median_sharpe": -0.1885645440909166,
+   "neighbour_median_sharpe": -0.18843378677843498,
    "stress_sharpe": null
   }
  ],
  "median_config_sharpe": -0.40710189511683836,
  "share_configs_positive": 0.08333333333333333,
- "best_config_dsr": 0.08272356649920154,
+ "best_config_dsr": 0.0810441160824586,
  "candidate": null,
  "n_screened": 0,
  "bottom5": [
@@ -175,22 +175,22 @@
   },
   {
    "config_id": "C1_x20_H3_none_k3",
-   "sharpe": -0.832448772507286
-  },
-  {
-   "config_id": "C1_x20_H5_none_k3",
-   "sharpe": -0.8924471590557048
+   "sharpe": -0.8436002724666783
   },
   {
    "config_id": "C1_x20_H3_none_k1.5",
-   "sharpe": -0.9104271492991312
+   "sharpe": -0.9154207044061721
+  },
+  {
+   "config_id": "C1_x20_H5_none_k3",
+   "sharpe": -0.9232017862401276
   },
   {
    "config_id": "C1_x20_H5_none_k1.5",
-   "sharpe": -0.964544106011895
+   "sharpe": -0.9666398885093495
   }
  ],
- "clues": "Mean Sharpe by level - RSI x {5: -0.08, 10: -0.44, 20: -0.69}, z0 {1.5: -0.71, 2.0: -0.37, 2.5: -0.2}, filter {'none': -0.54, 'sma200': -0.3}, H {3: -0.4, 5: -0.4, 10: -0.47}, k {1.5: -0.46, 3: -0.37, 2: -0.47}: best configs are the most extreme entry thresholds (RSI x=5, z0=2.5) with the sma200 trend filter; only 4 of 48 are positive and all are near zero.",
+ "clues": "Mean Sharpe by level - RSI x {5: -0.08, 10: -0.44, 20: -0.7}, z0 {1.5: -0.71, 2.0: -0.37, 2.5: -0.2}, filter {'none': -0.54, 'sma200': -0.3}, H {3: -0.4, 5: -0.4, 10: -0.47}, k {1.5: -0.46, 3: -0.37, 2: -0.47}: best configs are the most extreme entry thresholds (RSI x=5, z0=2.5) with the sma200 trend filter; only 4 of 48 are positive and all are near zero.",
  "losers_check": "44/48 configs have negative Sharpe; the worst 10 are 7/10 unfiltered and 4/10 RSI x=20 (loosest, most frequent entries), i.e. the opposite end of the same axes.",
  "prediction_check": "Prediction held: median config Sharpe -0.41 (<=0), best 0.17, best breadth 0.60, no config passed the screen so no candidate.",
  "concerns": [
@@ -200,5 +200,5 @@
   "Losses are concentrated in high-frequency loose-threshold configs (trend continuation in FX); costs (cost_ann) are small relative to the negative gross edge, so the failure is not mainly a cost artefact.",
   "Best-config DSR computed with variance across all 48 configs; only the top config's skew/kurt used."
  ],
- "runtime_seconds": 30.266383409500122
+ "runtime_seconds": 29.257519960403442
 }

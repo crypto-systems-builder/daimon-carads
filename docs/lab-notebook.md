@@ -67,6 +67,37 @@ QUESTION     Does any pre-registered strategy family reach OOS (2020-01..2026-11
 - All 9 canaries pass. OOS (2020+) data encrypted; the latest bar visible to research is 2019-12-31 19:00 UTC.
 
 ```
-RESULT       (appended below after the runs)
+RESULT       0 of 156 pre-registered configs passed the in-sample screen; none even
+             reached IS Sharpe 0.4. Candidate list frozen EMPTY -> OOS data stays sealed
+             (nothing to test; unsealing would only invite post-hoc fishing).
+               trend      32 cfg  best -0.13  median -0.40  0% positive   (predicted best 0.5-0.9: WRONG)
+               breakout   24 cfg  best -0.12  median -0.38  0% positive   (predicted ~trend: WRONG)
+               meanrev    48 cfg  best +0.17  median -0.41  8% positive   (predicted no candidate: HELD)
+               session    20 cfg  best -0.50  median -1.35  0% positive   (predicted no candidate: HELD)
+               carry      18 cfg  best -0.09  median -0.34  0% positive   (predicted 0.0-0.6: WRONG)
+               calendar   14 cfg  best +0.36  median -0.22  29% positive  (negative control: noise, HELD)
+             Gross P&L was negative too for trend (costs ~0.07%/yr vs -0.5%/yr) -> not a
+             cost artefact: 2012-2019 FX did not reward these rules. Session strategies were
+             killed by costs (5-9%/yr). Calendar "winner" = the 2012-19 USD uptrend in disguise.
+             Independent engine audit (14 hand-computed tests, refute-prompted): survived on
+             lookahead/fills/stops/gaps/swaps/sizing/DST; 2 minor bugs refuted and fixed
+             (reversal on a time-exit bar filled 1 bar late; max_dd ignored starting equity).
+             Meanrev re-run after the fix: unchanged. Tests kept in tradingbot/research/audit/.
+             Caveats: no re-entry after a stop (hurts slow-signal carry/trend); 2012-2019 only,
+             no 2008; one cost model; intrabar stops fill at the stop (understates gap risk).
+CONCLUSION   KILLED for deployment: no simple rule-based FX strategy here has evidence of an
+             edge after retail costs. No bot is presented as profitable. My prior that daily
+             trend/carry would show a modest edge was wrong for this period.
+PROCEDURE    Do: pre-register grids + selection rule, validate the engine with canaries that
+             could kill it, seal OOS, fan out sweeps, audit the engine adversarially - under
+             condition: any trading-strategy claim - to get: a result you can trust either
+             way, including "no edge" - because canaries + audit caught a silent tz bug that
+             made every daily strategy trade zero times, and a 38% data hole, before they
+             could produce fake conclusions.
+NEXT         Constraint moved from "evidence" to "hypothesis quality": the cheap, well-known
+             rule families are exhausted on this data. Next questions, cheapest first:
+             (1) does a volatility-targeted, always-in, multi-asset trend portfolio (incl. gold,
+             indices) differ? (2) is the Daimon engine's own signal set testable through this
+             harness? Either must be pre-registered here first.
 ```
 
