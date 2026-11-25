@@ -30,11 +30,20 @@ def check(name, ok, detail):
         fails.append(name)
 
 
-# C1 oracle: knows tomorrow's direction. Must make money on every pair.
+# C0 regression: daily signals must land on the H1 grid (a tz bug once mapped 0%)
+h1e = fx.load_h1("EURUSD")
+d1e = fx.to_daily(h1e)
+share = fx.daily_to_h1(pd.Series(1.0, index=d1e.index), d1e, h1e).notna().mean()
+check("C0 daily->H1 mapping", share > 0.99, f"{share:.2%} of H1 bars carry a daily value")
+
+# C1 oracle: knows tomorrow's direction. Must make money steadily on every pair.
+# Measured without each pair's single best day: the first version of this canary
+# (Sharpe > 3 on all days) failed only on EURCHF because one day - the SNB de-peg,
+# 2015-01-15, +55% - dominates its standard deviation (Sharpe 1.85 -> 10.5 without it).
 oracle = daily_strategy(lambda d1: np.sign(d1["mc"].shift(-1) - d1["mc"]))
 r = fx.run_basket(PAIRS, oracle, {"k": 3.0}, delay=0)
-s = [m["sharpe"] for m in r["per_pair"].values()]
-check("C1 oracle", min(s) > 3.0, f"min pair Sharpe {min(s):.2f}, median {np.median(s):.2f}")
+s = [fx.metrics(r["daily"][p].drop(r["daily"][p].idxmax()))["sharpe"] for p in PAIRS]
+check("C1 oracle", min(s) > 3.0, f"min pair Sharpe (ex best day) {min(s):.2f}, median {np.median(s):.2f}")
 
 # C2 random coin flips, base costs: costs must make the average negative
 rng = np.random.default_rng(7)
@@ -51,10 +60,13 @@ s0 = np.array([m["sharpe"] for m in r0["per_pair"].values()])
 check("C3 random frictionless", abs(s0.mean()) < 0.2, f"mean {s0.mean():.2f}, sd {s0.std():.2f}")
 check("C3b costs hurt", s.mean() < s0.mean(), f"with costs {s.mean():.2f} < without {s0.mean():.2f}")
 
-# C4 lookahead trap: yesterday's oracle (stale by one day) must NOT keep the edge
+# C4 lookahead trap: a one-day-stale oracle must NOT keep the edge. Tested
+# frictionless: the first version (with costs, |Sharpe| < 1.5) failed at -3.16,
+# which turned out to be cost drag from flipping daily at the rollover spread
+# (frictionless it is -0.26), not leaked information.
 stale = daily_strategy(lambda d1: np.sign(d1["mc"] - d1["mc"].shift(1)).shift(1))
-r = fx.run_basket(PAIRS, stale, {"k": 3.0}, delay=0)
-check("C4 stale oracle", abs(r["portfolio"]["sharpe"]) < 1.5, f"portfolio Sharpe {r['portfolio']['sharpe']:.2f}")
+r = fx.run_basket(PAIRS, stale, {"k": 3.0}, delay=0, spread_mult=0.0, slip_pips=0.0, swap_markup=0.0)
+check("C4 stale oracle", abs(r["portfolio"]["sharpe"]) < 1.0, f"frictionless portfolio Sharpe {r['portfolio']['sharpe']:.2f}")
 
 # C5 buy & hold EURUSD with an unreachable stop: sign follows price + carry
 h1 = fx.load_h1("EURUSD")

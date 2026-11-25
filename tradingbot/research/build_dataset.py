@@ -36,22 +36,35 @@ def read_pair(pair: str) -> pd.DataFrame:
 
 
 def clean(df: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
-    """Drop rows that cannot be real quotes; repair high/low consistency."""
+    """Drop rows that cannot be real quotes; repair crossed bid/ask.
+
+    FXCM's files contain bars where bid > ask: tiny 0.2-pip crossings on majors
+    (bid and ask candles sampled at slightly different instants) and, for
+    CADCHF/NZDCHF in 2012-2014, nearly every bar. The mid prices of those bars
+    are sound (no abnormal jumps), only the bid/ask relation is broken. Dropping
+    them punches holes in the series, so instead keep the mid and rebuild
+    bid/ask around it with the pair's 90th-percentile spread - conservative, so
+    a repaired bar never makes trading look cheaper than reality.
+    """
     n0 = len(df)
     px = df[["bo", "bh", "bl", "bc", "ao", "ah", "al", "ac"]]
     bad = (px <= 0).any(axis=1) | px.isna().any(axis=1)
     df = df[~bad].copy()
-    # ask below bid by more than a hair = corrupt quote
-    sp = df["ac"] - df["bc"]
-    med = sp.median()
-    corrupt = (df["ao"] < df["bo"] - med) | (df["ac"] < df["bc"] - med)
-    df = df[~corrupt].copy()
+    crossed = np.zeros(len(df), dtype=bool)
+    for x in "ohlc":
+        crossed |= (df["a" + x] < df["b" + x]).to_numpy()
+    good_sp = (df["ac"] - df["bc"])[~crossed]
+    hs = float(good_sp[good_sp > 0].quantile(0.90)) / 2.0
+    for x in "ohlc":
+        m = (df["a" + x] + df["b" + x]) / 2.0
+        df.loc[crossed, "b" + x] = (m - hs)[crossed]
+        df.loc[crossed, "a" + x] = (m + hs)[crossed]
     for side in "ba":
         o, h, l, c = (df[side + x] for x in "ohlc")
         df[side + "h"] = np.maximum.reduce([h, o, c])
         df[side + "l"] = np.minimum.reduce([l, o, c])
-    return df, {"rows_in": n0, "dropped_nonpositive": int(bad.sum()), "dropped_crossed": int(corrupt.sum()),
-                "rows_out": len(df)}
+    return df, {"rows_in": n0, "dropped_nonpositive": int(bad.sum()), "repaired_crossed": int(crossed.sum()),
+                "repair_half_spread": hs, "rows_out": len(df)}
 
 
 def build():

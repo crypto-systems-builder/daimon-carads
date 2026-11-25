@@ -93,7 +93,8 @@ def to_daily(h1: pd.DataFrame) -> pd.DataFrame:
 def daily_to_h1(values: pd.Series, d1: pd.DataFrame, h1: pd.DataFrame) -> pd.Series:
     """Map a daily series onto the H1 grid without lookahead: the value computed
     for trading day D is placed on the H1 bar that closes D and carried forward."""
-    s = pd.Series(np.asarray(values, dtype=float), index=pd.DatetimeIndex(d1["last_bar"].values))
+    # keep the UTC tz: .values would strip it and nothing would match the H1 index
+    s = pd.Series(np.asarray(values, dtype=float), index=pd.DatetimeIndex(d1["last_bar"]))
     s = s[~s.index.duplicated(keep="last")]
     return s.reindex(h1.index).ffill()
 

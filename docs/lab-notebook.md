@@ -55,6 +55,17 @@ QUESTION     Does any pre-registered strategy family reach OOS (2020-01..2026-11
 
 **Demo forward test (one-way-door guard before any real money):** review at 50 trades or 3 months. Kill if cumulative R is below the 5th percentile of the backtest's distribution for the same number of trades, or if average cost per trade is > 1.5× the model's.
 
+
+**Engine & data validation log (appended 2026-11-25, before any strategy sweep):**
+
+- *Data.* FXCM publishes 25 of the 28 pairs (CHFJPY, EURCAD, GBPAUD: 404 at source). ~49.5k in-sample H1 bars per pair. Found bid > ask on ~97% of CADCHF/NZDCHF bars in 2012-2014 and on ~5% of bars elsewhere (0.2-pip crossings at bar close). First cleaning pass **dropped** them, which punched 38% holes into CADCHF/NZDCHF - caught by the row counts. Fix: keep the (sound) mid, rebuild bid/ask with the pair's 90th-percentile spread (conservative). Execution delay for daily strategies, by the pre-set rule: median open spread at NY 17:00 = 5.9x normal, 18:00 = 2.9x, **19:00 = 1.33x -> delay = 2 bars**.
+- *Canaries, first run: 3 FAILED* (C1, C2, C3b) -> every daily strategy traded zero times. Cause: `daily_to_h1` built its index from `.values`, which strips the UTC timezone, so 0% of daily signals matched the H1 grid - a silent failure (no error, just no trades). Fixed; regression canary C0 added (mapping share 99.96%).
+- *Canaries, second run: 2 FAILED, both were wrong predictions, not engine bugs* (each diagnosis tested before accepting it):
+  - C1 (oracle Sharpe > 3 on every pair) failed on EURCHF only (1.85). Hypothesis "SNB-peg days were tiny" was **wrong** (peg-era daily range 47 pips = 2017's). Real cause: one day, the 2015-01-15 SNB de-peg, returned +55% and dominates the standard deviation; without it Sharpe = 10.5. Canary now measured without each pair's best day.
+  - C4 (stale oracle abs(Sharpe) < 1.5 with costs) failed at -3.16. Cause: cost drag from flipping daily at the rollover (3.5%/yr), amplified across 25 pairs; frictionless it is -0.26 -> no leaked information. Canary now isolates lookahead (frictionless).
+- *Known engine limitation found:* intrabar stops fill at the stop price. In a flash gap (SNB 2015: stops filled 1,000+ pips away) real losses are far larger. Backtests therefore understate tail risk; the final candidate gets an explicit gap-risk check.
+- All 9 canaries pass. OOS (2020+) data encrypted; the latest bar visible to research is 2019-12-31 19:00 UTC.
+
 ```
 RESULT       (appended below after the runs)
 ```
