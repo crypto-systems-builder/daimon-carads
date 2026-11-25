@@ -1,0 +1,198 @@
+{
+ "family": "breakout",
+ "n_trials": 24,
+ "grid": {
+  "N_exit": [
+   [
+    20,
+    10
+   ],
+   [
+    20,
+    "rev"
+   ],
+   [
+    55,
+    10
+   ],
+   [
+    55,
+    20
+   ],
+   [
+    55,
+    "rev"
+   ],
+   [
+    100,
+    20
+   ],
+   [
+    100,
+    50
+   ],
+   [
+    100,
+    "rev"
+   ]
+  ],
+  "k": [
+   2,
+   3,
+   4
+  ]
+ },
+ "top5": [
+  {
+   "config_id": "B_N55_X10_k4",
+   "params": {
+    "N": 55,
+    "exit": 10,
+    "k": 4
+   },
+   "sharpe": -0.11571702766531895,
+   "ann_ret": -0.0010027988665384342,
+   "ann_vol": 0.008665957696725204,
+   "max_dd": -0.031212907535329286,
+   "t_stat": -0.3270610630545276,
+   "pairs_positive": 0.48,
+   "trades": 854,
+   "win_rate": 0.33489461358313816,
+   "avg_R": -0.031001585483703,
+   "profit_factor": 0.9036260289827532,
+   "cost_ann": 0.0002454518326156359,
+   "pct_pos_years": 0.375,
+   "neighbour_median_sharpe": -0.2640772047176763,
+   "stress_sharpe": null
+  },
+  {
+   "config_id": "B_N55_X20_k4",
+   "params": {
+    "N": 55,
+    "exit": 20,
+    "k": 4
+   },
+   "sharpe": -0.23235696676897408,
+   "ann_ret": -0.0022841391120154322,
+   "ann_vol": 0.009830301814390987,
+   "max_dd": -0.04310607065811323,
+   "t_stat": -0.656730630684548,
+   "pairs_positive": 0.44,
+   "trades": 689,
+   "win_rate": 0.3178519593613933,
+   "avg_R": -0.08105709282208894,
+   "profit_factor": 0.8112477802496024,
+   "cost_ann": 0.00020872744260435166,
+   "pct_pos_years": 0.375,
+   "neighbour_median_sharpe": -0.24950398460812254,
+   "stress_sharpe": null
+  },
+  {
+   "config_id": "B_N55_Xrev_k4",
+   "params": {
+    "N": 55,
+    "exit": "rev",
+    "k": 4
+   },
+   "sharpe": -0.24950398460812254,
+   "ann_ret": -0.0026443898476181844,
+   "ann_vol": 0.010598587640880893,
+   "max_dd": -0.04428652804163742,
+   "t_stat": -0.7051947331233598,
+   "pairs_positive": 0.36,
+   "trades": 456,
+   "win_rate": 0.26973684210526316,
+   "avg_R": -0.14040963523051705,
+   "profit_factor": 0.7622408439243261,
+   "cost_ann": 0.00015058691614039266,
+   "pct_pos_years": 0.25,
+   "neighbour_median_sharpe": -0.31054820803425753,
+   "stress_sharpe": null
+  },
+  {
+   "config_id": "B_N55_X10_k3",
+   "params": {
+    "N": 55,
+    "exit": 10,
+    "k": 3
+   },
+   "sharpe": -0.2640772047176763,
+   "ann_ret": -0.0025845763680971013,
+   "ann_vol": 0.009787199810980501,
+   "max_dd": -0.037095146552816455,
+   "t_stat": -0.7463842879997921,
+   "pairs_positive": 0.48,
+   "trades": 854,
+   "win_rate": 0.32903981264637,
+   "avg_R": -0.07050902852224071,
+   "profit_factor": 0.8325994153943107,
+   "cost_ann": 0.00033067339598158516,
+   "pct_pos_years": 0.25,
+   "neighbour_median_sharpe": -0.3148153661401396,
+   "stress_sharpe": null
+  },
+  {
+   "config_id": "B_N20_X10_k4",
+   "params": {
+    "N": 20,
+    "exit": 10,
+    "k": 4
+   },
+   "sharpe": -0.264601879926712,
+   "ann_ret": -0.002762515122937556,
+   "ann_vol": 0.010440270204061672,
+   "max_dd": -0.03180911963117409,
+   "t_stat": -0.7478672230102028,
+   "pairs_positive": 0.44,
+   "trades": 1545,
+   "win_rate": 0.3307443365695793,
+   "avg_R": -0.04130197787019068,
+   "profit_factor": 0.8672298506084583,
+   "cost_ann": 0.00042647427862526455,
+   "pct_pos_years": 0.375,
+   "neighbour_median_sharpe": -0.36476205819655794,
+   "stress_sharpe": null
+  }
+ ],
+ "median_config_sharpe": -0.38466769951755,
+ "share_configs_positive": 0.0,
+ "best_config_dsr": 0.1343543974177689,
+ "candidate": null,
+ "clues": "No config is profitable (best B_N55_X10_k4 Sharpe -0.12); least-bad region is mid-length channels (N=55) with an integer exit and the widest stop (k=4); wider stops beat tight ones in most (N,exit) rows.",
+ "losers_check": "Worst configs (B_N100_Xrev_k3 -0.68, B_N55_Xrev_k2 -0.61) are the N=100 'rev'/slow-exit and tight-stop (k=2/3) variants, i.e. the opposite end of the same axes; all 24 configs are negative so the differences are small relative to noise.",
+ "prediction_check": "No: best IS Sharpe is -0.12 (predicted 0.5-0.9) with 0/24 configs positive; daily corr of best config with a proxy 120d TSMOM basket was 0.66 (>0.6 holds, but the proxy is not the real trend family).",
+ "concerns": [
+  "All 24 configs have negative Sharpe; sign check on EURUSD showed inverted signals earn slightly more than normal, consistent with 2012-2019 FX trend breakouts being whipsawed, not a sign bug (state machine uses shift(1) channels, daily_to_h1 mapping).",
+  "Correlation check uses an internal 120d TSMOM proxy (k=3 ATR stop), not the actual trend-following family results.",
+  "Stop is mapped via daily_to_h1 and back-filled over the warm-up where target is 0 (no effect on trades); stub sessions (<4 bars) are dropped by to_daily, so those days have no channel update.",
+  "No config passed the screen so no stress runs were executed; stress_sharpe is null everywhere and candidate is null by the rule."
+ ],
+ "proxy_corr_best_vs_tsmom120": 0.6584355819771663,
+ "all_sharpes": {
+  "B_N20_X10_k2": -0.355316324032261,
+  "B_N20_X10_k3": -0.39829708714477224,
+  "B_N20_X10_k4": -0.264601879926712,
+  "B_N20_Xrev_k2": -0.5327266857301024,
+  "B_N20_Xrev_k3": -0.4613501616565171,
+  "B_N20_Xrev_k4": -0.33122702924834363,
+  "B_N55_X10_k2": -0.2898978394273182,
+  "B_N55_X10_k3": -0.2640772047176763,
+  "B_N55_X10_k4": -0.11571702766531895,
+  "B_N55_X20_k2": -0.3710383118903277,
+  "B_N55_X20_k3": -0.339732892852961,
+  "B_N55_X20_k4": -0.23235696676897408,
+  "B_N55_Xrev_k2": -0.6117436212432968,
+  "B_N55_Xrev_k3": -0.3403841839382155,
+  "B_N55_Xrev_k4": -0.24950398460812254,
+  "B_N100_X20_k2": -0.5035110523837572,
+  "B_N100_X20_k3": -0.5866552537116406,
+  "B_N100_X20_k4": -0.31054820803425753,
+  "B_N100_X50_k2": -0.47193034256894684,
+  "B_N100_X50_k3": -0.5935180807048034,
+  "B_N100_X50_k4": -0.4706652236817805,
+  "B_N100_Xrev_k2": -0.4750738912333989,
+  "B_N100_Xrev_k3": -0.6789264050770092,
+  "B_N100_Xrev_k4": -0.5573145369485158
+ },
+ "runtime_seconds": 18.883172035217285
+}

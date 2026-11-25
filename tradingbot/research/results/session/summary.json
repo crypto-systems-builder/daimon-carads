@@ -1,0 +1,195 @@
+{
+ "family": "session",
+ "n_trials": 20,
+ "grid": {
+  "D1": {
+   "E": [
+    11,
+    14
+   ],
+   "s": [
+    1.0,
+    0.5
+   ],
+   "m": [
+    1.0,
+    2.0,
+    null
+   ]
+  },
+  "D2": {
+   "mode": [
+    "momentum",
+    "fade"
+   ],
+   "X": [
+    11,
+    15
+   ],
+   "k": [
+    2,
+    4
+   ]
+  }
+ },
+ "top5": [
+  {
+   "config_id": "D2_fade_X15_k4",
+   "params": {
+    "sub": "D2",
+    "mode": "fade",
+    "X": 15,
+    "k": 4
+   },
+   "sharpe": -0.5026891747820461,
+   "ann_ret": -0.03695184833550907,
+   "ann_vol": 0.07350834310591728,
+   "max_dd": -0.3076372566993454,
+   "t_stat": -1.4207939765419142,
+   "pairs_positive": 0.08,
+   "trades": 51597,
+   "win_rate": 0.4798728608252418,
+   "avg_R": -0.014302596042564402,
+   "profit_factor": 0.9384311353114358,
+   "cost_ann": 0.05325915754560788,
+   "pct_pos_years": 0.125,
+   "neighbour_median_sharpe": -1.4466325205883959,
+   "stress_sharpe": null
+  },
+  {
+   "config_id": "D2_fade_X11_k4",
+   "params": {
+    "sub": "D2",
+    "mode": "fade",
+    "X": 11,
+    "k": 4
+   },
+   "sharpe": -0.5077571534573497,
+   "ann_ret": -0.040620540266114266,
+   "ann_vol": 0.07999993695711917,
+   "max_dd": -0.326254238465799,
+   "t_stat": -1.4351180438509752,
+   "pairs_positive": 0.08,
+   "trades": 51597,
+   "win_rate": 0.46339903482760625,
+   "avg_R": -0.015722601294037544,
+   "profit_factor": 0.8834576817764327,
+   "cost_ann": 0.054624746948043056,
+   "pct_pos_years": 0.125,
+   "neighbour_median_sharpe": -2.0531583437825947,
+   "stress_sharpe": null
+  },
+  {
+   "config_id": "D1_E11_s1.0_mNone",
+   "params": {
+    "sub": "D1",
+    "E": 11,
+    "s": 1.0,
+    "m": null
+   },
+   "sharpe": -0.6653970345733521,
+   "ann_ret": -0.03173989842308801,
+   "ann_vol": 0.04770069112712444,
+   "max_dd": -0.31915298074461484,
+   "t_stat": -1.8806693005485344,
+   "pairs_positive": 0.36,
+   "trades": 29359,
+   "win_rate": 0.43196294151708164,
+   "avg_R": -0.021590735190871173,
+   "profit_factor": 0.9502762670310271,
+   "cost_ann": 0.06664827255417516,
+   "pct_pos_years": 0.125,
+   "neighbour_median_sharpe": -0.8850349849644135,
+   "stress_sharpe": null
+  },
+  {
+   "config_id": "D1_E14_s1.0_mNone",
+   "params": {
+    "sub": "D1",
+    "E": 14,
+    "s": 1.0,
+    "m": null
+   },
+   "sharpe": -0.7517499814070696,
+   "ann_ret": -0.04098219379122145,
+   "ann_vol": 0.05451572305264848,
+   "max_dd": -0.4045682143771582,
+   "t_stat": -2.124736117326885,
+   "pairs_positive": 0.4,
+   "trades": 39583,
+   "win_rate": 0.4398858095647121,
+   "avg_R": -0.02067710120903859,
+   "profit_factor": 0.9492179294173877,
+   "cost_ann": 0.08760568644314289,
+   "pct_pos_years": 0.125,
+   "neighbour_median_sharpe": -1.0062224559438038,
+   "stress_sharpe": null
+  },
+  {
+   "config_id": "D1_E11_s1.0_m2.0",
+   "params": {
+    "sub": "D1",
+    "E": 11,
+    "s": 1.0,
+    "m": 2.0
+   },
+   "sharpe": -0.8850349849644135,
+   "ann_ret": -0.037045538311008645,
+   "ann_vol": 0.041857710644622945,
+   "max_dd": -0.3402849163350317,
+   "t_stat": -2.501451073044299,
+   "pairs_positive": 0.36,
+   "trades": 29359,
+   "win_rate": 0.4389114070642733,
+   "avg_R": -0.025199841442921766,
+   "profit_factor": 0.941268044301239,
+   "cost_ann": 0.06598825020560284,
+   "pct_pos_years": 0.25,
+   "neighbour_median_sharpe": -1.0981639703003974,
+   "stress_sharpe": null
+  }
+ ],
+ "median_config_sharpe": -1.348995244022365,
+ "share_configs_positive": 0.0,
+ "best_config_dsr": 0.0011010434219756904,
+ "candidate": null,
+ "clues": "Least-bad configs all use the widest stops (D1 s=1.0 with no take-profit; D2 k=4, fade) - i.e. fewest stop-outs and lowest cost drag; none is positive.",
+ "losers_check": "Yes in reverse: the worst configs are the tight-stop ones (D1 s=0.5 with tp=1.0, D2 k=2, esp. fade_X11_k2 at -2.9), so stop width orders losses but never makes any config profitable.",
+ "prediction_check": "Yes: all 20 configs have negative base Sharpe (share positive = 0), so no candidate.",
+ "concerns": [
+  "Costs are heavy: cost_ann 5-9% of equity at 1% risk with ~30-50k trades, so cost drag alone is comparable to gross edge; stress run not triggered (no config passed screen).",
+  "D2 pairs_positive is 0-16%: near-uniform loss across pairs (consistent with a cost/structure effect rather than noise).",
+  "D2 fade at tight k=2 is much worse than k=4, suggesting stop-out churn; fade/momentum are not symmetric because of stops and re-entry rule.",
+  "No lookahead found: range uses London hours 0-7 only, signals at bar close, stop from ATR at bar 08:00; London DST handled via tz_convert. Trades are counted per round-trip incl. days where a stop occurs and no re-entry."
+ ],
+ "all_sharpes": {
+  "D2_fade_X15_k4": -0.503,
+  "D2_fade_X11_k4": -0.508,
+  "D1_E11_s1.0_mNone": -0.665,
+  "D1_E14_s1.0_mNone": -0.752,
+  "D1_E11_s1.0_m2.0": -0.885,
+  "D1_E14_s1.0_m2.0": -1.006,
+  "D1_E11_s0.5_mNone": -1.054,
+  "D1_E11_s1.0_m1.0": -1.19,
+  "D1_E14_s0.5_mNone": -1.2,
+  "D1_E11_s0.5_m2.0": -1.306,
+  "D1_E14_s1.0_m1.0": -1.392,
+  "D2_momentum_X15_k4": -1.447,
+  "D2_momentum_X15_k2": -1.452,
+  "D1_E14_s0.5_m2.0": -1.483,
+  "D1_E11_s0.5_m1.0": -1.77,
+  "D2_fade_X15_k2": -1.808,
+  "D2_momentum_X11_k2": -1.952,
+  "D2_momentum_X11_k4": -2.053,
+  "D1_E14_s0.5_m1.0": -2.102,
+  "D2_fade_X11_k2": -2.866
+ },
+ "bottom5": [
+  "D2_fade_X15_k2",
+  "D2_momentum_X11_k2",
+  "D2_momentum_X11_k4",
+  "D1_E14_s0.5_m1.0",
+  "D2_fade_X11_k2"
+ ],
+ "runtime_seconds": 24.891393899917603
+}
