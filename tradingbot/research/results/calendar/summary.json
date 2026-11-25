@@ -1,0 +1,183 @@
+{
+  "family": "calendar",
+  "n_trials": 14,
+  "grid": {
+    "F1": {
+      "w": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "side": [
+        "longUSD",
+        "shortUSD"
+      ]
+    },
+    "F2": {
+      "window": [
+        "last2",
+        "first2"
+      ],
+      "side": [
+        "longUSD",
+        "shortUSD"
+      ]
+    },
+    "stop": "2*ATR20(daily)",
+    "delay": 2,
+    "pairs": [
+      "EURUSD",
+      "GBPUSD",
+      "AUDUSD",
+      "NZDUSD",
+      "USDCAD",
+      "USDCHF",
+      "USDJPY"
+    ]
+  },
+  "top5": [
+    {
+      "config_id": "F1_w4_longUSD",
+      "params": {
+        "kind": "F1",
+        "w": 4,
+        "side": "longUSD"
+      },
+      "sharpe": 0.35673876781953134,
+      "ann_ret": 0.006582936748807452,
+      "ann_vol": 0.018453101660477946,
+      "max_dd": -0.07886997362159659,
+      "t_stat": 1.0082816936265506,
+      "pairs_positive": 0.8571428571428571,
+      "trades": 2864,
+      "win_rate": 0.5181564245810056,
+      "avg_R": 0.013805718987768922,
+      "profit_factor": 1.1058597365069103,
+      "cost_ann": 0.0036854254167714025,
+      "pct_pos_years": 0.5,
+      "neighbour_median_sharpe": -0.29222983480561565,
+      "stress_sharpe": null
+    },
+    {
+      "config_id": "F2_first2_longUSD",
+      "params": {
+        "kind": "F2",
+        "window": "first2",
+        "side": "longUSD"
+      },
+      "sharpe": 0.28062689374088784,
+      "ann_ret": 0.003124886565243687,
+      "ann_vol": 0.011135378094335456,
+      "max_dd": -0.021226205337105543,
+      "t_stat": 0.7931601082430183,
+      "pairs_positive": 0.5714285714285714,
+      "trades": 665,
+      "win_rate": 0.5172932330827068,
+      "avg_R": 0.026276880145794084,
+      "profit_factor": 1.1653862862557607,
+      "cost_ann": 0.0008152484657150641,
+      "pct_pos_years": 0.625,
+      "neighbour_median_sharpe": -0.28488989587095137,
+      "stress_sharpe": null
+    },
+    {
+      "config_id": "F1_w1_longUSD",
+      "params": {
+        "kind": "F1",
+        "w": 1,
+        "side": "longUSD"
+      },
+      "sharpe": 0.17116883511657782,
+      "ann_ret": 0.002608467727687554,
+      "ann_vol": 0.015239151016661453,
+      "max_dd": -0.033739035549709584,
+      "t_stat": 0.48378931177655377,
+      "pairs_positive": 0.7142857142857143,
+      "trades": 2863,
+      "win_rate": 0.5078588892769822,
+      "avg_R": 0.005162160320637303,
+      "profit_factor": 1.0441665569884413,
+      "cost_ann": 0.003350404924233801,
+      "pct_pos_years": 0.5,
+      "neighbour_median_sharpe": -0.36686447199675354,
+      "stress_sharpe": null
+    },
+    {
+      "config_id": "F2_last2_shortUSD",
+      "params": {
+        "kind": "F2",
+        "window": "last2",
+        "side": "shortUSD"
+      },
+      "sharpe": 0.023949708097780686,
+      "ann_ret": 0.0002597508304105942,
+      "ann_vol": 0.010845678341886102,
+      "max_dd": -0.047794940517687,
+      "t_stat": 0.06769113542183886,
+      "pairs_positive": 0.5714285714285714,
+      "trades": 665,
+      "win_rate": 0.49774436090225566,
+      "avg_R": -0.003626071068728033,
+      "profit_factor": 0.9800790070715631,
+      "cost_ann": 0.000822745452254682,
+      "pct_pos_years": 0.625,
+      "neighbour_median_sharpe": -0.532759798968534,
+      "stress_sharpe": null
+    },
+    {
+      "config_id": "F1_w0_shortUSD",
+      "params": {
+        "kind": "F1",
+        "w": 0,
+        "side": "shortUSD"
+      },
+      "sharpe": -0.13298068362152324,
+      "ann_ret": -0.0016891907117527708,
+      "ann_vol": 0.01270252690654217,
+      "max_dd": -0.04881009293010264,
+      "t_stat": -0.3758548299111578,
+      "pairs_positive": 0.5714285714285714,
+      "trades": 2858,
+      "win_rate": 0.4895031490552834,
+      "avg_R": -0.003305047068710443,
+      "profit_factor": 0.9679678486688251,
+      "cost_ann": 0.00360441071347467,
+      "pct_pos_years": 0.375,
+      "neighbour_median_sharpe": -0.7346707959311256,
+      "stress_sharpe": null
+    }
+  ],
+  "median_config_sharpe": -0.22246607414221706,
+  "share_configs_positive": 0.2857142857142857,
+  "best_config_dsr": 0.2006830654426962,
+  "candidate": null,
+  "clues": "The top configs (F1_w4_longUSD 0.36, F2_first2_longUSD 0.28, F1_w1_longUSD 0.17) are all long-USD; no config reaches the 0.4 screen and the best has t-stat ~1.0.",
+  "losers_check": "Yes in mirror image: the worst configs (F1_w4_shortUSD -0.86, F1_w1_shortUSD -0.73, F1_w2_shortUSD -0.58) are largely short-USD, i.e. the sign is just the 2012-2019 USD uptrend, not a calendar effect; and the long-USD side is also negative on F1_w0/w2/w3 and F2_last2.",
+  "prediction_check": "Yes: 4/14 configs positive, median Sharpe -0.22, best Sharpe 0.36 (t~1.0, DSR ~0.20) with neighbours at -0.29 - indistinguishable from noise plus a USD-trend drift.",
+  "concerns": [
+    "No config passed the screen (sharpe>=0.4), so no stress runs were executed and trials.jsonl has exactly 14 lines; stress_sharpe is null everywhere.",
+    "Long-USD vs short-USD results are strongly antisymmetric (costs aside), so results mostly reflect the in-sample USD trend, not weekday/month-turn structure.",
+    "Weekday uses the trading-day label (ny_day), so the Monday session includes Sunday-evening open; Friday ends 17:00 NY.",
+    "Verified the signal timing manually: for F1_w2 on EURUSD target flips at the close of Tuesday's last bar and back to 0 at the close of Wednesday's; stub days (<4 bars) are dropped by to_daily so calendar positions skip them.",
+    "Bars before the 20-day ATR warmup get target 0. Engine/lookahead: no issue found in fxlab."
+  ],
+  "all_sharpes": {
+    "F1_w4_longUSD": 0.35673876781953134,
+    "F2_first2_longUSD": 0.28062689374088784,
+    "F1_w1_longUSD": 0.17116883511657782,
+    "F2_last2_shortUSD": 0.023949708097780686,
+    "F1_w0_shortUSD": -0.13298068362152324,
+    "F1_w3_shortUSD": -0.14249090072249657,
+    "F1_w2_longUSD": -0.16004225241348274,
+    "F2_last2_longUSD": -0.28488989587095137,
+    "F1_w3_longUSD": -0.29222983480561565,
+    "F2_first2_shortUSD": -0.532759798968534,
+    "F1_w0_longUSD": -0.5736866915800244,
+    "F1_w2_shortUSD": -0.5795167332544141,
+    "F1_w1_shortUSD": -0.7346707959311256,
+    "F1_w4_shortUSD": -0.860798258480545
+  },
+  "runtime_seconds": 3.8265132904052734
+}
