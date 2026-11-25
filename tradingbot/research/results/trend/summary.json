@@ -1,0 +1,175 @@
+{
+ "family": "trend",
+ "n_trials": 32,
+ "grid": {
+  "A1": {
+   "L": [
+    20,
+    60,
+    120,
+    250
+   ],
+   "k": [
+    2,
+    3,
+    4,
+    6
+   ]
+  },
+  "A2": {
+   "fast_slow": [
+    [
+     10,
+     40
+    ],
+    [
+     20,
+     50
+    ],
+    [
+     20,
+     80
+    ],
+    [
+     50,
+     200
+    ]
+   ],
+   "k": [
+    2,
+    3,
+    4,
+    6
+   ]
+  },
+  "atr_n": 20,
+  "delay": 2,
+  "pairs": 25
+ },
+ "top5": [
+  {
+   "config_id": "A1_L20_k4",
+   "params": {
+    "sub": "A1",
+    "L": 20,
+    "k": 4
+   },
+   "sharpe": -0.12767058104274132,
+   "ann_ret": -0.001465046755017614,
+   "ann_vol": 0.011475210209368031,
+   "max_dd": -0.029309877399733848,
+   "t_stat": -0.36084642683181123,
+   "pairs_positive": 0.44,
+   "trades": 5272,
+   "win_rate": 0.3330804248861912,
+   "avg_R": -0.008592440696753472,
+   "profit_factor": 0.9426659609433359,
+   "cost_ann": 0.0014435108156784918,
+   "pct_pos_years": 0.5,
+   "neighbour_median_sharpe": -0.1797803795364841,
+   "stress_sharpe": null
+  },
+  {
+   "config_id": "A1_L20_k6",
+   "params": {
+    "sub": "A1",
+    "L": 20,
+    "k": 6
+   },
+   "sharpe": -0.12794066994973782,
+   "ann_ret": -0.0009688851791233822,
+   "ann_vol": 0.007572925634233538,
+   "max_dd": -0.019670920540882895,
+   "t_stat": -0.3616098025149216,
+   "pairs_positive": 0.4,
+   "trades": 5272,
+   "win_rate": 0.3332701062215478,
+   "avg_R": -0.005698698239038465,
+   "profit_factor": 0.9429461284492369,
+   "cost_ann": 0.0009623882498300869,
+   "pct_pos_years": 0.5,
+   "neighbour_median_sharpe": -0.18740756640837683,
+   "stress_sharpe": null
+  },
+  {
+   "config_id": "A1_L20_k3",
+   "params": {
+    "sub": "A1",
+    "L": 20,
+    "k": 3
+   },
+   "sharpe": -0.1797803795364841,
+   "ann_ret": -0.0027461728204851614,
+   "ann_vol": 0.015275153092709213,
+   "max_dd": -0.045212601946557185,
+   "t_stat": -0.5081288660266148,
+   "pairs_positive": 0.28,
+   "trades": 5272,
+   "win_rate": 0.3321320182094082,
+   "avg_R": -0.014459750412631664,
+   "profit_factor": 0.9279805323263944,
+   "cost_ann": 0.001947761778373092,
+   "pct_pos_years": 0.5,
+   "neighbour_median_sharpe": -0.18893961168346948,
+   "stress_sharpe": null
+  },
+  {
+   "config_id": "A1_L20_k2",
+   "params": {
+    "sub": "A1",
+    "L": 20,
+    "k": 2
+   },
+   "sharpe": -0.18893961168346948,
+   "ann_ret": -0.00431492536876969,
+   "ann_vol": 0.022837589906760707,
+   "max_dd": -0.0714175855029237,
+   "t_stat": -0.5340163975610429,
+   "pairs_positive": 0.32,
+   "trades": 5272,
+   "win_rate": 0.3283383915022762,
+   "avg_R": -0.022430839303567842,
+   "profit_factor": 0.924425038128638,
+   "cost_ann": 0.002946725208479581,
+   "pct_pos_years": 0.375,
+   "neighbour_median_sharpe": -0.25071910088663324,
+   "stress_sharpe": null
+  },
+  {
+   "config_id": "A1_L60_k3",
+   "params": {
+    "sub": "A1",
+    "L": 60,
+    "k": 3
+   },
+   "sharpe": -0.22703303109058245,
+   "ann_ret": -0.0035327766909819956,
+   "ann_vol": 0.015560628662762624,
+   "max_dd": -0.06529810137762995,
+   "t_stat": -0.6416831299170308,
+   "pairs_positive": 0.4,
+   "trades": 2962,
+   "win_rate": 0.30216070222822417,
+   "avg_R": -0.031161218658558455,
+   "profit_factor": 0.8663742323832903,
+   "cost_ann": 0.001110682327132998,
+   "pct_pos_years": 0.25,
+   "neighbour_median_sharpe": -0.28073483184804554,
+   "stress_sharpe": null
+  }
+ ],
+ "median_config_sharpe": -0.40256745238724456,
+ "share_configs_positive": 0.0,
+ "best_config_dsr": 0.13143427672682134,
+ "candidate": null,
+ "clues": "Best config A1_L20_k4 (Sharpe -0.13); top5 = A1_L20_k4, A1_L20_k6, A1_L20_k3, A1_L20_k2, A1_L60_k3: shortest lookback (A1 L=20) with wide stops (k>=3), but all 32 are negative (mean A1 -0.29, A2 -0.45; A1 L=20 mean -0.16), so this is the least-bad region, not an edge.",
+ "losers_check": "Worst 5 = A2_f10_s40_k4, A1_L120_k2, A2_f10_s40_k6, A2_f20_s80_k2, A2_f10_s40_k3: A2 crossovers and A1 L=120 (slow/medium trend signals); gross P&L is also negative (mean cost_ann 0.0007 vs mean ann_ret -0.0051), so costs are not the main cause.",
+ "prediction_check": "No: best Sharpe -0.13 vs predicted 0.5-0.9 and median -0.40 vs predicted 0.1-0.3; no config had positive Sharpe.",
+ "concerns": [
+  "No config passed the screen, so no stress runs were made and candidate is null.",
+  "Per-trade risk 1% with k*ATR20 stops gives very low portfolio ann_vol (equal-weight over 25 pairs); Sharpe is unaffected but ann_ret/max_dd are small in absolute terms.",
+  "Trade count is identical across k within an A1 lookback (e.g. 5272 for L=20): after a stop-out no re-entry occurs until the signal flips, so k changes only stop-outs, not entries; stop-outs on a persistent signal cut winners.",
+  "Sign-flip signals on daily bars only ever hold +/-1 (no flat state); daily features mapped with daily_to_h1 (no lookahead observed in code review). No fxlab bug identified; negative result is consistent with weak FX trend following in 2012-2019 (a known regime)."
+ ],
+ "runtime_seconds": 20.806058406829834
+}

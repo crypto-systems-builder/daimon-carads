@@ -1,0 +1,260 @@
+{
+ "family": "carry",
+ "n_trials": 18,
+ "grid": {
+  "tau": [
+   0.0025,
+   0.01,
+   0.02
+  ],
+  "filter": [
+   "none",
+   "mom60",
+   "mom120"
+  ],
+  "k": [
+   3,
+   5
+  ],
+  "delay": 2,
+  "pairs": 25
+ },
+ "top5": [
+  {
+   "config_id": "E_tau0.02_mom60_k3",
+   "params": {
+    "tau": 0.02,
+    "filter": "mom60",
+    "k": 3
+   },
+   "sharpe": -0.09398383538509558,
+   "ann_ret": -0.0003487609050832158,
+   "ann_vol": 0.003710860528879033,
+   "max_dd": -0.010845130346503348,
+   "t_stat": -0.26563465836587136,
+   "pairs_positive": 0.24,
+   "trades": 346,
+   "win_rate": 0.3583815028901734,
+   "avg_R": -0.019326816551403607,
+   "profit_factor": 0.9117235038751808,
+   "cost_ann": 0.00013571830408104794,
+   "pct_pos_years": 0.375,
+   "neighbour_median_sharpe": -0.3088823390071278,
+   "stress_sharpe": null
+  },
+  {
+   "config_id": "E_tau0.02_mom60_k5",
+   "params": {
+    "tau": 0.02,
+    "filter": "mom60",
+    "k": 5
+   },
+   "sharpe": -0.13836105368544568,
+   "ann_ret": -0.0003109849463663344,
+   "ann_vol": 0.0022476335506474037,
+   "max_dd": -0.0071898987562927855,
+   "t_stat": -0.3910618360729712,
+   "pairs_positive": 0.24,
+   "trades": 346,
+   "win_rate": 0.3583815028901734,
+   "avg_R": -0.017467863321464987,
+   "profit_factor": 0.8727136290401853,
+   "cost_ann": 7.9340999432816e-05,
+   "pct_pos_years": 0.375,
+   "neighbour_median_sharpe": -0.3695625934866791,
+   "stress_sharpe": null
+  },
+  {
+   "config_id": "E_tau0.0025_mom60_k3",
+   "params": {
+    "tau": 0.0025,
+    "filter": "mom60",
+    "k": 3
+   },
+   "sharpe": -0.28178626873977547,
+   "ann_ret": -0.0024543432567796677,
+   "ann_vol": 0.008709946257339491,
+   "max_dd": -0.038449655046516054,
+   "t_stat": -0.7964369502710708,
+   "pairs_positive": 0.28,
+   "trades": 1264,
+   "win_rate": 0.3227848101265823,
+   "avg_R": -0.04764433786145535,
+   "profit_factor": 0.7940393594608793,
+   "cost_ann": 0.0004890856914391809,
+   "pct_pos_years": 0.375,
+   "neighbour_median_sharpe": -0.30793613170031553,
+   "stress_sharpe": null
+  },
+  {
+   "config_id": "E_tau0.0025_mom60_k5",
+   "params": {
+    "tau": 0.0025,
+    "filter": "mom60",
+    "k": 5
+   },
+   "sharpe": -0.28828461197359767,
+   "ann_ret": -0.0015401167544644308,
+   "ann_vol": 0.005342348118828767,
+   "max_dd": -0.023329447072439884,
+   "t_stat": -0.8148037808838836,
+   "pairs_positive": 0.32,
+   "trades": 1264,
+   "win_rate": 0.3259493670886076,
+   "avg_R": -0.029653270898042552,
+   "profit_factor": 0.7924298436034816,
+   "cost_ann": 0.00029138615655100635,
+   "pct_pos_years": 0.375,
+   "neighbour_median_sharpe": -0.3327524408678819,
+   "stress_sharpe": null
+  },
+  {
+   "config_id": "E_tau0.0025_none_k3",
+   "params": {
+    "tau": 0.0025,
+    "filter": "none",
+    "k": 3
+   },
+   "sharpe": -0.2920970570081046,
+   "ann_ret": -0.0013819202549261622,
+   "ann_vol": 0.004731031079466914,
+   "max_dd": -0.01890801223664094,
+   "t_stat": -0.8255792246623839,
+   "pairs_positive": 0.16,
+   "trades": 40,
+   "win_rate": 0.075,
+   "avg_R": -0.7833660680609784,
+   "profit_factor": 0.1444290913894854,
+   "cost_ann": 1.8001493194300255e-05,
+   "pct_pos_years": 0.25,
+   "neighbour_median_sharpe": -0.29488929009309567,
+   "stress_sharpe": null
+  }
+ ],
+ "median_config_sharpe": -0.34202080304368276,
+ "share_configs_positive": 0.0,
+ "best_config_dsr": 0.1937647589684754,
+ "sr_var_annual": 0.012988810477225405,
+ "all_configs": {
+  "E_tau0.0025_none_k3": {
+   "sharpe": -0.2920970570081046,
+   "pairs_positive": 0.16,
+   "trades": 40,
+   "nms": -0.29488929009309567
+  },
+  "E_tau0.0025_none_k5": {
+   "sharpe": -0.30523848204092474,
+   "pairs_positive": 0.12,
+   "trades": 37,
+   "nms": -0.2920970570081046
+  },
+  "E_tau0.0025_mom60_k3": {
+   "sharpe": -0.28178626873977547,
+   "pairs_positive": 0.28,
+   "trades": 1264,
+   "nms": -0.30793613170031553
+  },
+  "E_tau0.0025_mom60_k5": {
+   "sharpe": -0.28828461197359767,
+   "pairs_positive": 0.32,
+   "trades": 1264,
+   "nms": -0.3327524408678819
+  },
+  "E_tau0.0025_mom120_k3": {
+   "sharpe": -0.4718058841145282,
+   "pairs_positive": 0.28,
+   "trades": 941,
+   "nms": -0.42319680003847915
+  },
+  "E_tau0.0025_mom120_k5": {
+   "sharpe": -0.42319680003847915,
+   "pairs_positive": 0.32,
+   "trades": 941,
+   "nms": -0.4718058841145282
+  },
+  "E_tau0.01_none_k3": {
+   "sharpe": -0.29488929009309567,
+   "pairs_positive": 0.08,
+   "trades": 24,
+   "nms": -0.3088823390071278
+  },
+  "E_tau0.01_none_k5": {
+   "sharpe": -0.49985622816841446,
+   "pairs_positive": 0.04,
+   "trades": 24,
+   "nms": -0.3327524408678819
+  },
+  "E_tau0.01_mom60_k3": {
+   "sharpe": -0.32377520639252644,
+   "pairs_positive": 0.24,
+   "trades": 746,
+   "nms": -0.29488929009309567
+  },
+  "E_tau0.01_mom60_k5": {
+   "sharpe": -0.36026639969483903,
+   "pairs_positive": 0.24,
+   "trades": 746,
+   "nms": -0.32377520639252644
+  },
+  "E_tau0.01_mom120_k3": {
+   "sharpe": -0.49332566750421986,
+   "pairs_positive": 0.16,
+   "trades": 574,
+   "nms": -0.42270307301808446
+  },
+  "E_tau0.01_mom120_k5": {
+   "sharpe": -0.48989073710565695,
+   "pairs_positive": 0.2,
+   "trades": 574,
+   "nms": -0.4010277936584991
+  },
+  "E_tau0.02_none_k3": {
+   "sharpe": -0.2939894716217291,
+   "pairs_positive": 0.08,
+   "trades": 17,
+   "nms": -0.29488929009309567
+  },
+  "E_tau0.02_none_k5": {
+   "sharpe": -0.42623945065884694,
+   "pairs_positive": 0.04,
+   "trades": 17,
+   "nms": -0.2939894716217291
+  },
+  "E_tau0.02_mom60_k3": {
+   "sharpe": -0.09398383538509558,
+   "pairs_positive": 0.24,
+   "trades": 346,
+   "nms": -0.3088823390071278
+  },
+  "E_tau0.02_mom60_k5": {
+   "sharpe": -0.13836105368544568,
+   "pairs_positive": 0.24,
+   "trades": 346,
+   "nms": -0.3695625934866791
+  },
+  "E_tau0.02_mom120_k3": {
+   "sharpe": -0.37360026192164075,
+   "pairs_positive": 0.16,
+   "trades": 284,
+   "nms": -0.37885878727851907
+  },
+  "E_tau0.02_mom120_k5": {
+   "sharpe": -0.37885878727851907,
+   "pairs_positive": 0.16,
+   "trades": 284,
+   "nms": -0.37360026192164075
+  }
+ },
+ "candidate": null,
+ "clues": "Best (still negative) configs share tau=0.02 with the mom60 filter and k=3 (best Sharpe -0.09, 346 trades); the 60-day trend filter is the only helpful dimension and k=3 beats k=5 in most neighbour pairs.",
+ "losers_check": "Worst configs are mom120 and tau=0.01 none_k5 (-0.50), outside the mom60/tau=0.02 region; but all 18 configs are negative (0% positive, median -0.34), so there is no real winning region and differences are within noise.",
+ "prediction_check": "No: pure carry Sharpe was -0.29 to -0.50 (predicted 0.0-0.4) and the best trend-filtered config was -0.09 (predicted 0.3-0.6).",
+ "concerns": [
+  "ENGINE LIMITATION: after a stop-out the engine does not re-enter the same direction until the target changes; carry signals change rarely, so unfiltered configs have only 17-40 trades total over 25 pairs and 4-16% pairs positive - once stopped, a pair stays flat for years. This tests carry-with-no-re-entry, not carry itself. Trades<100 also fails the screen for unfiltered configs.",
+  "The momentum filter makes the target flip on/off so it re-enters; its slightly better results partly reflect re-entry, not trend information.",
+  "Swap vs price split NOT measured: API cannot zero rates/markup. No config passed the screen so no stress runs exist for comparison.",
+  "Low ann_vol (~0.2-0.9%) from 1% risk per trade at 3-5 ATR stops, equal weight over 25 pairs with many idle periods; Sharpe is scale-free but absolute returns are tiny.",
+  "No lookahead found: rates reindexed ffill onto d1 dates, momentum from d1 closes, all mapped via daily_to_h1; ATR warm-up days forced flat."
+ ],
+ "runtime_seconds": 12.985724210739136
+}
